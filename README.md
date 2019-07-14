@@ -18,10 +18,10 @@ git clone https://github.com/ozkula-internet-hizmetleri/ozPanel.git
 ```
 
 ## tema dizin yapısı 
-header logosu: assets/logo-beyaz.png
-footer logosu: assets/ozpanel.png
-ana menu simgeleri: assets/anasayfamenusu
-favicon simgeleri: assets/fav
+- header logosu: assets/logo-beyaz.png
+- footer logosu: assets/ozpanel.png
+- ana menu simgeleri: assets/anasayfamenusu
+- favicon simgeleri: assets/fav
 
 
 ## ekran görüntüsü
