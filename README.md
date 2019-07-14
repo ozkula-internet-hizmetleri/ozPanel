@@ -8,7 +8,7 @@ reseller hesapları kullanıcılara özel olarak tema belirleyebilir.
 
 dil seçeneği var gibi görünsede çoğu yerde türkçe olarak sabit metinler var. pratikte ingilizce desteği yok
 
-geliştirilmesi serbest ama kopyalarin ücretli dağıtılması yasaktır
+geliştirilmesi serbest ama kopyaların ücretli dağıtılması yasaktır
 
 
 ## örnek kurulum 
