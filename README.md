@@ -12,5 +12,7 @@ dil seçeneği var gibi görünsede çoğu yerde türkçe olarak sabit metinler 
 
 
 ## örnek kurulum 
-`cd /usr/local/directadmin/data/skins/
-`git clone https://github.com/ozkula-internet-hizmetleri/ozPanel.git
+```
+cd /usr/local/directadmin/data/skins/
+git clone https://github.com/ozkula-internet-hizmetleri/ozPanel.git
+```
