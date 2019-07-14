@@ -1,0 +1,61 @@
+|?BASLIK=Varsayılan Adres|
+|?BASLIKALT=E-Posta Sunucunuzun Varsayılan Adresi|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/varsayilanadres.png|
+|?BASLIKYARDIM=Bu sayafadan E-Posta Sunucunuzun Varsayılan Adresini Belirleyebilirsiniz|
+|?BASLIKYARDIMURL=email/catch_all.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+
+
+|*if USERCATCHALL="OFF"|
+	Bu Hesap için varasyılan adres belirleme kapatılmıştır
+|*else|
+<p>
+Belirleyeceğiniz adres sunucuda bulunmayan e-posta adreslerine gelen e-postaların alınacağı adres olacaktır. Bu adresin sunucuda oluşturulmuş olduğuna emin olunuz. 
+</p>
+<br>
+
+<form name=info action="CMD_EMAIL_CATCH_ALL" method="post">
+<input type=hidden name=domain value="|DOMAIN|">
+<h4>Varsayılan E-Posta Ayarları</h4>
+<div class="form-group form-check">
+	
+  <input type="radio" id="faseqdsa" name="catch" class="form-check-input" value=":fail:" |FAILCHECKED|>
+  <label class="form-check-label" for="faseqdsa">Adres Yok (Adres Bulunamazsa Gönderene Geri Bildir)</label>
+
+</div>
+
+<div class="form-group form-check">
+	
+  <input type="radio" id="faseqdsa2" name="catch" class="form-check-input" value=":blackhole:" |BHCHECKED|>
+  <label class="form-check-label" for="faseqdsa2">Görmezden Gel (Adres Bulunamazsa Görmezden Gel kimseye bildirme)</label>
+
+</div>
+
+<div class="form-row">
+	<div class="col">
+		<div class="form-group form-check">
+			
+		  <input type="radio" id="faseqdsa23" name="catch" class="form-check-input" value="address" |ADDRESSCHECKED|>
+		  <label class="form-check-label" for="faseqdsa23">Yönlendir (Adres Bulunamazsa Yazılan Adrese Yönlendir)</label>
+
+		</div>		
+	</div>
+	<div class="col">
+		|POPLIST|
+	</div>
+</div>
+
+<input type="submit" name="update" value="Kaydet" class="btn btn-primary">
+
+</form>
+
+|*endif|
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

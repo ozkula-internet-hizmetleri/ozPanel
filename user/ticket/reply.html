@@ -1,0 +1,26 @@
+|?TREE=&raquo; <a class=tree href="/CMD_TICKET">Messaging System</a> &raquo; <a class=tree href="/CMD_TICKET?action=view&number=`number`&type=ticket">View `type` `number`</a> &raquo; <a class=tree href="/HTM_TICKET_REPLY?number=`number`&action=`action`&subject=`subject`&user=`user`&priority=`priority`">Reply to Ticket</a>|
+|?HELP_SECTION=`USER_HELPER`/gettingstarted.html#ticket|
+|HTM_USER_TOP|
+
+<table class=list cellpadding=3 cellspacing=1>
+	<tr><td class=listtitle colspan=2>Add a Reply to Ticket</td></tr>
+
+	<form name=info action="CMD_TICKET" method="post">
+		<input type=hidden name=action value="|action|">
+		<input type=hidden name=type value="reply">
+		<input type=hidden name=number value="|number|">
+		<input type=hidden name=user value="|user|">
+		<input type=hidden name=subject value="|subject|">
+		<input type=hidden name=priority value="|priority|">
+
+	<tr><td class=list>Subject:</td><td class=list>|subject|</td></tr>
+	<tr><td class=list>Message:</td><td class=list><textarea name=message rows=16 cols=65></textarea></td></tr>
+
+	<tr><td class=listtitle colspan=2 align=right>
+		<input type=submit name=submit value="Save">
+	</td></tr>
+	</form>
+
+</table>
+
+|HTM_USER_BOTTOM|

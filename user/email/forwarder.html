@@ -1,0 +1,39 @@
+|?BASLIK=Yeni Forwarder (İletici)|
+|?BASLIKALT=Yeni Bir Forwarder (İletici) Ekleyin|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/epostahesaplari.png|
+|?BASLIKYARDIM=Bu sayafadan Yeni bir Forwarder (İletici) Ekleyebilirsiniz.|
+|?BASLIKYARDIMURL=email/forwarder.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<a href="HTM_EMAIL_FORWARDER_CREATE?DOMAIN=|DOMAIN|" class="btn btn-primary">Yeni Forwarder (İletici) Oluştur</a><br>
+<br>
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|FORWARDERS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

@@ -1,0 +1,39 @@
+|?BASLIK=Otomatik Cevaplama|
+|?BASLIKALT=E-Posta Sunucunuzun Otomatik Cevaplaması|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/otocevap.png|
+|?BASLIKYARDIM=Bu sayafadan E-Posta Sunucusunun Otomatik Cevaplama Ayarlarını Yapabilrsiniz.|
+|?BASLIKYARDIMURL=email/autoresponder.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+
+<a href="HTM_EMAIL_AUTORESPONDER_CREATE?DOMAIN=|DOMAIN|" class="btn btn-primary">Yeni Otomatik Cevap Oluştur</a><br>
+<br>
+
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|AUTORESPONDERS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

@@ -1,0 +1,26 @@
+|?TREE=&raquo; <a class=tree href="/CMD_MAIL_QUEUE">Mail Queue Administration</a>|
+|?HELP_SECTION=`ADMIN_HELPER`|
+|HTM_ADMIN_TOP|
+
+<br>
+<form action='/CMD_MAIL_QUEUE' method='POST'>
+<input type=hidden name=action value="select">
+<input type=hidden name=select0 value="|id|">
+<input type=submit value='Thaw' name=thaw>
+<input type=submit value='Freeze' name=freeze>
+<input type=submit value='Retry' name=retry>
+<input type=submit value='Bounce' name=bounce>
+<input type=submit value='Delete' name=delete>
+</form>
+
+<table class=list cellpadding=3 cellspacing=1>
+<tr><td class=listtitle>E-Mail Headers</td></tr>
+<tr><td class=list align=center><textarea style="FONT-FAMILY: courier, courier-new" wrap=off readonly cols=120 rows=10>|HEADERS|</textarea></td></tr>
+<tr><td class=listtitle>E-Mail Body Chunk</td></tr>
+<tr><td class=list align=center><textarea style="FONT-FAMILY: courier, courier-new" wrap=off readonly cols=120 rows=20>|EMAIL_BODY|</textarea></td></tr>
+<tr><td class=listtitle>Log</td></tr>
+<tr><td class=list align=center><textarea style="FONT-FAMILY: courier, courier-new" wrap=off readonly cols=120 rows=10>|LOGS|</textarea></td></tr>
+</table>
+
+|HTM_ADMIN_BOTTOM|
+

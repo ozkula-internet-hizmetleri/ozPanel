@@ -1,0 +1,20 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/HTM_EMAIL?DOMAIN=`DOMAIN`">Email</a> &raquo; <a class=tree href="/CMD_EMAIL_FORWARDER?DOMAIN=`DOMAIN`">Forwarders</a> &raquo; <a class=tree href="/CMD_EMAIL_FORWARDER_MODIFY?DOMAIN=`DOMAIN`&user=`user`">Modify `user`</a>|
+|?HELP_SECTION=`USER_HELPER`/email.html#forwarders|
+|HTM_USER_TOP|
+
+<table class=list cellpadding=3 cellspacing=1>
+	<form name=info action="CMD_EMAIL_FORWARDER" method="post">
+		<input type=hidden name=action value=modify>
+		<input type=hidden name=domain value="|DOMAIN|">
+		<input type=hidden name=user value="|FORWARDERNAME|">
+
+		<tr><td class=listtitle colspan=2>Create E-Mail Forwarder</td></tr>
+		<tr><td class=list>Forwarder Name:</td><td class=list>|FORWARDERNAME|@|DOMAIN|</td></tr>
+		<tr><td class=list>Destination Email:</td><td class=list><input type=text name=email value="|FORWARDEREMAIL|" size=32> (Where you want it to go)</td></tr>
+		<tr><td class=listtitle colspan=3 align=right>
+			<input type=submit name=update value="Update">
+		</td></tr>
+	</form>
+</table>
+
+|HTM_USER_BOTTOM|

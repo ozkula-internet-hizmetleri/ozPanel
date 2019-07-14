@@ -1,0 +1,134 @@
+|?TREE=&raquo; <a class=tree href="/CMD_USER_BACKUP">Manage User Backups</a> &raquo; Modify Backup|
+|?HELP_SECTION=`RESELLER_HELPER`|
+|HTM_RESELLER_TOP|
+
+<style>
+.step { white-space: nowrap; border: 1px solid light gray;}
+</style>
+
+<table class=list cellspacing=6 cellpadding=8>
+<tr><td align=center colspan=3><b>Modify Backup</b></td></tr>
+<form name=tableform1 action="/CMD_USER_BACKUP" method="POST">
+<input type=hidden name=action value="modify">
+<input type=hidden name=id value="|id|">
+<tr>
+	<td class=step valign=top>
+			<div>Step 1: <b>Who</b></div>
+			<table width=100% cellspacing=1 cellpadding=0>
+				<tr><td bgcolor="#C0C0C0"> </td></tr>
+				<tr><td height=5> </td></tr>
+			</table>
+
+			<table cellpadding=0 cellspacing=1>
+			<tr>
+				<td class=listtitle align=center>
+					<input type=radio name=who value="all" |WHO_ALL_CHECKED|>
+				</td>
+				<td class=listtitle>
+					- All Users
+				</td>
+			</tr>
+			<tr>
+				<td class=listtitle align=center>
+					<input type=radio name=who value="except" |WHO_EXCEPT_CHECKED|>
+				</td>
+				<td class=listtitle>
+					- All Users Except Selected Users
+				</td>
+			</tr>
+			<tr>
+				<td class=listtitle align=center>
+					<input type=radio name=who value="selected" |WHO_SELECT_CHECKED|>
+				</td>
+				<td class=listtitle>
+					- Selected Users
+				</td>
+			</tr>
+			<tr><td></td>
+				<td>
+					<div style="overflow: auto; height: 160px; width: 200px;">
+					|USERS|
+					</div>
+				</td>
+			</tr>
+			<tr><td class=listtitle><input type=checkbox name="skip_suspended" value="yes" |SKIP_SUSPENDED_CHECKED|></td>
+				<td class=listtitle>
+					- Skip Suspended
+				</td>
+			</tr>
+			</table>
+	</td>
+	<td class=step valign=top>
+			<div>Step 2: <b>When</b></div>
+			<table width=100% cellspacing=1 cellpadding=0>
+				<tr><td bgcolor="#C0C0C0"> </td></tr>
+				<tr><td height=5> </td></tr>
+			</table>
+			<table cellpadding=0 cellspacing=1>
+			<tr>
+				<td class=listtitle>
+					<input type=radio name=when value="cron" checked>
+				</td>
+				<td class=listtitle>
+					- Cron Schedule
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<table class=list cellpadding=0 cellspacing=1>
+					<tr><td class=list align=right>Minute: </td><td class=list><input type=text size=2 name=minute value="|minute|"></td><td class=list>0-59</td></tr>
+					<tr><td class=list align=right>Hour: </td><td class=list><input type=text size=2 name=hour value="|hour|"></td><td class=list>0-23</td></tr>
+					<tr><td class=list align=right>Day of Month: </td><td class=list><input type=text size=2 name=dayofmonth value="|dayofmonth|"></td><td class=list>1-31</td></tr>
+					<tr><td class=list align=right>Month: </td><td class=list><input type=text size=2 name=month value="|month|"></td><td class=list>1-12</td></tr>
+					<tr><td class=list align=right>Day of Week: </td><td class=list><input type=text size=2 name=dayofweek value="|dayofweek|"></td><td class=list>0-7</td></tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+
+	</td>
+	<td class=step valign=top>
+			<div>Step 3: <b>Where</b></div>
+			<table width=100% cellspacing=1 cellpadding=0>
+				<tr><td bgcolor="#C0C0C0"> </td></tr>
+				<tr><td height=5> </td></tr>
+			</table>
+				<table cellpadding=0 cellspacing=1>
+				<tr>
+					<td class=listtitle><input type=radio name=where value="local" |LOCAL_CHECKED|></td>
+					<td class=listtitle> - Local: ~/|USERNAME|/|USER_BACKUPS_DIR|/</td>
+				</tr>
+				<tr>
+					<td class=listtitle>
+						<input type=radio name=where value="ftp" |FTP_CHECKED|>
+					</td>
+					<td class=listtitle>
+						- Ftp
+					</tr>
+				</tr>
+				<tr><td></td>
+					<td>
+						<table cellpadding=0 cellspacing=1>
+							<tr><td class=list align=right>IP:</td><td class=list><input type=text name=ftp_ip value="|ftp_ip|"></td></tr>
+							<tr><td class=list align=right>Username:</td><td class=list><input type=text name=ftp_username value="|ftp_username|"></td></tr>
+							<tr><td class=list align=right>Password:</td><td class=list><input type=password name=ftp_password value="|ftp_password_plain|"></td></tr>
+							<tr><td class=list align=right>Remote Path:</td><td class=list><input type=text name=ftp_path value="|ftp_path|"></td></tr>
+							<tr><td class=list align=right>Port:</td><td class=list><input type=text name=ftp_port value="|ftp_port|"></td></tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+
+	</td>
+</tr>
+<tr>
+<td colspan=3 align=right>Step 4: <input type=submit value="Save"></td>
+</tr>
+</form>
+</table>
+
+
+|HTM_RESELLER_BOTTOM|

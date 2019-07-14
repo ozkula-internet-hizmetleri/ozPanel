@@ -1,0 +1,40 @@
+|?BASLIK=FTP Hesapları|
+|?BASLIKALT=FTP Hesaplarının Yönetimi|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/ftphesaplari.png|
+|?BASLIKYARDIM=Bu sayafadan FTP Hesaplarını ve Ayarlarını Yönetebilirsiniz|
+|?BASLIKYARDIMURL=ftp/ftp.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<a href="HTM_FTP_CREATE?DOMAIN=|DOMAIN|&owned=|OWNEDIP|" class="btn btn-primary">Yeni FTP Hesabı Oluştur</a>&nbsp;&nbsp;
+<a href="CMD_FTP_SETTINGS?DOMAIN=|DOMAIN|" class="btn btn-secondary">Anonim FTP Hesabı Ayarları</a>&nbsp;&nbsp;&nbsp;&nbsp;Anonim Girişi: |ANONLOGIN|<br>
+<br>
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|FTPACCOUNTS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

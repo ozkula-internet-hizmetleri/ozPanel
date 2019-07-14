@@ -1,0 +1,87 @@
+|?BASLIK=Yeni Veritabanı Oluştur|
+|?BASLIKALT=Yeni Mysql Veritabanı Oluştur|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/yeniveritabani.png|
+|?BASLIKYARDIM=Bu sayafadan Yeni Bir Mysql Veritabanı Oluşturabilirsiniz|
+|?BASLIKYARDIMURL=db/db_create.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<script language="javascript">
+
+|HTM_JAVASCRIPT|
+
+function setGreyout(value)
+{
+	if (document.reseller)
+	{
+		with (document.reseller)
+		{
+			if (value == '...')
+			{
+				user.disabled = false;
+				user.value = '';
+				passwd.disabled = false;
+				passwd.value = '';
+				passwd2.disabled = false;
+				passwd2.value = '';
+
+			}
+			else
+			{
+				user.value = value;
+				user.disabled = true;
+				passwd.value = '********';
+				passwd.disabled = true;
+				passwd2.value = '********';
+				passwd2.disabled = true;
+			}
+		}
+	}
+}
+</script>
+
+<form name=reseller action="CMD_DB" method="post">
+<input type=hidden name=action value=create>
+<input type=hidden name=domain value="|DOMAIN|">
+
+
+<div class="form-group">
+	<label for="dadadad">Veritabanı Ad</label>
+	<input type="text" name="name" placeholder="Veritabanı Adı" class="form-control col-md-4 col-sm-8" id="dadadad">
+</div>
+
+<div class="form-group">
+	<label for="kadkadkadkad">Kullanıcı Adı</label>
+	<div class="form-inline">
+		
+		<input type="text" name="user" placeholder="Kullanıcı Adı" class="form-control" id="kadkadkadkad">&nbsp;&nbsp;veya&nbsp;
+		|USERNAME|_</b><input type=text name=user size=12 class="form-control">
+	|*if DB_USER_LIST|
+			&nbsp;&nbsp;veya Mevcut Bir Kullanıcı Seçin&nbsp;&nbsp;
+			|DB_USER_LIST|
+	|*endif|
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="usrsapasd">Kullanıcı Şifresi</label>
+	<div class="input-group mb-3">
+	  
+	  <input type="text" class="form-control col-md-4 col-sm-8" id="usrsapasd" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" name="passwd">
+	  <div class="input-group-prepend">
+	    <button class="btn btn-outline-secondary" onclick="randomPass()" type="button" id="button-addon1">Rastgele Oluştur</button>
+	  </div>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="pasdtekses">Kullanıcı Şifresi (Tekrar)</label>
+	<input type="text" name="passwd2" id="pasdtekses" class="form-control col-md-4 col-sm-8">
+</div>
+
+<input type="submit" value="Oluştur" class="btn btn-primary">
+</form>
+|HTM_USER_BOTTOM|

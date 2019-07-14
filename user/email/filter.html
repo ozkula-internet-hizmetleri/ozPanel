@@ -1,0 +1,116 @@
+|?BASLIK=E-Posta Filtresi|
+|?BASLIKALT=E-Posta Filtersini Yönetin|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/epostafiltre.png|
+|?BASLIKYARDIM=Bu sayafadan E-Posta Filtresinin Ayarlarını Yönetebilirsiniz|
+|?BASLIKYARDIMURL=email/filter.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+
+<form action='/CMD_EMAIL_FILTER' method='POST' class="form-inline">
+	<input type=hidden name=action value=add>
+	<input type=hidden name=domain value="|DOMAIN|">
+	<input type=hidden name=type value="email">
+
+
+	<label for="blockadd" class="mb-3 mr-sm-3">
+		E-Posta Adresini Engelle
+	</label>
+	<input type="text" name="value" id="blockadd" class="form-control mb-2 mr-sm-2">
+
+	<input type="submit" name="add" value="Engelle" class="btn btn-danger mb-2">
+</form>
+
+<form action='/CMD_EMAIL_FILTER' method='POST' class="form-inline">
+	<input type=hidden name=action value=add>
+	<input type=hidden name=domain value="|DOMAIN|">
+	<input type=hidden name=type value="word">
+
+	<label for="blockadd2" class="mb-3 mr-sm-3">
+		Yazılan Kelimeyi içeren E-Postaları Engelle
+	</label>
+	<input type="text" name="value" id="blockadd2" class="form-control mb-2 mr-sm-2">
+
+	<input type="submit" name="add" value="Engelle" class="btn btn-danger mb-2">
+</form>
+
+<form action='/CMD_EMAIL_FILTER' method='POST' class="form-inline">
+	<input type=hidden name=action value=add>
+	<input type=hidden name=domain value="|DOMAIN|">
+	<input type=hidden name=type value="size">
+
+	<label for="blockadd2" class="mb-3 mr-sm-3">
+		Bu Boyuttan Büyük E-Postaları Engelle (KB)
+	</label>
+	<input type="text" name="value" id="blockadd2" class="form-control mb-2 mr-sm-2">
+
+	<input type="submit" name="add" value="Engelle" class="btn btn-danger mb-2">
+</form>
+
+
+<form action='/CMD_EMAIL_FILTER' method='POST' class="form-inline">
+	<input type=hidden name=action value=adult>
+	<input type=hidden name=domain value="|DOMAIN|">
+
+	<label for="blockadd2" class="mb-3 mr-sm-3">
+		Yetişkin Filtresi (|STATE|)
+	</label>
+
+	<input type="submit" name="add" value="|ADULT|" class="btn btn-warning mb-2">
+</form>
+
+
+<form action='/CMD_EMAIL_FILTER' method='POST' class="form-inline">
+	<input type=hidden name=action value=action>
+	<input type=hidden name=domain value="|DOMAIN|">
+
+	<label for="blockadd2" class="mb-3 mr-sm-3">
+		Filtreye Takılanlara Uygulanacak işlem
+	</label>
+
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" name=value value="drop" |DROP_CHECKED| id="inlineRadio1">
+	  <label class="form-check-label" for="inlineRadio1">Engelle ve Yok Et</label>
+	</div>
+
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" name=value value="email" |EMAIL_CHECKED| id="inlineRadio22sde">
+	  <label class="form-check-label" for="inlineRadio22sde">Spam Klasörüne Gönder</label>
+	</div>
+
+
+	<input type="submit" name="add" value="Kaydet" class="btn btn-secondary mb-2">
+</form>
+
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|FILTERS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+<br><br>
+<p><b>Not: </b> Kelime bazli filtreler kelimenin herhangi bir yerinden de eşleşme yapabilir. Örneğin Filtre kelimesi olarak "ak" kelimesini yazarsanız "yapar<b>ak</b>" Kelimesini de yakalayıp ilgili E-Postayı filtre kapsamına alır. Bunu engellemek için uzun kelimeler veya kelime başında ve sonunda boşluk bırakmayı deneyebilirsiniz.  
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

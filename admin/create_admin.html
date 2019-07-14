@@ -1,0 +1,45 @@
+|?TREE=&raquo; <a class=tree href="/CMD_ADMIN_SHOW">Show Admins</a> &raquo; <a class=tree href="/HTM_ACCOUNT_ADMIN_CREATE">Create Admin</a>|
+|?HELP_SECTION=`ADMIN_HELPER`/createa.html|
+|HTM_ADMIN_TOP|
+
+<script language="Javascript">
+<!--
+
+|HTM_JAVASCRIPT|
+
+function showAdminMessage()
+{
+	var message = window.open("CMD_EDIT_ADMIN_MESSAGE","message","width=740,height=480,scrollbars=no,resizable=yes");
+}
+
+function formOK()
+{
+	with (document.reseller)
+	{
+		if (checkName() && checkPass() && checkEmail())
+			return true;
+	}
+	return false;
+}
+
+// -->
+</script>
+
+		<center>
+      		<table class=list style="width: 50%" cellpadding=3 cellspacing=1>
+      		<tr><td class=listtitle colspan=2 align=center>Create Administrator Account</td></tr>
+      		<form name=reseller action="CMD_ACCOUNT_ADMIN" method="post" onSubmit="return formOK()">
+      		<input type=hidden name=action value=create>
+      		<tr><td class=list>Username:</td><td class=list><input type=text name=username maxlength=|MAX_USERNAME_LENGTH| onChange="checkName()"></td></tr>
+      		<tr><td class=list>Email:</td><td class=list><input type=text name=email onChange="checkEmail()"></td></tr>
+      		<tr><td class=list>Enter Password</td><td class=list><input type=password name=passwd> <input type=button value="Random" onClick="randomPass()"></td></tr>
+			<tr><td class=list>Re-Enter Password:</td><td class=list><input type=password name=passwd2 onChange="checkPass()"></td></tr>
+			<tr><td class=list>Send Email Notification:</td><td class=list><input type=checkbox value="yes" name=notify checked> <a href="javascript:showAdminMessage();">Edit Admin Message</a></td></tr>
+
+			<tr><td td class=listtitle colspan=3 align=right>
+                <input type=submit value="Submit">
+              </td></tr>
+			</form>
+			</table>
+		</center>
+|HTM_ADMIN_BOTTOM|

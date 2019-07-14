@@ -1,0 +1,38 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`domain`">`domain`</a> &raquo; <a class=tree href="/CMD_SITE_BACKUP?domain=`domain`">Site Backup</a> &raquo; Restore from File|
+|?HELP_SECTION=`USER_HELPER`/backup.html#restore|
+|HTM_USER_TOP|
+
+Restore From File
+
+<table class=list cellpadding=3 cellspacing=1>
+<form action="/CMD_SITE_BACKUP" method="POST">
+<input type=hidden name=domain value="|domain|">
+<input type=hidden name=file value="|file|">
+<input type=hidden name=action value="restore">
+<tr><td class=listtitle colspan=2>Select Items to Restore from |file|</td></tr>
+<tr><td class=list colspan=2><b>Website Data</b></td></tr>
+<tr><td class=list>Domains Directory: Backs up all user files for all domains</td>		<td class=list><input type=checkbox name=select0 value="domain" |DOMAINON|></td></tr>
+<tr><td class=list>Subdomain Lists: Backs up the list of subdomains for each domain</td>	<td class=list><input type=checkbox name=select1 value="subdomain" |SUBDOMAINON|></td></tr>
+
+<tr><td class=list colspan=2><b>E-mail</b></td></tr>
+<tr><td class=list>POP Accounts for all domains</td>									<td class=list><input type=checkbox name=select2 value="email" |EMAILON|></td></tr>
+<tr><td class=list>Forwarders: Includes all forwarding addresses.</td>					<td class=list><input type=checkbox name=select3 value="forwarder" |FORWARDERON|></td></tr>
+<tr><td class=list>Autoresponders: Includes all autoresponders and messages.</td>		<td class=list><input type=checkbox name=select4 value="autoresponder" |AUTORESPONDERON|></td></tr>
+<tr><td class=list>Vacation Messages: Includes all vacation messages and times.</td>	<td class=list><input type=checkbox name=select5 value="vacation" |VACATIONON|></td></tr>
+<tr><td class=list>Mailing Lists:</td>													<td class=list><input type=checkbox name=select6 value="list" |LISTON|></td></tr>
+<tr><td class=list>E-mail Settings: Includes the filters and the catchall address.</td>	<td class=list><input type=checkbox name=select7 value="emailsettings" |EMAILSETTINGSON|></td></tr>
+
+<tr><td class=list colspan=2><b>Ftp</b></td></tr>
+<tr><td class=list>Ftp Accounts</td>													<td class=list><input type=checkbox name=select8 value="ftp" |FTPON|></td></tr>
+<tr><td class=list>Ftp Settings</td>													<td class=list><input type=checkbox name=select9 value="ftpsettings" |FTPSETTINGSON|></td></tr>
+<tr><td class=list colspan=2><b>Databases</b></td></tr>
+<tr><td class=list>Databases: Backs up all user databases</td>							<td class=list><input type=checkbox name=select10 value="database" |DATABASEON|></td></tr>
+
+<tr><td class=list colspan=2><b>DNS</b></td></tr>
+<tr><td class=list>DNS Zones: Includes all A records and MX records</td>				<td class=list><input type=checkbox name=select11 value="dns" |DNSON|></td></tr>
+
+<tr><td class=listtitle colspan=2 align=right><input type=submit value="Restore Selected Items"></td></tr>
+</form>
+</table>
+
+|HTM_USER_BOTTOM|

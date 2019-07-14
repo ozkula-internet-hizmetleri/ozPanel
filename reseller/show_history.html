@@ -1,0 +1,13 @@
+|*if user|
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_RESELLER?user=`user`">Stats For `user`</a> &raquo; <a class=tree href="/CMD_RESELLER_HISTORY?user=`user`">Reseller History</a>|
+|*else|
+|?TREE=&raquo; <a class=tree href="/CMD_RESELLER_STATS">Stats For `USERNAME`</a> &raquo; <a class=tree href="/CMD_RESELLER_HISTORY">Reseller History</a>|
+|*endif|
+
+|?HELP_SECTION=`RESELLER_HELPER`/rstats.html#history|
+|HTM_RESELLER_TOP|
+
+<b>Reseller History</b><br>
+
+|HISTORY|
+|HTM_RESELLER_BOTTOM|

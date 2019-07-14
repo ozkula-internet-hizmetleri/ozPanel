@@ -1,0 +1,177 @@
+*
+{
+	FONT-SIZE: 8.5pt;
+	FONT-FAMILY: verdana;
+}
+
+b
+{
+	FONT-WEIGHT: bold;
+}
+
+.toptext
+{
+	COLOR: #BBBBBB;
+}
+.bottomtext
+{
+	COLOR: #EEEEEE;
+}
+
+
+a
+{
+	TEXT-DECORATION: underline;
+	COLOR: black;
+}
+
+a:hover
+{
+	COLOR: #9999CC;
+}
+
+u
+{
+	TEXT-DECORATION: underline;
+}
+
+.tree
+{
+	COLOR: #DEDEDE;
+}
+
+.title
+{
+	COLOR: #000000;
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12pt;
+}
+
+.header
+{
+	FONT-WEIGHT: 600;
+	FONT-SIZE: 10pt;
+	COLOR: #123456;
+}
+
+.button
+{
+	FONT-SIZE: 12pt;
+	border: 1px solid white;	
+}
+
+a.button
+{
+	TEXT-DECORATION: none;
+}
+
+a.button:hover
+{
+	TEXT-DECORATION: none;
+	COLOR: black;
+}
+
+.highlighted
+{
+	border: 1px solid grey;
+	border-style: outset;
+	cursor: hand;
+}
+
+table.list
+{
+	BACKGROUND: #FFFFFF;
+	width: 100%;
+	
+}
+
+td.list
+{
+	BACKGROUND: #EEEEEE;
+	white-space: nowrap;
+}
+td.list2
+{
+	BACKGROUND: #E3E3E3;
+	white-space: nowrap;
+}
+
+td.listwrap
+{
+	BACKGROUND: #EEEEEE;
+	white-space: wrap;
+}
+td.listwrap2
+{
+	BACKGROUND: #E3E3E3;
+	white-space: wrap;
+}
+
+.listtitle
+{
+	BACKGROUND: #425984;
+	COLOR: #EEEEEE;
+	white-space: nowrap;
+}
+
+td.listtitle
+{
+	border: 1px solid grey;
+	border-style: outset;
+	background-image: url("IMG_BG");
+}
+
+.highlighted-good
+{
+	COLOR: green;
+}
+.highlighted-bad
+{
+	COLOR: red;
+	FONT-WEIGHT: bold;
+}
+.highlighted-neutral
+{
+	COLOR: orange;
+}
+
+textarea.code_edit
+{
+	FONT-FAMILY: courier new;
+	FONT-SIZE: 10pt;
+}
+
+textarea.ssl_text
+{
+	width: 540px;
+	height: 600px;
+}
+.message
+{
+	padding: 15px;
+}
+
+.message, td.message_info
+{
+	box-shadow: 1px 1px 3px #727272;
+}
+
+td.message_info_round_top
+{
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+td.message_info_round_bottom, .message_round
+{
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+td.message_info
+{
+	padding: 5px;
+}
+
+.message_info
+{
+	COLOR: #777777;
+}

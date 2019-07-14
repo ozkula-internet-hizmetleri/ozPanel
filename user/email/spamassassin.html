@@ -1,0 +1,110 @@
+|?BASLIK=Spam Filtresi|
+|?BASLIKALT=Spam Filtresi Ayarları|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/spamfiltresi.png|
+|?BASLIKYARDIM=Bu sayafadan Spam Filtresini Yönetebilirsiniz|
+|?BASLIKYARDIMURL=email/spamassasin.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<br>
+
+<center><b>Spamassassin Setup</b></center><br>
+
+|*if SA_ENABLED="yes"|
+SpamAssassin is currently enabled.
+<form action="/CMD_SPAMASSASSIN" method="POST">
+<input type=hidden name=action value="disable">
+<input type=hidden name=domain value="|domain|">
+<input type=submit value="Disable"></form>
+|*else|
+SpamAssassin is not currently enabled.<br>Click "Save" (below) to enable it.
+|*endif|
+
+<form action="/CMD_SPAMASSASSIN" method="POST">
+<input type=hidden name=action value="save">
+<input type=hidden name=domain value="|domain|">
+
+<table class=list cellpadding=3 cellspacing=1>
+<tr><td class=listtitle colspan=2>Where do you want the spam to go?</td></tr>
+<tr><td class=list align=center><input type=radio name=where value="inbox" |WHERE_INBOX|></td><td class=list>Inbox (don't block it)</td></tr>
+<tr><td class=list2 align=center><input type=radio name=where value="spamfolder" |WHERE_FOLDER|></td><td class=list2>Redirect it to the catch-all spam folder in your main imap account.</td></tr>
+<tr><td class=list align=center><input type=radio name=where value="userspamfolder" |WHERE_USERFOLDER|></td><td class=list>Send the spam to appropriate user's spam folder.</td></tr>
+<tr><td class=list2 align=center><input type=radio name=where value="delete" |WHERE_DELETE|></td><td class=list2>Delete the spam.</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td class=listtitle colspan=2>What score threshold do you wish to use?</td></tr>
+<tr><td class=list colspan=2>A lower threshold will block more spam, but can potentially tag legitimate mail.<br>
+A higher threshold will let more spam through, but is less likely to tag legitimate mail.</td></tr>
+<tr><td class=list2 align=center><input type=radio name=required_hits value="5.0" |required_hits_5.0|></td><td class=list2>Low Threshold (5.0)</td></tr>
+<tr><td class=list align=center><input type=radio name=required_hits value="7.5" |required_hits_7.5|></td><td class=list>Medium Threshold (7.5)</td></tr>
+<tr><td class=list2 align=center><input type=radio name=required_hits value="10.0" |required_hits_10.0|></td><td class=list2>High Threshold (10.0)</td></tr>
+<tr><td class=list align=center><input type=radio name=required_hits value="custom" |required_hits_custom|></td><td class=list>Custom Threshold: <input type=text name=required_hits_custom size=4 value="|required_hits|"></td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td class=listtitle colspan=2>Would you like to delete high scoring spam?</td></tr>
+<tr><td class=list align=center><input type=radio name=high_score_block value="yes" |high_score_block_yes|></td><td class=list>Yes, block all spam scoring higher than: <input type=text name=high_score value="|high_score|" maxlength=2 size=2> (1-99, no decimals)</td></tr>
+<tr><td class=list2 align=center><input type=radio name=high_score_block value="no" |high_score_block_no|></td><td class=list2>No, do not block high scoring spam. Use only the threshold in the previous section.</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td class=listtitle colspan=2>Do you wish to rewrite the subject of a spam email?</td></tr>
+<tr><td class=list align=center><input type=radio name=rewrite_subject value="1" |rewrite_subject_1|></td><td class=list>Yes, set the subject to the following: <input type=text name=subject_tag value="|subject_tag|"></td></tr>
+<tr><td class=list2 align=center><input type=radio name=rewrite_subject value="0" |rewrite_subject_0|></td><td class=list2>No, leave the subject unchanged.</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td class=listtitle colspan=2>How should the spam be delivered?</td></tr>
+<tr><td class=list colspan=2>Attachments will seperate the spam into it's own message, preventing scripts from being run.<br>
+Text-only attachements are used for increased safety.<br>
+Not using attachments will leave the spam unaltered except for spam headers.</td></tr>
+<tr><td class=list2 align=center><input type=radio name=report_safe value="0" |report_safe_0|></td><td class=list2>Don't use attachments (dangerous).</td></tr>
+<tr><td class=list align=center><input type=radio name=report_safe value="1" |report_safe_1|></td><td class=list>Use attachments.</td></tr>
+<tr><td class=list2 align=center><input type=radio name=report_safe value="2" |report_safe_2|></td><td class=list2>Use text-only attachments.</td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td class=listtitle colspan=2>Email Blacklist</td></tr>
+<tr><td class=list colspan=2>This is the list of email address that will be blocked.<br>
+Any email from these addresses will automatically be tagged as spam.<br>
+One email per line, no commas etc.  * and ? are both valid.<br>
+eg:  *@domain.com</td></tr>
+<tr><td class=list>&nbsp;</td><td class=list><textarea name=blacklist_from cols=40 rows=10>|blacklist_from|</textarea></td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td class=listtitle colspan=2>Email Whitelist</td></tr>
+<tr><td class=list colspan=2>This is the list of email address that will be allowed through, regardless of content.<br>
+The format is the same as the Email Blacklist</td></tr>
+<tr><td class=list>&nbsp;</td><td class=list><textarea name=whitelist_from cols=40 rows=10>|whitelist_from|</textarea></td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td colspan=2 align=center><input type=submit value="Save"></td></tr>
+</table>
+
+</form>
+
+<hr width=50%>
+<br><center>
+<a href="/CMD_FILE_MANAGER/.spamassassin/user_prefs?action=edit">Manually edit the config file yourself</a><br>
+<br>
+<hr width=50%><br>
+
+This button will remove data learned by spamassassin.<br>It will free up some space, but will reset any<br>learned progress SpamAssassin has previously made.
+<form name=tableform action='/CMD_FILE_MANAGER/' method='POST'>
+<input type=hidden name=select0 value="/.spamassassin/auto-whitelist">
+<input type=hidden name=select1 value="/.spamassassin/bayes_seen">
+<input type=hidden name=select2 value="/.spamassassin/bayes_journal">
+<input type=hidden name=select3 value="/.spamassassin/bayes_toks">
+<input type=hidden name=action value="multiple">
+<input type=hidden name=button value="delete">
+<input type=hidden name=overwrite value="no">
+<input type=hidden name=path value="/.spamassassin">
+<input type=submit value="Delete Bayes Data">
+</form>
+
+
+</center>
+<br><br>
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

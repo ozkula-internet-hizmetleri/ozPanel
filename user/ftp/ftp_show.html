@@ -1,0 +1,35 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/CMD_FTP?DOMAIN=`DOMAIN`">Ftp Setup</a> &raquo; <a class=tree href="/CMD_FTP_SHOW?DOMAIN=`DOMAIN`&user=`user`">Modify `user`</a>|
+|?HELP_SECTION=`USER_HELPER`/ftp.html#mod|
+|HTM_USER_TOP|
+
+<script language="Javascript">
+<!--
+
+|HTM_JAVASCRIPT|
+
+// -->
+</script>
+
+<table class=list cellpadding=3 cellspacing=1>
+	<form name=reseller action="CMD_FTP" method="post">
+		<input type=hidden name=action value=modify>
+		<input type=hidden name=domain value="|DOMAIN|">
+		<input type=hidden name=user value="|USER|">
+		|SYSTEMUSERHIDDEN|
+
+		<tr><td class=listtitle colspan=3>Modify FTP account</td></tr>
+
+		<tr><td class=list>FTP Username:</td><td class=list colspan=2>|FULLUSER|</td></tr>
+		<tr><td class=list>Enter Password</td><td class=list colspan=2><input type=password name=passwd size=16> <input type=button value="Random" onClick="randomPass(); reseller.random.value=reseller.passwd.value"> <input type=text name=random value="Save Password" size=16></td></tr>
+		<tr><td class=list>Re-Enter Password:</td><td class=list colspan=2><input type=password name=passwd2 size=16></td></tr>
+		<tr><td class=list>Domain:</td><td class=list align=center><input type=radio name=type value="domain" |DOMAINCHECKED|></td><td class=listwrap>Ftp account with the root directory in the domains home directory (one up from the public_html)</td></tr>
+		<tr><td class=list>Ftp:</td><td class=list align=center><input type=radio name=type value="ftp" |FTPCHECKED|></td><td class=listwrap>Ftp account with the root directory in the domains public_ftp directory</td></tr>
+		<tr><td class=list>User:</td><td class=list align=center><input type=radio name=type value="user" |USERCHECKED|></td><td class=listwrap>Ftp account with the root directory as the users name in the public_html directory</td></tr>
+		<tr><td class=list>Custom:</td><td class=list align=center><input type=radio name=type value="custom" |CUSTOMCHECKED|></td><td class=listwrap><input type=text size=48 name=custom_val value="|CUSTOM_PATH|"></td></tr>
+		<tr><td class=listtitle colspan=3 align=right>
+			<input type=submit name=create value="Create"> <input type=reset value="Reset">
+		</td></tr>
+	</form>
+</table>
+
+|HTM_USER_BOTTOM|

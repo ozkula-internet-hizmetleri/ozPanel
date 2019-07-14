@@ -1,0 +1,38 @@
+|?TREE=&raquo; <a class=tree href="/CMD_USER_SHOW">Show Users</a>|
+|?HELP_SECTION=`RESELLER_HELPER`/modify.html|
+|HTM_RESELLER_TOP|
+<a href="HTM_ACCOUNT_USER_CREATE">Create User</a><br>
+<a href="HTM_ACCOUNT_USER_DELETE">Delete User</a><br>
+<a href="HTM_USER_PASSWD">Change A Users Password</a><br>
+<br>
+<a href="/CMD_MODIFY_USER?user=|USERNAME|">Modify your own User data</a>
+
+<table class=list cellpadding=3 cellspacing=1>
+<form action="" method="GET" name=searchform>
+<tr><td class=listtitle>
+Show Domains that Contain <input type=text size=12 class=inputclass name=value7
+|*if value7|
+value='|value7|'
+|*endif|
+>
+<input type=hidden name=comparison7 value="contains">
+<input type=hidden name=sort1 value="7">
+<input type=hidden name=sort1dir value="1">
+<input type=hidden name=sort2dir value="1">
+<input type=hidden name=ipp value="50">
+<input type=submit value="Search">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input type=button value="Clear Search" onClick="document.searchform.value7.value=''; document.searchform.submit();">
+</td></tr>
+</form>
+</table>
+
+<script language="javascript">
+document.searchform.value7.focus();
+document.searchform.value7.select();
+</script>
+
+	|TABLE|
+
+Click on the username to modify their account
+|HTM_RESELLER_BOTTOM|

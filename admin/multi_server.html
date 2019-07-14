@@ -1,0 +1,41 @@
+|LF_STANDARD|
+|?TREE=&raquo; <a class=tree href="/CMD_MULTI_SERVER">Multi Server Setup</a>|
+|?HELP_SECTION=`ADMIN_HELPER`|
+|HTM_ADMIN_TOP|
+
+<form action="/CMD_MULTI_SERVER" method="POST">
+<input type=hidden name=action value="onoff">
+|*if CLUSTER_ON="yes"|
+Multi Server is currently turned <b>ON</b> &nbsp;&nbsp;&nbsp; <input type=submit name=off value="Turn Off">
+|*else|
+Multi Server is currently turned <b>OFF</b> &nbsp;&nbsp;&nbsp; <input type=submit name=on value="Turn On">
+|*endif|
+</form><b>List of External Servers</b>
+|TABLE|
+
+<br>
+
+<table class=list cellpadding=3 cellspacing=1>
+<form action="/CMD_MULTI_SERVER" method=POST>
+<input type=hidden name=action value=add>
+<tr><td class=listtitle colspan=5>Add Remote Server<//td></tr>
+<tr>
+	<td class=list>IP: <input type=text name=ip size=15></td>
+	<td class=list>Port: <input type=text name=port size=4 value="2222"></td>
+	<td class=list>SSL: <input type=checkbox name=ssl value=yes size=4></td>
+	<td class=list>Username: <input type=text name=user size=8></td>
+	<td class=list>Password: <input type=password name=passwd size=8></td>
+</tr>
+<tr><td class=listtitle align=right colspan=5><input type=submit value="Add"><//td></tr>
+</form>
+</table>
+
+<br>
+<table cellpadding=1 cellspacing=1>
+<tr><td align=right><b>SSL Connection</b>:</td><td>The specified server requires SSL in order to connect (eg, https)</td></tr>
+<tr><td align=right><b>Zone Transfer</b>:</td><td>DA will transfer the dns info on the specified server when new domains are added and dns settings are changed.</td></tr>
+<tr><td align=right><b>Domain Check</b>:</td><td>DA will first check the specified server before creating a domain to ensure the domain does not exist.</td></tr>
+</table>
+
+|HTM_ADMIN_BOTTOM|
+

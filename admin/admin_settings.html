@@ -1,0 +1,258 @@
+|?TREE=&raquo; <a class=tree href="/CMD_ADMIN_SETTINGS">Admin Settings</a>|
+|?HELP_SECTION=`ADMIN_HELPER`/settings.html|
+|HTM_ADMIN_TOP|
+
+<table class=list cellpadding=3 cellspacing=1>
+<tr><td class=listtitle colspan=2>Administrator Settings</td></tr>
+<form action="CMD_ADMIN_SETTINGS" method="post">
+	<input type=hidden name=action value="save">
+	<tr>
+		<td class=list>
+			<input type=checkbox name=service_email_active value="yes" |SERVICESEMAILCHECKED|>
+		</td>
+		<td class=list>
+			Notify all admins whenever a service goes down using the messaging/ticket system.
+		</td>
+	</tr>
+        <tr>
+                <td class=list>
+                        <input type=checkbox name=oversell value="yes" |OVERSELLCHECKED|>
+                </td>
+                <td class=list>
+                        Overselling: Allow Resellers to sell More features than they are allowed.
+                </td>
+        </tr>
+        <tr>
+                <td class=list>
+                        <input type=checkbox name=suspend value="yes" |SUSPENDRESELLERCHECKED|>
+                </td>
+                <td class=list>
+                        Suspend a Reseller and his Users when the Reseller goes over his Bandwidth limit.
+                </td>
+        </tr>
+        <tr>
+                <td class=list>
+                        <input type=checkbox name=user_backup value="yes" |USERBACKUPCHECKED|>
+                </td>
+                <td class=list>
+                        Allow a Reseller to Backup/Restore his Users.(Separate from User Backup/Restore)
+                </td>
+        </tr>
+
+        <tr>
+                <td class=list>
+                        <input type=checkbox name=auto_update value="yes" |AUTOUPDATECHECKED|>
+                </td>
+                <td class=list>
+                        Allow the latest version of DirectAdmin to be pushed to this server, as needed.
+                </td>
+        </tr>
+
+	<tr>
+		<td class=list>
+			<input type=checkbox name=demo_user value="yes" |DEMOUSERCHECKED|>
+		</td>
+		<td class=list>
+			Enable User Demo. Login: <b>demo_user</b> Password : <b>demo</b>
+		</td>
+	</tr>
+
+	<tr>
+		<td class=list>
+			<input type=checkbox name=demo_reseller value="yes" |DEMORESELLERCHECKED|>
+		</td>
+		<td class=list>
+			Enable Reseller Demo. Login: <b>demo_reseller</b> Password : <b>demo</b>
+		</td>
+	</tr>
+	<tr>
+		<td class=list>
+			<input type=checkbox name=demo_admin value="yes" |DEMOADMINCHECKED|>
+		</td>
+		<td class=list>
+			Enable Admin Demo. Login: <b>demo_admin</b> Password : <b>demo</b>
+		</td>
+	</tr>
+	<tr>
+		<td class=list>
+			&nbsp;
+		</td>
+		<td class=list>
+			Allow Users with less than <input type=text name=backup_threshold value="|BACKUP_THRESHOLD|" size=2>% Disk Usage to create Backups. (0 = off, 100 = always on)
+		</td>
+	</tr>
+	<tr>
+		<td class=listtitle colspan=2 align=right>
+			<input type=submit name=save value="Save">
+		</tr>
+	</tr>
+</form>
+</table>
+
+<table class=list cellpadding=3 cellspacing=1>
+<tr><td class=listtitle colspan=2>Server Settings (will restart DirectAdmin)</td></tr>
+<form action="CMD_ADMIN_SETTINGS" method="post">
+        <input type=hidden name=action value="config">
+        <tr>
+                <td class=list>
+                        Server's Name <a target=_blank href="http://help.directadmin.com/item.php?id=405">(?)</a>
+                </td>
+                <td class=list>
+                        <input type=text name=servername value="|SERVERNAME|" size=32>
+                </td>
+        </tr>
+        <tr>
+                <td class=list>
+                        NS1
+                </td>
+                <td class=list>
+                        <input type=text name=ns1 value="|NS1|" size=32>
+                </td>
+        </tr>
+        <tr>
+                <td class=list>
+						NS2
+                </td>
+                <td class=list>
+                        <input type=text name=ns2 value="|NS2|" size=32>
+                </td>
+        </tr>
+        <tr>
+                <td class=list>
+                        Timeout (seconds)
+                </td>
+                <td class=list>
+                        <input type=text name=timeout value="|TIMEOUT|" size=32>
+                </td>
+        </tr>
+        <tr>
+                <td class=list>
+                        Session Timeout (minutes)
+                </td>
+                <td class=list>
+                        <input type=text name=session_minutes value="|SESSION_MINUTES|" size=32>
+                </td>
+        </tr>
+        <tr>
+                <td class=list>
+                        Max File Upload Size (bytes)
+                </td>
+                <td class=list>
+                        <input type=text name=maxfilesize value="|MAXFILE|" size=32>
+                </td>
+        </tr>
+        <tr>
+                <td class=list>
+                        Keep Number of Apache Log Backups
+                </td>
+                <td class=list>
+                        <input type=text name=logs_to_keep value="|LOGSTOKEEP|" size=32>
+                </td>
+        </tr>
+        <tr>
+                <td class=list>
+                        Document Root to Demo Skin
+                </td>
+                <td class=list>
+                        <input type=text name=demodocsroot value="|DEMODOCSROOT|" size=32>
+                </td>
+        </tr>
+        <tr>
+        		<td class=list>
+        				Enable Automatic Lost Password Recovery
+        		</td>
+        		<td class=list>
+        				<input type=radio name=lost_password value="yes" |LOST_PW_YES|>Yes&nbsp;&nbsp;&nbsp;<input type=radio name=lost_password value="no" |LOST_PW_NO|>No
+        		</td>
+        </tr>
+		<tr>
+				<td class=list>
+						Blacklist IPs for excessive login attempts
+				</td>
+				<td class=list>
+						<input type=checkbox name=bruteforce value="yes" |BRUTEFORCECHECKED|>
+						&nbsp;&nbsp;&nbsp;&nbsp;after <input type=text name=brutecount value="|BRUTECOUNT|" size=4> login attempts
+				</td>
+		</tr>
+		<tr>
+				<td class=list>
+						Prevent 127.0.0.1 from being Blacklisted
+				</td>
+				<td class=list>
+						<input type=checkbox name=exempt_local_block value="yes" |LOCALEXEMPTCHECKED|>
+				</td>
+		</tr>
+		<tr>
+				<td class=list>
+						Time before failed login count resets
+				</td>
+				<td class=list>
+						<input type=text name=brute_force_time_limit value="|BRUTE_FORCE_TIME_LIMIT|" size=4> seconds after the last attempt
+				</td>
+		</tr>
+		<tr>
+				<td class=list>
+						Remove an IP from the blacklist after
+				</td>
+				<td class=list>
+						<input type=text name=clear_blacklist_ip_time value="|CLEAR_BLACKLIST_IP_TIME|" size=4> (minutes) (0 = never)
+				</td>
+		</tr>
+|*if USE_DOVECOT="yes"|
+		<tr>
+				<td class=list>
+						Automatically Purge Spambox/Trash data
+				</td>
+				<td class=list>
+						After <input type=text name=purge_spam_days value="|PURGE_SPAM_DAYS|" size=2 maxlength=3> days. (0 = never)
+				</td>
+		</tr>
+|*endif|
+		<tr>
+				<td class=list>
+						Warn Admin's at <input type=text name=partition_usage_threshold size=2 value="|PART_THRESH|">% partition usage
+				</td>
+				<td class=list>
+						Check Every: &nbsp;<input type=radio name=check_partitions value="1" |PARTMINUTECHECKED|>Minute &nbsp;<input type=radio name=check_partitions value="2" |PARTDAYCHECKED|>Day &nbsp;<input type=radio name=check_partitions value="0" |PARTNEVERCHECKED|>Never
+				</td>
+		</tr>
+		<tr>
+				<td class=listtitle colspan=2>
+					E-Mail
+				</td>
+		</tr>
+		<tr>
+				<td class=list>
+						Daily Email Limit per DirectAdmin User
+				</td>
+				<td class=list>
+						<input type=text name=virtual_limit value="|VIRTUAL_LIMIT|" size=4> &nbsp;&nbsp;<a target=_blank href="http://www.directadmin.com/features.php?id=1175">(?)</a>
+				</td>
+		</tr>
+		<tr>
+				<td class=list>
+						Use RBL Blocking
+				</td>
+				<td class=list>
+						<input type=radio name=rbl_enabled value="yes" |CHECK_RBL_YES|>Yes&nbsp;&nbsp;&nbsp;<input type=radio name=rbl_enabled value="no" |CHECK_RBL_NO|>No &nbsp;&nbsp;<a target=_blank href="http://www.directadmin.com/features.php?id=1181">(?)</a>
+				</td>
+		</tr>
+        <tr>
+                <td class=listtitle colspan=2 align=right>
+                        <input type=submit name=save value="Save">
+                </tr>
+        </tr>
+</form>
+</table>
+<br>
+<a href="/CMD_CUSTOM_HTTPD">Customize Httpd Configurations</a><br>
+<a href="/CMD_PHP_SAFE_MODE">Php Safe Mode Configuration</a><br>
+<a href="/CMD_PLUGIN_MANAGER">Plugin Manager</a><br>
+<a href="/CMD_SYSTEM_BACKUP">System Backup</a><br>
+<a href="/CMD_LOG_VIEWER">Log Viewer</a><br>
+<a href="/CMD_MULTI_SERVER">Multi Server Setup</a><br>
+<a href="/CMD_ADMIN_FILE_EDITOR">File Editor</a><br>
+<a href="/CMD_MAIL_QUEUE?sort1=2">Mail Queue Administration</a><br>
+<a href="/CMD_ADMIN_CRON_JOBS">All User Cron Jobs</a><br><br>
+
+|HTM_ADMIN_BOTTOM|

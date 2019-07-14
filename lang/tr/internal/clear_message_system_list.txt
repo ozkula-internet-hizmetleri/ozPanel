@@ -1,0 +1,8 @@
+1=8
+2=-- yok --
+3=Hizmet günlüğünde Brute-Force saldırısı algılandı
+4=şu anda çalışmıyor
+5=Yedekleriniz hazır
+6=Yedekleme sırasında bir sorun çıktı
+7=e-posta şu kullanıcı tarafından gönderildi
+8=Uyarı: Sistem yükü ortalaması

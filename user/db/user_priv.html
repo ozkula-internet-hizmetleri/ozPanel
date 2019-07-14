@@ -1,0 +1,45 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/CMD_DB?DOMAIN=`DOMAIN`">MySQL Setup</a> &raquo; <a class=tree href="/CMD_DB_VIEW?DOMAIN=`DOMAIN`&name=`name`">View `name`</a> &raquo; <a class=tree href="/CMD_DB_USER_PRIV?DOMAIN=`DOMAIN`&name=`name`&user=`user`">User Privileges</a>|
+|?HELP_SECTION=`USER_HELPER`/mysql.html|
+|HTM_USER_TOP|
+
+<table class=list cellpadding=3 cellspacing=1>
+	<form name=info action="CMD_DB_USER_PRIVS" method="post">
+		<input type=hidden name=action value=save>
+		<input type=hidden name=domain value="|DOMAIN|">
+		<input type=hidden name=name value="|name|">
+		<input type=hidden name=user value="|user|">
+
+		<tr><td class=listtitle colspan=2>Modify User Privileges for |user| in database |name|</td></tr>
+
+		<tr><td class=list align=right>Select</td><td class=list>|SELECT|</td></tr>
+		<tr><td class=list align=right>Insert</td><td class=list>|INSERT|</td></tr>
+		<tr><td class=list align=right>Update</td><td class=list>|UPDATE|</td></tr>
+		<tr><td class=list align=right>Delete</td><td class=list>|DELETE|</td></tr>
+		<tr><td class=list align=right>Create</td><td class=list>|CREATE|</td></tr>
+		<tr><td class=list align=right>Drop</td><td class=list>|DROP|</td></tr>
+		<tr><td class=list align=right>Alter</td><td class=list>|ALTER|</td></tr>
+		<tr><td class=list align=right>Index</td><td class=list>|INDEX|</td></tr>
+		<tr><td class=list align=right>Grant</td><td class=list>|GRANT|</td></tr>
+		<tr><td class=list align=right>Reference</td><td class=list>|REFERENCE|</td></tr>
+		<tr><td class=list align=right>Create tmp tables</td><td class=list>|CREATE_TMP_TABLE|</td></tr>
+		<tr><td class=list align=right>Lock Tables</td><td class=list>|LOCK_TABLE|</td></tr>
+
+|*if DATABASE_EXTENDED_USER_PRIVILEGES>="1"|
+		<tr><td class=list align=right>Show View</td><td class=list>|SHOW_VIEW_PRIV|</td></tr>
+		<tr><td class=list align=right>Create Routine</td><td class=list>|CREATE_ROUTINE_PRIV|</td></tr>
+		<tr><td class=list align=right>Alter Routine</td><td class=list>|ALTER_ROUTINE_PRIV|</td></tr>
+		<tr><td class=list align=right>Execute</td><td class=list>|EXECUTE_PRIV|</td></tr>
+		<tr><td class=list align=right>Create View</td><td class=list>|CREATE_VIEW_PRIV|</td></tr>
+|*endif|
+|*if DATABASE_EXTENDED_USER_PRIVILEGES>="2"|
+	<tr><td class=list align=right>Event</td><td class=list>|EVENT_PRIV|</td></tr>
+	<tr><td class=list align=right>Trigger</td><td class=list>|TRIGGER_PRIV|</td></tr>
+|*endif|
+
+		<tr><td class=listtitle colspan=3 align=right>
+			<input type=submit value="Save">
+		</td></tr>
+	</form>
+</table>
+
+|HTM_USER_BOTTOM|

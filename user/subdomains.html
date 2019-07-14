@@ -1,0 +1,63 @@
+|?BASLIK=SubDomain Yönetimi|
+|?BASLIKALT=SubDomainlerinizin Listesi|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/subdomain.png|
+|?BASLIKYARDIM=Bu sayafan Mevcut SubDomain adreslerinizi Yönetebilirsiniz.|
+|?BASLIKYARDIMURL=domain/subdomains.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|SUBDOMAINS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+<br>
+
+<form name=info action="CMD_SUBDOMAIN" method="POST">
+<input type=hidden name=action value="create">
+<input type=hidden name=domain value="|DOMAIN|">
+
+	
+<div class="form-group">
+	<label for="suadsesjsd">Yeni Subdomain Ekle</label>
+
+	<div class="input-group">
+	<input type="text" name="subdomain"  id="suadsesjsd" class="form-control" placeholder="SubDomain" aria-label="SubDomain" aria-describedby="usernamedesc">
+	  <div class="input-group-append">
+	    <span class="input-group-text" id="usernamedesc">.|DOMAIN|</span>
+	  </div>
+	</div>
+
+</div>
+
+	<input type="submit" value="Ekle" class="btn btn-primary">
+
+</form>
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

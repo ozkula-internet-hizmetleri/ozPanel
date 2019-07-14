@@ -1,0 +1,82 @@
+|?BASLIK=Domain Pointer|
+|?BASLIKALT=Domain Pointerları Yönetin|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/domainpointer.png|
+|?BASLIKYARDIM=Bu sayafadan Domain Pointerları Yönetebilirsiniz|
+|?BASLIKYARDIMURL=email/domain_pointers.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+
+<h4>Yeni Domain Pointer Ekle</h4>
+<form name=info action='/CMD_DOMAIN_POINTER' method='POST'>
+<input type=hidden name=domain value="|DOMAIN|">
+<input type=hidden name=action value="add">
+
+<div class="form-group">
+	<label for="kyskdas">Kaynak Adres</label>
+	<input type="text" name="from" class="form-control" >
+</div>
+
+
+<div class="form-group">
+<label for="frosadewq">Kaynak Adres</label>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon3">https://www.</span>
+  </div>
+  <input type="text" name=from class="form-control" id="frosadewq" aria-describedby="basic-addon3">
+  <div class="mt-1">
+  --> |DOMAIN|
+  </div>
+</div>
+</div>	
+
+<div class="form-group">
+	
+	<div class="form-check">
+	  <input class="form-check-input" type="checkbox"  name="alias" value="yes" id="sskdksdll" checked>
+	  <label class="form-check-label" for="sskdksdll" >
+	    Yeni Alias Oluştur
+	  </label>
+	</div>
+</div>
+
+<input type="submit" value="Ekle" class="btn btn-primary">
+
+
+</form>
+<br>
+<br>
+<br>
+
+
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|DOMAINPOINTERS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

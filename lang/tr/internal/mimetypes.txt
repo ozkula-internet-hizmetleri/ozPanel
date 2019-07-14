@@ -1,0 +1,12 @@
+1=Bir MIME türü ya da işleyici adı ile tek bir uzantı belirtilmelidir. Örnek: <b>metin/html</b> ya da <b>cgi-script</b> ve <b>html</b>
+2=Bir kerede yalnız bir uzantı belirtin. Örnek: <b>jpg</b>, <b>jpg jpeg jpe</b> DEĞİL
+3=Ad ya da uzantı geçersiz
+4=İşleyici
+5=Uzantılar
+6=MIMETürü
+7=Seçin
+8=Seçilmişlerde
+9=Uzantıyı Sil
+10=İşleyiciyi Sil
+11=MIME Türünü Sil
+12=ya da

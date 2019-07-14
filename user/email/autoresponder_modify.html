@@ -1,0 +1,38 @@
+|?BASLIK=Otomatik Cevaplama Düzenle|
+|?BASLIKALT=Seçtiğiniz Otomatik Cevaplamayı Düzenle|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/otocevap.png|
+|?BASLIKYARDIM=Bu sayafadan Seçtiğiniz Otomatik Cevaplama Mesajını Düzenleyebilirsiniz|
+|?BASLIKYARDIMURL=email/autoresponder_modify.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+
+<form name=info action="CMD_EMAIL_AUTORESPONDER" method="post">
+<input type=hidden name=action value=modify>
+<input type=hidden name=domain value="|DOMAIN|">
+<input type=hidden name=user value="|USER|">
+
+<div class="form-group">
+	<label for="autoresponuserss">Cevaplayan Adres</label>
+	|USER|@|DOMAIN|
+</div>
+
+<div class="form-group">
+	<label for="resondtextsad">Cevap Mesajı</label>
+	<textarea name="text" class="form-control" id="resondtextsad" cols="30" rows="10">|TEXT|</textarea>
+</div>
+
+<div class="form-group">
+	<label for="autoresopondcsdsa">CC olarak Paylaş</label>
+	<input type="text" name="email" placeholder="CC Adresi" id="autoresopondcsdsa" class="form-control" value="|EMAIL|">
+</div>
+
+<input type="submit" class="btn btn-primary" value="Düzenle">
+
+</form>
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

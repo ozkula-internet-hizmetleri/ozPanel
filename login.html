@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/img/fav/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/assets/img/fav/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/fav/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/img/fav/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/fav/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/img/fav/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/fav/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/img/fav/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/fav/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/assets/img/fav/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/fav/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/fav/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/fav/favicon-16x16.png">
+	<link rel="manifest" href="/assets/img/fav/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/assets/img/fav/ms-icon-144x144.png">
+
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <title>ozPanel - Giriş</title>
+    
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      html,
+body {
+  height: 100%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  animation: colorchange 10s infinite linear; 
+  -webkit-animation: colorchange 10s infinite linear;
+}
+
+    @keyframes colorchange
+    {
+      0%   {background: #eaf2f2;}
+      25%  {background: #ebf2ea;}
+      50%  {background: #f2f2ea;}
+      75%  {background: #f2eaeb;}
+      100% {background: #eaf2f2;}
+    }
+
+    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+    {
+     0%   {background: #eaf2f2;}
+      25%  {background: #ebf2ea;}
+      50%  {background: #f2f2ea;}
+      75%  {background: #f2eaeb;}
+      100% {background: #eaf2f2;}
+    }
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+    </style>
+    <meta name="robots" content="noindex,nofollow">
+  </head>
+
+<body class="text-center" onload="document.form.username.focus();if(document.form.referer.value.indexOf('#')==-1)document.form.referer.value+=location.hash;">
+
+
+
+<form class="form-signin" action="/CMD_LOGIN" method="post">
+<img class="mb-4" src="/assets/img/logo-siyah.png" alt="Özkula İnternet Hizmetleri Tic. Ltd. Şti." height="72">
+<h1 class="h3 mb-3 font-weight-normal">Giriş Yapın</h1>
+<label for="inputusername" class="sr-only">Kullanıcı Adı</label>
+<input type="text" name="username" id="inputusername" class="form-control" placeholder="Kullanici Adı" required autofocus>
+<label for="inputPassword" class="sr-only">Şifre</label>
+<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Şifre" required>
+
+<button class="btn btn-lg btn-primary btn-block" type="submit">Giriş Yap</button>
+<p class="mt-5 mb-3 text-muted"><img src="/assets/img/ozpanel.png" height="15" /><br />&copy;&nbsp;2019</p>
+</form>
+<script language="JavaScript">computer_time=Math.floor(Date.now()/1000); server_time=1562667572; time_diff=Math.abs(computer_time-server_time); if (time_diff>86400) { document.getElementById('outofsync').innerHTML='Computer or server time out of sync by '+(Math.round(100*time_diff/3600)/100)+' hours.';}</script>
+
+  </body>
+</html>
+

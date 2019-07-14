@@ -1,0 +1,40 @@
+|?TREE=&raquo; <a class=tree href="/CMD_LICENSE">Licensing / Updates</a>|
+|?HELP_SECTION=`ADMIN_HELPER`/license.html|
+|HTM_ADMIN_TOP|
+
+<table cellspacing=1 cellpadding=3 class=list>
+<tr><td class=listtitle colspan=2>License Values</a></td></tr>
+<tr><td class=list>License IP</td><td class=list>|ip|</td></tr>
+<tr><td class=list>Name in License</td><td class=list>|name|</td></tr>
+<tr><td class=list>License ID</td><td class=list>|lid|</td></tr>
+<tr><td class=list>Client ID</td><td class=list>|uid|</td></tr>
+
+|*if internal="Y"|
+<tr><td class=list>License Type</td><td class=list style='white-space: normal;'><b>INTERNAL LICENSE</b> -- This special license may not be resold or transferred. For internal datacentre use only. Please contact your server provider for control panel and system technical assistance. Please report unauthorized reselling to sales@directadmin.com</td></tr>
+|*endif|
+|*if internal="N"|
+<tr><td class=list>License Type</td><td class=list style='white-space: normal;'>External license</td></tr>
+|*endif|
+
+<tr><td class=list>Valid After</td><td class=list>|start_string|</td></tr>
+<tr><td class=list>Valid Until</td><td class=list>|expiry_string|</td></tr>
+|*if portioned="Y"|
+<tr><td class=list>Portioned License</td><td class=list style='white-space: normal;'>This <a target=_blank href="http://help.directadmin.com/item.php?id=378">Portioned License</a> is a license that has a true expiry at a date father into the future than is set in the physical key. The license will automatically update to the next time period when the key's expiry nears.<br>True expiry: |true_expiry_string|</td></tr>
+|*endif|
+
+<tr><td class=list>Current Server Time</td><td class=list>|TIME|</td></tr>
+<tr><td class=list>Time Remaining</td><td class=list>|remaining|</td></tr>
+<tr><td class=list>Last Updated</td><td class=list>|license_change|</td></tr>
+<tr><td class=list align=center colspan=2><a href="/CMD_LICENSE?update=license">Update License</a></td></tr>
+
+<tr><td class=listtitle colspan=2>DirectAdmin Values</a></td></tr>
+<tr><td class=list>Compiled on</td><td class=list>|OS_NAME|</td></tr>
+<tr><td class=list>Compile Date</td><td class=list>|compile_time|</td></tr>
+<tr><td class=list>Server Version</td><td class=list>|version|</td></tr>
+<tr><td class=list>Current Available Version</td><td class=list>|currentversion|</td></tr>
+<tr><td class=list>Last Updated</td><td class=list>|software_change|</td></tr>
+<tr><td class=list>Last Restart</td><td class=list>|startup_time|</td></tr>
+<tr><td class=list align=center colspan=2><a href="/CMD_LICENSE?update=program">Update DirectAdmin</a></td></tr>
+</table>
+
+|HTM_ADMIN_BOTTOM|

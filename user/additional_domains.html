@@ -1,0 +1,63 @@
+|?BASLIK=Domain Yönetimi|
+|?BASLIKALT=Domainlerinizin Listesi|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/domain.png|
+|?BASLIKYARDIM=Bu sayafan Mevcut Domain adreslerinizi Yönetebilirsiniz.|
+|?BASLIKYARDIMURL=domain/additional_domains.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<a href="HTM_ADD_DOMAIN" class="btn btn-primary"><i class="fas fa-plus"></i> Yeni Domain ekle</a> &nbsp;
+<a href="CMD_CHANGE_DOMAIN"  class="btn btn-secondary"><i class="fas fa-edit"></i> Domain Adını Değiştir</a><br><br>
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|DOMAINS|
+END;
+
+/*
+echo PHP_EOL. '------------' . PHP_EOL;
+
+$ndata=$data;
+
+$tbas=strpos($ndata,'<tr   ><td class=list>');
+$ndata=substr($ndata,$tbas);
+$tson=strpos($ndata,"<tr ><td class=listtitle align='right' colspan='6'>");
+$ndata=substr($ndata,0,$tson);
+echo $ndata;
+echo PHP_EOL. '------------' . PHP_EOL;
+
+$doc = new DOMDocument();
+$doc->loadHTML($ndata);
+var_dump($doc);
+
+
+exit;
+*/
+
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

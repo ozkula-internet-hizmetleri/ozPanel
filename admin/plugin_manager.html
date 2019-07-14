@@ -1,0 +1,25 @@
+|?TREE=&raquo; <a class=tree href="/CMD_PLUGIN_MANAGER">Plugin Manager</a>|
+|?HELP_SECTION=`ADMIN_HELPER`|
+|HTM_ADMIN_TOP|
+
+
+|PLUGINS|
+
+<br>
+<table class=list cellspacing=1 cellpadding=5>
+<form action="/CMD_PLUGIN_MANAGER" enctype="multipart/form-data" method="POST">
+<input type="hidden" name="MAX_FILE_SIZE" value="10485760">
+<input type=hidden name=action value="add">
+<tr><td class=listtitle colspan=2><b>Add Plugin</b> - Select Upload Method</td></tr>
+
+<tr><td class=list><input type=radio name=type value="url" checked>Url</td><td class=list> <input type=text name=url size=32 value="http://"> Enter the URL location where the plugin can be downloaded</td></tr>
+<tr><td class=list><input type=radio name=type value="file">File</td><td class=list> <input type=file name=file1 size=32> Upload the plugin from your local computer</td></tr>
+
+
+<tr><td class=listtitle colspan=2 align=right><b>Password</b>: <input type=password name=passwd size=10>&nbsp;&nbsp;&nbsp;<input type=checkbox name=install value="yes" checked> Install after upload&nbsp;&nbsp;&nbsp;<input type=submit value="Add Plugin"></td></tr>
+</form>
+</table>
+<br><br><br>
+
+|HTM_ADMIN_BOTTOM|
+

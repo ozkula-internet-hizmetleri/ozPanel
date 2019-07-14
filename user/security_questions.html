@@ -1,0 +1,55 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SECURITY_QUESTIONS">Security Questions</a>|
+|HTM_USER_TOP|
+
+<b>Security Questions</b><br>
+
+|?SQ_BOLD_OPEN=|
+|?SQ_BOLD_CLOSE=|
+|*if SECURITY_QUESTIONS_CHECKED=""|
+<br><b>This feature is not turned on.</b><br>
+Add one or more Security Question, and then enable it in the options at the bottom of the page.
+|?SQ_BOLD_OPEN=<b>|
+|?SQ_BOLD_CLOSE=</b>|
+|*endif|
+
+|USER_QUESTIONS|
+
+<br><br>
+
+|SECURITY_QUESTIONS|
+
+<br><br>
+
+<table class='list table-highlight' cellpadding=3 cellspacing=1>
+<form name="tableform3" action='CMD_SECURITY_QUESTIONS' method='POST'>
+<input type='hidden' name="action" value="settings" />
+<input type='hidden' name="version" value="1" />
+<tr>
+	<td colspan=2 class=listtitle><b>Security Question options</b></td >
+</tr>
+<tr>
+	<td class=list align=center><input type=checkbox name="security_questions" value="yes" |SECURITY_QUESTIONS_CHECKED| |SECURITY_QUESTIONS_DISABLED|></td>
+	<td class=list>|SQ_BOLD_OPEN|Require valid answers to the Security Questions for login on this account|SQ_BOLD_CLOSE|</td>
+</tr>
+<tr>
+	<td class=list2 align=center><input type=checkbox name="api_with_password" value="yes" |SECURITY_QUESTIONS_ON_API_CHECKED|></td>
+	<td class=list2>Allow API logins with the current User/password.  Login Keys and Session Keys are always allowed.</td>
+</tr>
+<tr>
+	<td class=list align=center><input type=checkbox name="notify_on_all_question_failures" value="yes" |NOTIFY_ON_ALL_FAILURES_CHECKED|></td>
+	<td class=list>Notify me on all failed question attempts.  Disabling this option will still notify you after |MAX_ATTEMPTS| failed attempts.</td>
+</tr>
+<tr>
+	<td colspan=2 class=listtitle align=right><input type=submit name=save value="Save"></td >
+</tr>
+</table>
+
+<br>
+<div align=left>
+- You must add a Security Question before you can turn on the feature.<br>
+- Security Question answers are Case Sensitive.<br>
+- If you disable API logins, any call to a CMD_API function will be blocked when using the current User/password.<br>
+&nbsp;&nbsp;&nbsp;Login Keys and Session Keys will always work and are not blocked with this feature.
+</div>
+
+|HTM_USER_BOTTOM|

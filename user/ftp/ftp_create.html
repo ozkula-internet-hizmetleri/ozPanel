@@ -1,0 +1,98 @@
+|?BASLIK=Yeni FTP Hesabı|
+|?BASLIKALT=Yeni FTP Hesabı Oluştur|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/ftphesaplari.png|
+|?BASLIKYARDIM=Bu sayafadan Yeni Bir FTP Hesabı Oluşturabilirsiniz|
+|?BASLIKYARDIMURL=ftp/ftp_create.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<script language="Javascript">
+<!--
+
+|HTM_JAVASCRIPT|
+
+// -->
+</script>
+<br>
+
+<form name=reseller action="CMD_FTP" method="post">
+<input type=hidden name=action value=create>
+<input type=hidden name=domain value="|DOMAIN|">
+
+<div class="form-group">
+	<label for="saisad">FTP Kullanıcı Adı</label>
+	<div class="input-group mb-3">
+	  <input type="text" id="saisad" class="form-control col-lg-5 col-md-12" name="user" placeholder="FTP Kullanıcı Adı" aria-label="FTP Kullanıcı Adı" aria-describedby="basic-addon2">
+	  <div class="input-group-append">
+	    <span class="input-group-text" id="basic-addon2">|*if owned!="yes"||FTP_SEP||DOMAIN||*endif|</span>
+	  </div>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="aspasdewds">FTP Şifre</label>
+	<div class="input-group mb-3">
+	  <input type="text" id="aspasdewds"  name=passwd class="form-control col-lg-5 col-md-12" placeholder="Şifre" aria-label="Şifre" aria-describedby="button-addon2">
+	  <div class="input-group-append">
+	    <button class="btn btn-outline-secondary" onclick="randomPass();" type="button" id="button-addon2">Şifre Oluştur</button>
+	  </div>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="aspasdewds2">FTP Şifre (Tekrar)</label>
+	 <input type="text" id="aspasdewds2"  name=passwd2 class="form-control col-lg-5 col-md-12" placeholder="Şifre (Tekrar)" aria-label="Şifre" aria-describedby="button-addon2">
+</div>
+
+
+<div class="form-group">
+	<label>Domain</label>
+	<div class="form-check">
+	  <input class="form-check-input" type="radio" id="dmomasdsa"  name=type value="domain" checked>
+	  <label class="form-check-label" for="dmomasdsa">
+	    FTP Hesabı public_html'in bir üst dizinine erişir
+	  </label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label>FTP</label>
+	<div class="form-check">
+	  <input class="form-check-input" type="radio" id="foewqsdsaa" name=type value="ftp">
+	  <label class="form-check-label" for="foewqsdsaa">
+	    public_ftp Klasörüne erişir
+	  </label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label>User</label>
+	<div class="form-check">
+	  <input class="form-check-input" type="radio" id="usedsaleas" name=type value="user">
+	  <label class="form-check-label" for="usedsaleas">
+	    public_html içinde kullanıcı adıyla açılan klasöre erişir
+	  </label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label>Özel</label>
+	<div class="form-check">
+	  <input class="form-check-input" type="radio" id="cuseasdlsd" name=type value="custom">
+	  <label class="form-check-label" for="cuseasdlsd">
+	    public_html içinde kullanıcı adıyla açılan klasöre erişir
+	  </label>
+	</div>
+	<input type=text class="form-control col-lg-5 col-md-12" size=48 name=custom_val value="|HOME_DIR|">
+</div>
+
+<input type="submit" value="Oluştur" class="btn btn-primary">
+
+</form>
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

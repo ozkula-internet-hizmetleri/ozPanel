@@ -1,0 +1,38 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`domain`">`domain`</a> &raquo; <a class=tree href="/CMD_SSL?DOMAIN=`domain`">SSL</a> &raquo; Create Certificate Request|
+|?HELP_SECTION=`USER_HELPER`/ssl.html#install|
+|HTM_USER_TOP|
+<script language="javascript">
+function copyCertificate(text)
+{
+	text.focus();
+	text.select();
+	if (document.all)
+	{
+		therange = text.createTextRange();
+		therange.execCommand("Copy");
+		alert('Certificate Copied to the Clipboard');
+	}
+}
+</script>
+
+<table class=list cellpadding=3 cellspacing=1>
+<tr><td class=listtitle>SSL Certificate Request</td></tr>
+|*if NOTICE!=""|
+<tr><td class=listwrap><b>|NOTICE|</b></td></tr>
+|*endif|
+<tr><td class=listwrap>Here is your SSL Certificate Request.
+You will send this text to a Certificate Authority and they will give you a Signed Certificate.
+To use it, paste the Signed Certificate on the next line after<br>"-----END RSA PRIVATE KEY-----" on the previous page and click "Save".</td></tr>
+<form name=info>
+<tr><td class=list align=center>
+	<textarea class="code_edit ssl_text" name=request rows=16>|REQUEST|</textarea>
+</td></tr>
+<tr><td class=listtitle align=center><input type=button value="Copy to Clipboard" onClick="copyCertificate(document.info.request)"> (IE only)</td></tr>
+</form>
+</table>
+|*if USERTYPE="admin"|
+Be sure to copy and backup the "RSA PRIVATE KEY" along with the the request.  You will need it when installing the certificate. Because you're an admin, you will be saving to the "shared server certificate" and the key is not saved anywhere until you paste it with the certificate.
+|*endif|
+|HTM_USER_BOTTOM|
+
+

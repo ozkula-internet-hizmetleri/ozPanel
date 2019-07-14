@@ -1,0 +1,51 @@
+|?TREE=&raquo; <a class=tree href="/CMD_USER_SHOW">Show Users</a> &raquo; <a class=tree href="/CMD_SHOW_USER?user=`user`">User `user`</a>|
+|?HELP_SECTION=`RESELLER_HELPER`/modify.html|
+|HTM_RESELLER_TOP|
+
+<b>Details for user |user|</b><br>
+<br>
+<table width=100% cellpadding=5 cellspacing=0>
+<tr>
+	<td align=center>
+		<form action="CMD_LOGIN" method="POST">
+		<input type=hidden name=username value="|LOGIN_AS_MASTER_NAME|\||user|">
+		<input type=submit value="Login as |user|"><br>
+		</form>
+	</td>
+	<td align=center>
+		<form>
+			<input type=button value="Modify User |user|" onClick="location.href='CMD_MODIFY_USER?user=|user|'">
+		</form>
+	</td>
+	<td align=center>
+		<form name=tableform action='CMD_SELECT_USERS' method='GET'>
+			<input type=hidden name=select0 value="|user|">
+			<input type=submit value='Delete User |user|' name=delete>
+		</form>
+	</td>
+</tr>
+</table>
+|DOMAINS|
+|STATS|
+
+<table class=list cellpadding=3 cellspacing=1>
+<form action="/CMD_RESEND_EMAIL" method="POST">
+<input type=hidden name=user value=|user|>
+<tr><td class=listtitle>Resend Welcome E-Mail</td></tr>
+<tr><td class=list align=center>Send To: <input type=text name=email value="|USER_EMAIL|">
+	<input type=checkbox name=newpass value="yes">New Random Password
+	<input type=submit value="Send"></td></tr>
+</form>
+</table>
+
+<table class=list cellpadding=3 cellspacing=1>
+<tr><td class=listtitle>User Comment Box</td></tr>
+<form action="CMD_COMMENTS" method="POST">
+<input type=hidden name=user value="|user|">
+<input type=hidden name=location value="CMD_SHOW_USER">
+<tr><td class=list align=center><textarea rows=15 cols=80 name=comments>|COMMENTS|</textarea></td></tr>
+<tr><td class=listtitle align=right><input type=submit value="Save Comments"></td></tr>
+</form>
+</table>
+
+|HTM_RESELLER_BOTTOM|

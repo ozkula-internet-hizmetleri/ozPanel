@@ -1,0 +1,81 @@
+|?TREE=&raquo; <a class=tree href="/CMD_MANAGE_USER_PACKAGES">Manage User Packages</a> &raquo; <a class=tree href="/CMD_SHOW_USER_PACKAGE?package=`PACKAGENAME`">Manage `PACKAGENAME`</a>|
+|?HELP_SECTION=`RESELLER_HELPER`/packages.html|
+|HTM_RESELLER_TOP|
+<script language="Javascript">
+<!--
+
+function setText(inputid,checkbx)
+{
+	var textfld = document.getElementById(inputid);
+	if (checkbx.checked)
+		textfld.disabled = true;
+	if (!checkbx.checked)
+		textfld.disabled = false;
+}
+
+// -->
+</script>
+
+<table class=list cellpadding=3 cellspacing=1>
+	<form name=package action='/CMD_MANAGE_USER_PACKAGES' method='POST'>
+	<tr ><td class=listtitle colspan=3>User Package: |PACKAGENAME|</td ></tr >
+
+		<tr ><td class=list>Bandwidth</td ><td class=list><input type=text id="bandwidth" name=bandwidth value="|BANDWIDTH|"></td ><td class=list style="width: 65%"><input type="checkbox" name="ubandwidth" value="unlimited" onClick='setText("bandwidth",this)' |BANDWIDTHCHECKED|>Unlimited</td></tr>
+		<tr ><td class=list>Disk Space</td ><td class=list><input type=text id="quota" name=quota value="|QUOTA|"></td ><td class=list><input type="checkbox" name="uquota" value="unlimited" onClick='setText("quota",this)' |QUOTACHECKED|>Unlimited</td></tr >
+|*if HAVE_INODE="yes"|
+		<tr ><td class=list>Inodes</td ><td class=list><input type=text id="inode" name=inode value="|INODE|"></td ><td class=list><input type="checkbox" name="uinode" value="unlimited" onClick='setText("inode",this)' |INODECHECKED|>Unlimited</td></tr >
+|*endif|
+		<tr ><td class=list>Domains</td ><td class=list><input type=text id="vdomains" name=vdomains value="|VDOMAINS|"></td ><td class=list><input type="checkbox" name="uvdomains" value="unlimited" onClick='setText("vdomains",this)' |VDOMAINSCHECKED|>Unlimited</td></tr >
+		<tr ><td class=list>SubDomains</td ><td class=list><input type=text id="nsubdomains" name=nsubdomains value="|NSUBDOMAINS|"></td ><td class=list><input type="checkbox" name="unsubdomains" value="ON" onClick='setText("nsubdomains",this)' |NSUBDOMAINSCHECKED|>Unlimited</td></tr >
+
+		<tr ><td class=list>Email Accounts</td ><td class=list><input type=text id="nemails" name=nemails value="|NEMAILS|"></td ><td class=list><input type="checkbox" name="unemails" value="unlimited" onClick='setText("nemails",this)' |NEMAILSCHECKED|>Unlimited</td></tr >
+		<tr ><td class=list>Email Forwarders</td ><td class=list><input type=text id="nemailf" name=nemailf value="|NEMAILF|"></td ><td class=list><input type="checkbox" name="unemailf" value="unlimited" onClick='setText("nemailf",this)' |NEMAILFCHECKED|>Unlimited</td></tr >
+		<tr ><td class=list>Mailing Lists</td ><td class=list><input type=text id="nemailml" name=nemailml value="|NEMAILML|"></td ><td class=list><input type="checkbox" name="unemailml" value="unlimited" onClick='setText("nemailml",this)' |NEMAILMLCHECKED|>Unlimited</td></tr >
+		<tr ><td class=list>AutoResponders</td ><td class=list><input type=text id="nemailr" name=nemailr value="|NEMAILR|"></td ><td class=list><input type="checkbox" name="unemailr" value="unlimited" onClick='setText("nemailr",this)' |NEMAILRCHECKED|>Unlimited</td></tr >
+
+		<tr ><td class=list>MySQL Databases</td ><td class=list><input type=text id="mysql" name=mysql value="|MYSQL|"></td ><td class=list><input type="checkbox" name="umysql" value="unlimited" onClick='setText("mysql",this)' |MYSQLCHECKED|>Unlimited</td></tr >
+
+		<tr ><td class=list>Domain Pointers</td ><td class=list><input type=text id="domainptr" name=domainptr value="|DOMAINPTR|"></td><td class=list><input type="checkbox" name="udomainptr" value="ON" onClick='setText("domainptr",this)' |DOMAINPTRCHECKED|>Unlimited</td></tr >
+
+		<tr ><td class=list>Ftp Accounts</td ><td class=list><input type=text id="ftp" name=ftp value="|FTP|"></td ><td class=list><input type="checkbox" name="uftp" value="unlimited" onClick='setText("ftp",this)' |FTPCHECKED|>Unlimited</td></tr >
+		<tr ><td class=list>Anonymous Ftp Accounts</td ><td class=list align=center><input type=checkbox name=aftp value="ON" |AFTPCHECKED|></td ><td class=list></td></tr >
+
+		<tr><td class=list>CGI Access</td><td class=list align=center><input type=checkbox name=cgi value="ON" |CGICHECKED|></td><td class=list></td></tr>
+		<tr><td class=list>PHP Access</td><td class=list align=center><input type=checkbox name=php value="ON" |PHPCHECKED|></td><td class=list></td></tr>
+|*if RESELLERSPAM="ON"|
+		<tr><td class=list>SpamAssassin</td><td class=list align=center><input type=checkbox name=spam value="ON" |SPAMCHECKED|></td><td class=list></td></tr>
+|*endif|
+|*if RESELLERCATCHALL="ON"|
+		<tr><td class=list>Catch-All Email</td><td class=list align=center><input type=checkbox name=catchall value="ON" |CATCHALLCHECKED|></td><td class=list></td></tr>
+|*endif|
+		<tr><td class=list>SSL Access</td><td class=list align=center><input type=checkbox name=ssl value="ON" |SSLCHECKED|></td><td class=list></td></tr>
+		<tr><td class=list>SSH Access</td><td class=list align=center><input type=checkbox name=ssh value="ON" |SSHCHECKED|></td><td class=list></td></tr>
+		<tr><td class=list>Cron Jobs</td><td class=list align=center><input type=checkbox name=cron value="ON" |CRONCHECKED|></td><td class=list></td></tr>
+		<tr><td class=list>System Info</td><td class=list align=center><input type=checkbox name=sysinfo value="ON" |SYSINFOCHECKED|></td><td class=list></td></tr>
+		<tr><td class=list>Login Keys</td><td class=list align=center><input type=checkbox name=login_keys value="ON" |LOGINKEYSCHECKED|></td><td class=list></td></tr>
+		<tr><td class=list>DNS Control</td><td class=list align=center><input type=checkbox name=dnscontrol value="ON" |DNSCONTROLCHECKED|></td><td class=list></td></tr>
+
+		<tr><td class=list>Suspend at Limit</td><td class=list align=center><input type=checkbox name=suspend_at_limit value="ON" |SUSPENDATLIMITCHECKED|></td><td class=list></td></tr>
+
+		<tr><td class=list>Skin</td><td class=list align=center>|SKINS|</td><td class=list></td></tr>
+		<tr><td class=list>Language</td><td class=list align=center>|LANGUAGESELECT|</td><td class=list></td></tr>
+
+|*if CUSTOM_ITEM_1|
+		<tr><td class=list>|CUSTOM_ITEM_1_STR|</td><td class=list align=center>|CUSTOM_ITEM_1|</td><td class=list>|CUSTOM_ITEM_1_DESC|</td></tr>
+|*endif|
+|*if CUSTOM_ITEM_2|
+		<tr><td class=list>|CUSTOM_ITEM_2_STR|</td><td class=list align=center>|CUSTOM_ITEM_2|</td><td class=list>|CUSTOM_ITEM_2_DESC|</td></tr>
+|*endif|
+|*if CUSTOM_ITEM_3|
+		<tr><td class=list>|CUSTOM_ITEM_3_STR|</td><td class=list align=center>|CUSTOM_ITEM_3|</td><td class=list>|CUSTOM_ITEM_3_DESC|</td></tr>
+|*endif|
+|*if CUSTOM_ITEM_4|
+		<tr><td class=list>|CUSTOM_ITEM_4_STR|</td><td class=list align=center>|CUSTOM_ITEM_4|</td><td class=list>|CUSTOM_ITEM_4_DESC|</td></tr>
+|*endif|
+
+	<tr ><td class=listtitle align=right colspan=3>Package Name: <input type=text name=packagename value="|PACKAGENAME|"> <input type=submit value='Save' name=add> <input type=submit value='Cancel' name=cancel></td ></tr >
+	</form>
+</table >
+
+
+|HTM_RESELLER_BOTTOM|

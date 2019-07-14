@@ -1,0 +1,15 @@
+1=Bir zamanlanmış görev eklemek için şunları belirtmelisiniz: dakika, saat, ayın günü, haftanın günü ve komut
+2=Zamanların biçimi şunlardan biri gibi olmalıdır (Örnek saat, boşluksuz):<br>*<br>1<br>1-5<br>0-23/2<br>1,2,3,13,22<br>0-4,8-12
+3=Komut içinde satır sonu karakteri bulunmamalıdır
+4=Dakika
+5=Saat
+6=Ayın<br>Günü
+7=Ay
+8=Haftanın<br>Günü
+9=Komut
+10=Kaydet
+11=Düzenle
+12=Sil
+13=Seç
+14=Kullanıcı
+15=E-posta adresi geçersiz. DirectAdmin oturum açma kullanıcı adı da kullanılabilir

@@ -1,0 +1,16 @@
+<div id="domlist">
+|DOMAINTABLE|
+</div>
+<script>
+	var dl=$("#domlist table a.list");
+	if (dl.length==1) window.location=dl.attr('href');
+
+	var dl=$("#domlist div.table div.row > div.col > a.list");
+	if (dl.length==1) window.location=dl.attr('href');
+
+</script>
+<br>
+|*if ALLOWED_CMD_DOMAIN!="no"|
+<form action="/CMD_ADDITIONAL_DOMAINS" method="GET"><input type=submit value="Domain Administration"></form><br>
+|*endif|
+

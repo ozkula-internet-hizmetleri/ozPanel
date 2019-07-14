@@ -1,0 +1,91 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`domain`">`domain`</a> &raquo; <a class=tree href="/HTM_ADVANCED?domain=`domain`">Advanced</a>|
+|HTM_USER_TOP|
+			<TABLE height=1 cellSpacing=5 cellPadding=2 width=750 border=0>
+				<TR>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_SSL?DOMAIN=|domain|'">
+						<a class=button href="CMD_SSL?DOMAIN=|domain|">
+							<img border="0" src="IMG_SSL" width="68" height="65"><br>
+							Install SSL Certificates
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_SYSTEM_INFO'">
+						<a class=button href="CMD_SYSTEM_INFO">
+							<img border="0" src="IMG_SERVER_INFO" width="47" height="65"><br>
+							Server Information
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_PERL_MODULES'">
+						<a class=button href="CMD_PERL_MODULES">
+							<img border="0" src="IMG_PERL_MODS" width="48" height="65"><br>
+							Installed Perl Modules
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_CRON_JOBS'">
+						<a class=button href="CMD_CRON_JOBS">
+							<img border="0" src="IMG_CRON" width="69" height="65"><br>
+							Cron Jobs
+						</a>
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_MIME_TYPES?DOMAIN=|domain|'">
+						<a class=button href="CMD_MIME_TYPES?DOMAIN=|domain|">
+							<img border="0" src="IMG_MIME" width="90" height="65"><br>
+							Mime Types
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_HANDLERS?DOMAIN=|domain|'">
+						<a class=button href="CMD_HANDLERS?DOMAIN=|domain|">
+							<img border="0" src="IMG_HANDLER" width="98" height="65"><br>
+							Apache Handlers
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_REDIRECT?DOMAIN=|domain|'">
+						<a class=button href="CMD_REDIRECT?DOMAIN=|domain|">
+							<img border="0" src="IMG_REDIRECT" width="65" height="65"><br>
+							Site Redirection
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_DOMAIN_POINTER?DOMAIN=|domain|'">
+						<a class=button href="CMD_DOMAIN_POINTER?DOMAIN=|domain|">
+							<img border="0" src="IMG_POINTERS" width="58" height="65"><br>
+							Domain Pointers
+						</a>
+					</TD>
+				</TR>
+
+				<TR>
+|*if ALLOWED_CMD_DOMAIN!="no"|
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_ADDITIONAL_DOMAINS'">
+						<a class=button href="CMD_ADDITIONAL_DOMAINS?domain=|domain|">
+							<img border="0" src="IMG_ADD_DOMAIN" width="61" height="65"><br>
+							Domain Administration
+						</a>
+					</TD>
+|*endif|
+					<TD vAlign=middle height=100 align="center">
+						|PLUGIN_0_IMG|
+					</TD>
+					<TD vAlign=middle height=100 align="center">
+						|PLUGIN_1_IMG|
+					</TD>
+					<TD vAlign=middle height=100 align="center">
+						|PLUGIN_2_IMG|
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign=middle align="center">
+						|PLUGIN_3_IMG|
+					</TD>
+					<TD vAlign=middle align="center">
+						|PLUGIN_4_IMG|
+					</TD>
+					<TD vAlign=middle align="center">
+						|PLUGIN_5_IMG|
+					</TD>
+					<TD vAlign=middle align="center">
+						|PLUGIN_6_IMG|
+					</TD>
+				</TR>
+			</TABLE>
+|HTM_USER_BOTTOM|

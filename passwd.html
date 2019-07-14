@@ -1,0 +1,27 @@
+|?TREE=&raquo; <a class=tree href="/HTM_PASSWD">Change your Password</a>|
+|?HELP_SECTION=`USER_HELPER`/gettingstarted.html#password|
+|HTM_USER_TOP|
+<br><br><br>
+			<table cellspacing=1 cellpadding=3>
+			<tr><td class=listtitle colspan=2 align=center>Change Your Password</td></tr>
+      		<form action="CMD_PASSWD" method="post">
+      		<tr><td class=list>Enter Old Password:</td><td class=list><input type=password name=oldpass></td></tr>
+      		<tr><td class=list>Enter Password:</td><td class=list><input type=password name=passwd></td></tr>
+			<tr><td class=list>Re-Enter Password:</td><td class=list><input type=password name=passwd2></td></tr>
+
+			<input type=hidden name="options" value="yes">
+			<tr><td class=list align=right>DirectAdmin</td><td class=list><input type=checkbox name="system" value="yes" checked></td></tr>
+			<tr><td class=list align=right>Main FTP Account</td><td class=list><input type=checkbox name="ftp" value="yes" checked></td></tr>
+			<tr><td class=list align=right>Main Database Account</td><td class=list><input type=checkbox name="database" value="yes" checked></td></tr>
+
+			<tr><td class=listtitle align=right colspan=2>
+                <input type=submit value="Submit">
+              </td></tr>
+			</form>
+			</table>
+			|*if HAVE_SECURITY_QUESTIONS="yes"|
+				<br>
+				<a href="CMD_SECURITY_QUESTIONS">Manage Security Questions</a>
+			|*endif|
+<br><br><br>
+|HTM_USER_BOTTOM|

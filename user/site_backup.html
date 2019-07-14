@@ -1,0 +1,60 @@
+|?BASLIK=Yedekleme|
+|?BASLIKALT=Yedekleme Sistemi|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/yedekleme.png|
+|?BASLIKYARDIM=Bu sayafadan Yedekleme Yapabilirsiniz|
+|?BASLIKYARDIMURL=genel/site_backup.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<br>
+<h4>Yeni Yedek Oluştur</h4>
+<table class=list cellpadding=3 cellspacing=1>
+<form action="/CMD_SITE_BACKUP" method="POST">
+<input type=hidden name=domain value="|domain|">
+<input type=hidden name=action value="backup">
+<tr><td class=listtitle colspan=2>Yedek Almak istediğiniz kısımları seçin</td></tr>
+
+<tr><td class=list colspan=2><b>Website Verisi</b></td></tr>
+<tr><td class=list>Domain Klasörü: Tüm Kullanıcıların Tüm Dosyalarını Yedekle</td>		<td class=list><input type=checkbox name=select0 value="domain" checked></td></tr>
+<tr><td class=list>Subdomain Listesi: Her Domainin Her Subdomainini Yedekle</td>	<td class=list><input type=checkbox name=select1 value="subdomain" checked></td></tr>
+
+<tr><td class=list colspan=2><b>E-Posta</b></td></tr>
+<tr><td class=list>Tüm E-Posta Hesapları</td>									<td class=list><input type=checkbox name=select2 value="email" checked></td></tr>
+<tr><td class=list>Yönlendirme Adresleri</td>					<td class=list><input type=checkbox name=select3 value="forwarder" checked></td></tr>
+<tr><td class=list>Otomatik Cevaplayıcılar</td>		<td class=list><input type=checkbox name=select4 value="autoresponder" checked></td></tr>
+<tr><td class=list>Tatil Mesajları</td>	<td class=list><input type=checkbox name=select5 value="vacation" checked></td></tr>
+<tr><td class=list>Mail Listeleri</td>		<td class=list><input type=checkbox name=select6 value="list" checked></td></tr>
+<tr><td class=list>E-Posta Ayarları, varsayılan e-posta ayarları</td>	<td class=list><input type=checkbox name=select7 value="emailsettings" checked></td></tr>
+
+<tr><td class=list colspan=2><b>Ftp</b></td></tr>
+<tr><td class=list>FTP Hesapları</td>													<td class=list><input type=checkbox name=select8 value="ftp" checked></td></tr>
+<tr><td class=list>FTP Ayarları</td>													<td class=list><input type=checkbox name=select9 value="ftpsettings" checked></td></tr>
+
+<tr><td class=list colspan=2><b>Veritabanları</b></td></tr>
+<tr><td class=list>Tüm Kullanıcı Veritabanları</td>							<td class=list><input type=checkbox name=select10 value="database" checked></td></tr>
+<tr><td class=listtitle colspan=2 align=right><input type=submit value="Yedeği Oluştur" class="btn btn-primary"></td></tr>
+</form>
+</table>
+
+<br>
+
+<b>|RESULT|</b><br>
+<br>
+<a href="/CMD_FILE_MANAGER/backups" class="btn btn-secondary">Tüm Alınan Yedeklerin Listesi</a><br>
+<br><br>
+<hr>
+<table class=list cellpadding=3 cellspacing=1>
+<form action="/CMD_SITE_BACKUP" method="POST">
+<input type=hidden name=domain value="|domain|">
+<input type=hidden name=action value="view">
+<tr><td class=listtitle>Geri Yüklemek için yedek dosyası seçin</td></tr>
+<tr><td class=list align=center>|FILES|</td></tr>
+<tr><td class=listtitle align=right><input type=submit value="Yedek Geri Yükle" class="btn btn-secondary"></td></tr>
+</form>
+
+</table>
+
+|HTM_USER_BOTTOM|

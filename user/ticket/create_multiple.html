@@ -1,0 +1,34 @@
+|?TREE=&raquo; <a class=tree href="/`location`">Show Users</a> &raquo; Message Multiple Users|
+|?HELP_SECTION=`USER_HELPER`/gettingstarted.html#ticket|
+|HTM_RESELLER_TOP|
+
+<table class=list cellpadding=3 cellspacing=1>
+	<tr><td class=listtitle colspan=4>Create Message</td></tr>
+
+	<form name=info action="CMD_TICKET_CREATE" method="post">
+		<input type=hidden name=action value="create">
+		<input type=hidden name=type value="message">
+		<input type=hidden name=user value="multiple">
+		|USERLIST|
+
+	<tr><td class=list>To:</td><td class=list>Multiple Users</td><td class=list>Priority:
+															<select name=priority>
+																<option value="10">Low</option>
+																<option value="20">Medium</option>
+																<option value="30">High</option>
+															</select></td></tr>
+	<tr><td class=list>Subject:</td><td class=list colspan=3><input type=text name=subject size=65></td></tr>
+	<tr><td class=list>Message:</td><td class=list colspan=3><textarea name=message rows=16 cols=65></textarea></td></tr>
+
+	<tr><td class=listtitle colspan=4 align=right>
+|*if SHOW_EML_ONLY="yes"|
+   <input type=checkbox name=email_only value='yes' |EML_ONLY_CHEKCED|> Email Only&nbsp;
+|*endif|
+
+		<input type=submit name=submit value="Save">
+	</td></tr>
+	</form>
+
+</table>
+
+|HTM_RESELLER_BOTTOM|

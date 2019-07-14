@@ -1,0 +1,37 @@
+|?TREE=&raquo; <a class=tree href="/CMD_IP_MANAGER">IP Manager</a>|
+|?HELP_SECTION=`ADMIN_HELPER`/ipman.html|
+|HTM_ADMIN_TOP|
+<br>
+
+<table cellpadding=3 cellspacing=1 class=list>
+<tr><td class=listtitle colspan=2><b>Details for |ip|</b></td></tr>
+<tr><td class=list>Status</td><td class=list>|status|</td></tr>
+<tr><td class=list2>Netmask</td><td class=list2>|netmask|</td></tr>
+<tr><td class=list>Reseller</td><td class=list>|reseller|</td></tr>
+<tr><td class=list2>User(s)</td><td class=list2>|value|</td></tr>
+<tr><td class=list>Nameserver</td><td class=list>|ns|</td></tr>
+</table>
+
+|IPS_TO_LINK|
+<br>
+|LINKED_IPS|
+
+
+<br><br>
+<div style='text-align: left'>
+The main purpose for this feature is to link LAN IPs to external IPs,<br>and/or to link IPv6 IPs to IPv4 IPs.<br>
+<br>
+<b>LAN</b>: View the details of the external IP. Link the internal IP to the external IP.<br>Only select Apache, do not select DNS. Add Users to external IP<br>
+<br>
+<b>IPv6</b>: View the details of the IPv4 IP. Link the IPv6 to the IPv4. Check both DNS and Apache.<br>
+<br>
+Adding a linked IP to the current IP will add the linked IP to the areas where current IP exists.<br>Linking an IP with dns will duplicate the A/AAAA records for the current IP with the linked IP.<br>Linking an IP with apache will add the linked IP into the VirtualHost with the current IP.<br>
+<br>
+This feature is independant of the Multi-IP system, but they can be used together.<br>For example a User can have 2 IPs with the Multi-IP system, and each of those IPs can have linked IPs.<br>
+<br>
+Links are not recursive, so you don't need to worry about infinite loops.<br>
+<br>
+The "Apply to existing Domains" option will trigger the httpd.conf rewrites and insert A/AAAA records into the local dns zones.<br>Disabling this checkbox won't touch the dns or httpd.conf files, but future httpd.cont rewrites will have the linked IP added.
+</div>
+
+|HTM_ADMIN_BOTTOM|

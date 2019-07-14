@@ -1,0 +1,65 @@
+|?TREE=&raquo; <a class=tree href="/CMD_CRON_JOBS">Cron Jobs</a>|
+|?HELP_SECTION=`USER_HELPER`/misc.html#cron|
+|HTM_USER_TOP|
+
+<script language="Javascript">
+<!--
+function preventEmail()
+{
+	with (document.info)
+	{
+		command.value = command.value + ' >/dev/null 2>&1';
+		prevent.disabled = true;
+	}
+}
+function set_cron_display()
+{
+	var set_display = '';
+	if (document.getElementById('reboot').checked)
+	{
+		var set_display = 'none';
+	}
+
+	document.getElementById('minute_tr').style.display = set_display;
+	document.getElementById('hour_tr').style.display = set_display;
+	document.getElementById('day_of_month_tr').style.display = set_display;
+	document.getElementById('month_tr').style.display = set_display;
+	document.getElementById('day_of_week_tr').style.display = set_display;
+}
+// -->
+</script>
+
+Valid cron time values are the numbers indicated and *.<br>
+You can specifiy exact times using commas to separate them.<br>eg: 1,2,3 (minutes 1,2 and 3)<br>
+You can specify spans using a dash. eg: 5-7 (minutes 5 to 7)
+You can specify intervals using a star and a forward slash. eg: */2 (every 2nd minute)<br>
+You can combine them to create a more precise schedule. eg: 1,5,11-15,30-59/2 (minutes 1, 5, 11 to 15 and every 2nd minute between 30 and 59)<br>
+Note that there are no spaces<br><br>
+Current Time: |TIME|
+<table class=list  cellpadding=3 cellspacing=1>
+<form name=info action='/CMD_CRON_JOBS' method='POST'>
+<input type=hidden name=action value="create">
+<tr><td class=listtitle colspan=3>Create a New Cron Job <span style='float: right'><input type=checkbox id='reboot' name='reboot' value='yes' onchange="set_cron_display();"> Run on @reboot</span></td></tr>
+<tr id='minute_tr'><td class=list>Minute</td><td class=list><input type=text size=8 name=minute value=*></td><td class=list>0-59</td></tr>
+<tr id='hour_tr'><td class=list>Hour</td><td class=list><input type=text size=8 name=hour value=*></td><td class=list>0-23</td></tr>
+<tr id='day_of_month_tr'><td class=list>Day of Month</td><td class=list><input type=text size=8 name=dayofmonth value=*></td><td class=list>1-31</td></tr>
+<tr id='month_tr'><td class=list>Month</td><td class=list><input type=text size=8 name=month value=*></td><td class=list>1-12</td></tr>
+<tr id='day_of_week_tr'><td class=list>Day of Week</td><td class=list><input type=text size=8 name=dayofweek value=*></td><td class=list>0-7 (0 or 7 = Sunday)</td></tr>
+<tr><td class=list>Command</td><td class=list><input type=text size=35 name=command value='/home/|USERNAME|/'></td><td class=list><input type=button name=prevent value="Prevent Email" onClick='preventEmail()'></td></tr>
+<tr><td colspan=3 class=listtitle align=right><input type=submit value="Add"></td></tr>
+</form>
+</table>
+
+|CRONJOBS|
+
+<br>
+<table class=list  cellpadding=3 cellspacing=1>
+<form action='/CMD_CRON_JOBS' method='POST'>
+<input type=hidden name="action" value="saveemail">
+<tr><td class=listtitle colspan=2>Send all Cron output to E-Mail</td></tr>
+<tr><td class=list align=left>E-Mail</td><td class=list><input type=text name=email size=48 value="|MAILTO|"></td></tr>
+<tr><td class=listtitle colspan=2 align=right><input type=submit value="Save"></td></tr>
+</form>
+</table>
+
+|HTM_USER_BOTTOM|

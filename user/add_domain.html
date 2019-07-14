@@ -1,0 +1,245 @@
+|?BASLIK=Yeni Domain Ekle|
+|?BASLIKALT=Hesabınıza Yeni bir Domain(Alan Adı) Ekleyin|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/domain.png|
+|?BASLIKYARDIM=Bu sayafan Hesabınıza Yeni Bir Domain (Alan adı) Ekleyebilirsiniz|
+|?BASLIKYARDIMURL=domain/add_domain.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<script language="Javascript">
+<!--
+
+var badUserName='Geçersiz Kullanıcı Adı';
+var shortUserName='Kullanıcı Adı en az 4 karakter olmalı';
+var noPassMatch='Şifreler Doğru Tekrar Etmiyor';
+var shortPass='Şifre çok kısa';
+var shortDomain='Domain Çok kısa';
+var domainNeedsDot='Domain de nokta eksik';
+var invalidDomain='Geçersiz Domain';
+var badIP='Geçersiz IP'
+
+function setText( textfld, checkbx)
+{
+	if (checkbx.checked)
+		document.getElementById(textfld).disabled = true;
+	if (!checkbx.checked)
+		document.getElementById(textfld).disabled = false;
+}
+
+function passOK()
+{
+	with (document.info)
+	{
+		if (passwd.value.length < 5)
+		{
+			alert(shortPass);
+			return 0;
+		}
+
+		if (passwd.value != passwd2.value)
+		{
+			alert(noPassMatch);
+			return 0;
+		}
+	}
+	return 1;
+}
+
+function checkPass()
+{
+	with (document.info)
+	{
+		if (passOK()) return true;
+		else
+		{
+			passwd2.value="";
+			passwd.focus();
+			passwd.select();
+		}
+	}
+}
+
+function nameOK(name)
+{
+	var ch;
+	var i;
+
+	if (name.length < 4) return false;
+
+	for (i=0; i<name.length; i++)
+	{
+		ch=name.charAt(i);
+		if ( i==0 && !((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')) || ch==' ' ) return false;
+		else if (!((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9') || (ch=='_') || (ch=='-')) || ch==' ') return false;
+	}
+
+	return true;
+}
+
+function checkName()
+{
+	with (document.info)
+	{
+		if (username.value.length < 4)
+		{
+			username.focus();
+			username.select();
+			alert(shortUserName);
+			return false;
+		}
+		if (nameOK(username.value)) return true;
+		else
+		{
+			username.focus();
+			username.select();
+			alert(badUserName);
+			return false;
+		}
+	}
+	return false;
+}
+
+function domainOK(domain)
+{
+	var ch;
+	var i;
+	var dotCount = 0;
+
+	if (domain.length < 3)
+	{
+		alert(shortDomain);
+		return 0;
+	}
+
+	if (domain.charAt(domain.length-1) == '.')
+	{
+		alert(invalidDomain);
+		return 0;
+	}
+
+        var filter = /^(([a-z0-9¡-ÿ\-])+\.)+([a-z0-9]{2,4})+$/;
+        if (filter.test(domain))
+                return 1;
+        else
+        {
+                alert(invalidDomain);
+                return 0;
+        }
+
+}
+
+function checkDomain()
+{
+	with (document.info)
+	{
+		if (!domainOK(domain.value))
+		{
+			domain.focus();
+			domain.select();
+			return 0;
+		}
+	}
+	return 1;
+}
+
+function formOK()
+{
+	with (document.info)
+	{
+		if (checkDomain())
+			return true;
+	}
+	return false;
+}
+
+function submitForm()
+{
+	document.info.create.disabled = true;
+	document.info.submit();
+}
+
+// -->
+</script>
+
+<form name=info action="/CMD_DOMAIN" method="post" onSubmit="return formOK()">
+<input type=hidden name=action value=create>
+
+<div class="form-group">
+	<label for="saiedonms">Domain (Alan Adı)</label>
+	<input type="text" class="form-control" name="domain" value="domain.com" onFocus="this.select();" onChange="checkDomain()">
+</div>
+
+<div class="form-row">
+	<div class="form-group col-md-6">
+		<label for="bandwasaeas">Bandwidth (Trafik)</label>
+		<input type="text" id="bandwasaeas" class="form-control" name="bandwidth" value="1000" disabled>
+	</div>
+
+	<div class="form-check form-check-inline mt-3">
+	  <input class="form-check-input"  type="checkbox" class="form-control" id="basdweisdld" name="ubandwidth" value="unlimited" checked onClick='setText( "bandwasaeas",this)' >
+	  <label class="form-check-label" for="basdweisdld">Ana Hesapla Aynı</label>
+	</div>
+
+</div>
+
+
+
+<div class="form-row">
+	<div class="form-group col-md-6">
+		<label for="bandwasdesaeas">Disk Alanı</label>
+		<input type="text" id="bandwasdesaeas" class="form-control" name="quota" value="0" disabled>
+	</div>
+
+	<div class="form-check form-check-inline mt-3">
+	  <input class="form-check-input"  type="checkbox" class="form-control" id="basdweisdld" name="uquota" value="unlimited" checked onClick='setText( "bandwasdesaeas",this)' >
+	  <label class="form-check-label" for="bandwasdesaeas">Ana Hesapla Aynı</label>
+	</div>
+
+</div>
+
+<div class="form-group">
+	
+	<div class="form-check">
+	  <input class="form-check-input" type="checkbox"  name="ssl" value="ON" id="sskdksdll">
+	  <label class="form-check-label" for="sskdksdll" >
+	    SSL İzni
+	  </label>
+	</div>
+</div>
+
+<div class="form-group">
+	
+	<div class="form-check">
+	  <input class="form-check-input" type="checkbox"  name="cgi" value="ON" id="cgsadsaksd">
+	  <label class="form-check-label" for="cgsadsaksd" >
+	    CGI İzni
+	  </label>
+	</div>
+</div>
+
+<div class="form-group">
+	
+	<div class="form-check">
+	  <input class="form-check-input" type="checkbox"  name="php" value="ON" id="phpsapds32s">
+	  <label class="form-check-label" for="phpsapds32s" >
+	    PHP İzni
+	  </label>
+	</div>
+</div>
+<br>
+<input type="text" name=create value="Ekle" onClick="submitForm();"  class="btn btn-primary">
+
+</form>
+<br><br>
+<p>
+	<B>Not: </B>
+	Domain (Alan Adı) yazarken büyük harf, www veya http kullanmayınız.
+</p>
+<br><br>
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

@@ -1,0 +1,10 @@
+1=Parolanızı yazın
+2=Bu sizin sistem parolanız değil
+3=bir sembolik bağlantı.<br>Bu etki alanı için frontpage özelliğini etkinleştirmek bir güvenlik açığı oluşturabilir
+4=Etki alanı ve parola gereklidir
+5=Frontpage özelliği şuraya kuruldu
+6=Etkin
+7=Devre Dışı
+8=Etkinleştir
+9=Devre Dışı Bırak
+10=Frontpage Kurulmamış

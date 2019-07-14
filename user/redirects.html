@@ -1,0 +1,73 @@
+|?BASLIK=Yönlendirme|
+|?BASLIKALT=Domainleri Yönlendir|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/domainyonlendirme.png|
+|?BASLIKYARDIM=Bu sayafan Seçtiğiniz domainleri yönlendirin|
+|?BASLIKYARDIMURL=domain/redirects.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<br>
+<h4>Yeni Yönlendirme Ekle</h4>
+<form name=info action='/CMD_REDIRECT' method='POST'>
+<input type=hidden name=domain value="|DOMAIN|">
+<input type=hidden name=action value="add">
+
+<div class="form-group">
+<label for="lclpatsagasd">Yerel URL Adresi</label>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon3">|DOMAIN|</span>
+  </div>
+  <input type="text" name=from value="/" class="form-control" id="lclpatsagasd" aria-describedby="basic-addon3">
+</div>
+</div>	
+
+<div class="form-group">
+	<label for="yonsaeks">Yönlendirme Methodu</label>
+	<select name="type" id="yonsaeks" size=1 class="form-control">
+		<option value="301">301 - Permanent</option>
+		<option value="302" selected>302 - Temporary</option>
+		<option value="303">303 - Replaced</option>
+	</select>
+</div>
+
+
+<div class="form-group">
+	<label for="dhdsesa">Hedef URL</label>
+	<input type="text" class="form-control" name="to" value="https://">
+</div>
+
+<input type="submit" value="Ekle" class="btn btn-primary">
+
+</form>
+
+<br><br><br>
+<h4>Mevcut Yönlendirmeler</h4>
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|REDIRECTS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+|HTM_USER_BOTTOM|

@@ -1,0 +1,49 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`domain`">`domain`</a> &raquo; <a class=tree href="/CMD_USER_STATS?domain=`domain`">User Stats for `USERNAME`</a>|
+|?HELP_SECTION=`USER_HELPER`/stats.html|
+|HTM_USER_TOP|
+<b>Details for user |USERNAME|</b><br><br>
+<a href="/CMD_FILE_MANAGER/domains/|domain|/logs">Backed up Apache Logs</a><br>
+<a href="/CMD_USER_HISTORY?domain=|domain|">User History</a><br>
+
+<table class=list cellpadding=3 cellspacing=1>
+<tr>
+	<td class=listtitle>Log Type</td><td class=listtitle>FullLog</td><td class=listtitle>Last lines in the file</td>
+</tr>
+<tr>
+	<td class=list>
+		Apache Usage Log
+	</td>
+	<td class=list>
+		<a href="/CMD_SHOW_LOG?domain=|domain|&type=log">Full Usage Log</a>
+	</td>
+	<td class=list>
+		<a href="/CMD_SHOW_LOG?domain=|domain|&type=log&lines=10">10 lines</a>&nbsp;&nbsp;
+		<a href="/CMD_SHOW_LOG?domain=|domain|&type=log&lines=100">100 lines</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		Apache Error Log
+	</td>
+	<td class=list>
+		<a href="/CMD_SHOW_LOG?domain=|domain|&type=error">Full Error Log</a>
+	</td>
+	<td class=list>
+		<a href="/CMD_SHOW_LOG?domain=|domain|&type=error&lines=10">10 lines</a>&nbsp;&nbsp;
+		<a href="/CMD_SHOW_LOG?domain=|domain|&type=error&lines=100">100 lines</a>
+	</td>
+</tr>
+</table>
+
+|DOMAINS|
+
+<br>
+<span style="COLOR: red;">Click on the domain name to view its stats.</span>
+<br><br>
+The domain statistics (above table) represent domain directory traffic/space, not total account traffic/space.
+The statistics below represent <b>total</b> usage.
+<br><br>
+
+|STATS|
+<center><b>|RESULT|</b></center>
+|HTM_USER_BOTTOM|

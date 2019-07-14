@@ -1,0 +1,47 @@
+|?BASLIK=E-Posta Hesapları|
+|?BASLIKALT=Eklediğiniz E-Posta Hesaplarınızın Listesi|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/epostahesaplari.png|
+|?BASLIKYARDIM=Bu sayafadan Mevcut E-Posta Hesaplarınızı Yönetebilirsiniz.|
+|?BASLIKYARDIMURL=email/pop.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+
+|*if EMAIL_MESSAGE!=""|
+<b>|EMAIL_MESSAGE|</b><br><br>
+|*endif|
+
+<a href="HTM_EMAIL_POP_CREATE?DOMAIN=|DOMAIN|&DEFAULT_POP_QUOTA=|DEFAULT_POP_QUOTA|&USER_CAN_SET_SEND_LIMIT=|USER_CAN_SET_SEND_LIMIT|&GLOBAL_PER_EMAIL_LIMIT=|GLOBAL_PER_EMAIL_LIMIT|" class="btn btn-primary"><i class="fas fa-plus"></i> Yeni E-Posta Hesabı Oluştur</a>&nbsp;
+<a href="CMD_EMAIL_USAGE?domain=|DOMAIN|" class="btn btn-secondary"><i class="fas fa-receipt"></i> E-Posta Kullanımı İstatistikleri</a><br>
+
+<br><br>
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|POPACCOUNTS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

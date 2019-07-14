@@ -1,0 +1,31 @@
+1=%s bulunamadı.
+2=%s üzerinden veriler okunamadı
+3=%s kilit durumu alınamadı
+4=%s yazılırken sorun çıktı: %s
+5=%s%s has been blocked in %s to prevent further attempts on the account.
+6=Uyarı: %s, %s için geçerli bir parola yazdı ancak İki Aşamalı Kimlik Doğrulaması kodunu %s kez yanlış yazdı.
+7=%s IP adresinden %s hesabı için doğru parola yazıldı.%cBununla birlikte, %s girişimden sonra geçerli bir İki Aşamalı Kimlik Doğrulama kodu yazılamadığından erişim izni verilmedi.%cBu adres sizin IP adresiniz değilse parolanızı değiştirin.%s
+8=İki Aşamalı Kimlik Doğrulaması parolası ayarlanmamış.
+9=<b>İki Aşamalı Kimlik Doğrulaması Kodunuzu Yazın</b>
+10=Gönder
+11=Kod
+12=%sIP adresiniz kara listeye alındı
+13=İki Aşamalı Kimlik Doğrulaması kodu geçersiz
+14=Yedek Kodlar
+15=Oluşturulma Tarihi
+16=Seç
+17=Sil
+18=Kod Ekle
+19=Yeni Güvenlik Takımı: <span class=code_edit>%s</span><br>Tüm eski kodlar geçersiz olacağından QR kodunu yeniden tarattığınızdan emin olun.
+20=Geçerli
+21=Telefonunuzdaki uygulamadan kodu alın ya da yedek kodlardan birini kullanın.
+22=Asla
+23=%s Gün
+24=%s Hafta
+25=%s Ay
+26=Geçerlilik Sonu
+27=Açıklamada geçersiz karakterler var. %s karakterleri kullanılabilir
+28=Yazdır
+29=Kod geçerli ancak başka bir zaman için üretilmiş.<br>Sunucu ve telefonun tarih ve saat ayarlarını gözden geçirin. <br>Saat dilimi farkı = %d<br>
+30=%s Bu aygıta %d gün süreyle güvenilsin
+31=Lütfen yedek kodları eklemeden önce bir parola üretin

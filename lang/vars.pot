@@ -1,0 +1,13 @@
+#### Lang-specific vars
+
+#DateTime format
+msgid "format:datetime"
+msgstr "M/d/yyyy, HH:mm:ss"
+
+#Date format
+msgid "format:date"
+msgstr "M/d/yyyy"
+
+# Text Direction
+msgid "$direction"
+msgstr "ltr"

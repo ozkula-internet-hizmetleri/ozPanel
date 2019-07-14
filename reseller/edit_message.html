@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>Edit Email Message</title>
+<style type="text/css">
+|CSS_STYLE|
+</style>
+</head>
+<body>
+
+<center>
+<table style="width: 80%;" class=list cellpadding=3 cellspacing=1>
+	<form name=package action='|COMMAND|' method='POST'>
+	<tr><td class=listtitle colspan=2>Edit Email Message</td ></tr>
+	<tr><td class=list>Subject:</td><td class=list><input type=text size=50 name=subject value="|SUBJECT|"></td></tr>
+	<tr><td class=list>Message:</td><td class=list align=center><textarea rows=25 cols=80 name=message>|MESSAGE|</textarea></td></tr>
+	<tr><td class=listtitle align=right colspan=2><input type=submit name=reset value="Reset to Default"> <input type=submit name=save value="Save"></td></tr>
+</table>
+</body>
+</html>

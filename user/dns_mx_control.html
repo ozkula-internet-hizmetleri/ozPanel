@@ -1,0 +1,139 @@
+|?BASLIK=MX Kayıtları|
+|?BASLIKALT=E-Posta Sunucunuzun DNS Kayıtları|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/mxkayitlari.png|
+|?BASLIKYARDIM=Bu sayafadan Mevcut E-Posta Sunucusunu MX Kayıtlarını Yöneterek Yönlendirme Yapabilrsiniz.|
+|?BASLIKYARDIMURL=email/dns_mx_control.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+
+<script language="Javascript">
+<!--
+//**NOTE that this will check ALL checkboxes in the form.
+function selectAllDNS()
+{
+	with (document.tableform)
+	{
+		var check = false;
+		var i=0;
+
+		for (i=0; i < elements.length; i++)
+			if (elements[i].type == 'checkbox')
+			{
+				check = !(elements[i].checked);	break;
+			}
+
+		for (i=0; i < elements.length; i++)
+			if (elements[i].type == 'checkbox')
+					elements[i].checked = check;
+	}
+}
+// -->
+</script>
+
+<br>
+<form name=tableform action='/CMD_DNS_MX' method='POST'>
+
+<table class="table">
+	<tr>
+		<td scope="col">Ad (Name)</td>
+		<td>Tip (Type)</td>
+		<td>Değer (Value)</td>
+		<td>
+			<a class=listtitle href="javascript:selectAllDNS();">Seç</a>
+		</td>
+	</tr>
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|DNS_ROWS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+	<tr>
+		<td colspan=4>
+			<input type=submit value='Seçilileri Sil' class="btn btn-secondary" name=delete>
+		</td>
+	</tr>
+</table>
+<input type=hidden name=action value=select>
+</form>
+<br><br><br>
+
+<h4>Yeni MX Kaydı Oluştur</h4>
+<form action='/CMD_DNS_MX' method='POST'>
+<input type=hidden name=action value=add>
+<input type=hidden name=domain value="|DOMAIN|">
+<table class="table">
+	<tr>
+		<td>
+			<input type=text name=name class="form-control" |*if HAVE_FULL_MX_RECORDS="1"|value='|DOMAIN|.'|*endif|>
+		</td>
+		<td>MX</td>
+		<td>
+			<select name=value class="form-control" |DNS_DISABLED|>
+				<option>0</option>
+				<option selected>10</option>
+				<option>20</option>
+				<option>30</option>
+				<option>40</option>
+				<option>50</option>
+				<option>60</option>
+				<option>70</option>
+				<option>80</option>
+				<option>90</option>
+			</select>
+		</td>
+		|*if HAVE_FULL_MX_RECORDS="1"|
+		<td>
+			<input class="form-control" type=text name=mx_value size=18>
+		</td>
+		|*endif|
+		<td>
+			<input class="btn btn-secondary" type=submit name=add value="Add">
+		</td>
+	</tr>
+</table>
+</form>
+<br><br>
+
+<h4>Yerel Mail Sunucusu</h4>
+<form action='/CMD_DNS_MX' method='POST'>
+<input type=hidden name=action value="internal">
+<input type=hidden name=domain value="|DOMAIN|">
+<table class="table">
+	<tr>
+		<td class=list><input type=checkbox class="form-control" name=internal value="yes" |LOCAL_CHECKED|>
+		</td>
+		<td class=list colspan=2>Bu Sunucunun Mailleri Almasına İzin ver<br>Eğer Mailleri Başka sunucuda yönetmek istiyorsanız bu seçeneği kaldırın ve MX Yönlendirmenizi Yapın</td>
+		<td class=list><input class="btn btn-secondary" type=submit value="Kaydet"></td>
+	</tr>
+</table>
+</form>
+<br><br>
+<p>
+	<b>Not: </b> Bu Sayfada yapacağınız değişiklikler E-Posta almanızı engelleyebilir. Lütfen Yaptıklarınızdan Emin Olunuz. 
+</p>
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

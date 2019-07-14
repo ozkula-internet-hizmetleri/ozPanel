@@ -1,0 +1,24 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/CMD_HANDLERS?DOMAIN=`DOMAIN`">Apache Handlers</a>|
+|?HELP_SECTION=`USER_HELPER`/misc.html#handlers|
+|HTM_USER_TOP|
+
+<table class=list style="width: 50%" cellpadding=3 cellspacing=1>
+<tr><td class=listtitle colspan=4>Add Apache Handler</td></tr>
+<tr>
+	<form action="/CMD_HANDLERS" method="POST">
+	<input type=hidden name=domain value="|DOMAIN|">
+	<input type=hidden name=action value="add">
+	<td class=list>Handler:</td>
+	<td class=list><input type=text name=name></td>
+	<td class=list>Extension</td>
+	<td class=list><input type=text name=extension size=5></td>
+</tr>
+<tr><td class=listtitle colspan=4 align=right><input type=submit value="Add"></td></form></tr>
+</table>
+<br>
+<b>User Installed Apache Handlers</b><br>
+|HANDLERS|
+<br>
+<a href="/CMD_HANDLERS?action=system&domain=|DOMAIN|">Click here for a list of the current Apache Handlers installed on the system</a><br><br>
+
+|HTM_USER_BOTTOM|

@@ -1,0 +1,117 @@
+|?BASLIK=E-Posta Kullanımı|
+|?BASLIKALT=E-Posta Hesabınızın Kullanım Durumu|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/epostahesaplari.png|
+|?BASLIKYARDIM=Bu sayafada Seçtiğiniz E-Posta Hesabının Kullanım Durumuna İlişkin İsitasistik Bilgilerini Görebilirsiniz.|
+|?BASLIKYARDIMURL=email/usage.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+|*if BLOCK_CRACKING_PATHS="yes"|
+|BLOCK_CRACKING_PATHS_TABLE|
+
+<br><br>
+|*endif|
+
+Kullanım Bilgisi Aralığı Seç:
+<form name=whichfile action=? method=GET>
+<input type=hidden name='domain' value='|DOMAIN|'>
+<input type=radio name=which value="today" onClick="document.whichfile.submit();" |TODAY_CHECKED|> Bugün
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input type=radio name=which value="both" onClick="document.whichfile.submit();" |BOTH_CHECKED|>Bu Ay
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input type=radio name=which value="past" onClick="document.whichfile.submit();" |PAST_CHECKED|> Bu Ay Bu gün Dahil
+</form>
+
+<br>
+<b>Not</b>: Her E-Posta Gönderme denemesi sayılmaktadır. Tekrarlayanlar Dahil.
+<br>
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|EMAIL_STATS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	">Sender<"							=>	">Gönderen<",
+	">Authentication<"					=>	">Giriş Yapılma<",
+	">Sending Host<"					=>	">Gönderilen Kaynak IP<",
+	">Sending Script<"					=>	">Gönderilen Kaynak Yazılım<"
+
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+<h2>Kullanım</h2>
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|EMAIL_USAGE|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	">Sender<"							=>	">Gönderen<",
+	">Authentication<"					=>	">Giriş Yapılma<",
+	">Sending Host<"					=>	">Gönderilen Kaynak IP<",
+	">Sending Script<"					=>	">Gönderilen Kaynak Yazılım<"
+
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+
+<h2>E-Posta Gönderen Yazılımlar</h2>
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|SENDING_PHP_SCRIPTS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	">Sender<"							=>	">Gönderen<",
+	">Authentication<"					=>	">Giriş Yapılma<",
+	">Sending Host<"					=>	">Gönderilen Kaynak IP<",
+	">Sending Script<"					=>	">Gönderilen Kaynak Yazılım<"
+
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

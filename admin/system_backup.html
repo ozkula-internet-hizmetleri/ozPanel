@@ -1,0 +1,89 @@
+|LF_STANDARD|
+|LF_BACKUPS|
+|?TREE=&raquo; <a class=tree href="/CMD_SYSTEM_BACKUP">System Backup</a>|
+|?HELP_SECTION=`ADMIN_HELPER`|
+|HTM_ADMIN_TOP|
+
+<table class=list cellspacing=1 cellpadding=3>
+<form action="/CMD_SYSTEM_BACKUP" method="POST">
+<input type=hidden name=action value="now">
+<tr><td class=listtitle><b>Run System Backup</b> - you can only store 1 backup per day in the same path</td></tr>
+<tr><td class=list align=center><input type=submit value="Run System Backup Now"></td></tr>
+<tr><td class=list align=center><a href="/CMD_SYSTEM_BACKUP/status.log.txt">View Last Backup Log</a><br>|LOG_TIME|</td></tr>
+</form>
+</table>
+<table class=list cellspacing=1 cellpadding=3>
+<form action="/CMD_SYSTEM_BACKUP" method="POST">
+<input type=hidden name=action value="when">
+<tr><td class=listtitle colspan=10><b>Full System Backup - Cron Schedule</b></td></tr>
+<tr><td class=list align=right>Minute</td><td class=list><input type=text name=minute value="|MINUTE|" size=2></td>
+	<td class=list2 align=right>Hour</td><td class=list2><input type=text name=hour value="|HOUR|" size=2></td>
+<td class=list align=right>Day of Month</td><td class=list><input type=text name=dayofmonth value="|DAY|" size=2></td>
+	<td class=list2 align=right>Month</td><td class=list2><input type=text name=month value="|MONTH|" size=2></td>
+	<td class=list align=right>Day of Week</td><td class=list><input type=text name=dayofweek value="|DAYOFWEEK|" size=2></td></tr>
+
+<tr><td class=listtitle colspan=10 align=right>Use Cron for Backup<input type=checkbox name=use_cron value="yes" |CRON|>&nbsp;&nbsp;&nbsp;<input type=submit value="Save"></td></tr>
+</form>
+</table>
+<br>
+<table class=list cellspacing=1 cellpadding=3>
+<form action="/CMD_SYSTEM_BACKUP" method="POST">
+<input type=hidden name=action value="setting">
+<tr><td class=listtitle colspan=2><b>Configure Full System Backup</b></td></tr>
+
+<tr><td class=list width=50%>Backup Path</td><td class=list><input type=text name="BACKUP_PATH" value="|BACKUP_PATH|" size=32></td></tr>
+<td class=list2>Minimum disk space required for backup (MB)</td><td class=list2><input type=text name="MIN_DISK" value="|MIN_DISK|" size=4> on partition |MOUNT_POINT|</td></tr>
+<tr>
+	<td class=list><input type=checkbox name="ADD_USERS_TO_LIST" value="yes" |ADD_USERS_TO_LIST|>
+	Add user home directories to directory list below</td>
+	<td class=list>&nbsp;</td>
+</tr>
+<tr>
+	<td class=list2><input type=checkbox name="HTTP_BK" value="yes" |HTTP_BK|>
+	Backup httpd data</td>
+	<td class=list2><input type=checkbox name="BIND_BK" value="yes" |BIND_BK|>
+	Backup DNS data</td>
+</tr>
+<tr>
+	<td class=list><input type=checkbox name="MYSQL_BK" value="yes" |MYSQL_BK|>
+	Backup MySQL Databases</td>
+	<td class=list><input type=checkbox name="CUSTOM_BK" value="yes" |CUSTOM_BK|>
+	Backup Directories and Files listed below</td>
+</tr>
+
+<tr><td class=listtitle colspan=4>Use remote transfer:&nbsp;<input type=checkbox name="USE_RTRANS" value="yes" |USE_RTRANS|></td></tr>
+<tr><td class=list>Remote transfer method</td><td class=list>|RTRANS_SELECT| &nbsp;&nbsp;&nbsp;&nbsp;<a href="/CMD_SYSTEM_BACKUP/id_dsa.pub">id_dsa.pub for scp (~user/.ssh/authorized_keys2)</a></td></tr>
+<tr><td class=list2>Delete the local backup after remote transfer</td><td class=list2><input type=checkbox name="DEL_AFTERTRANS" value="yes" |DEL_AFTERTRANS|></td></tr>
+<tr><td class=list>Incremental file-by-file backup.</td><td class=list><input type=checkbox name="FBF_RTRANS" value="yes" |FBF_RTRANS|> (Deletes local file before creating the next one)</td></tr>
+<tr><td class=list2 align=right>Remote Host</td><td class=list2><input type=text name="FTP_HOST" value="|FTP_HOST|"></td></tr>
+<tr><td class=list align=right>Remote User</td><td class=list><input type=text name="FTP_USER" value="|FTP_USER|"></td></tr>
+<tr><td class=list2 align=right>Remote Password</td><td class=list2><input type=password name="FTP_PASS" value="|FTP_PASS|"></td></tr>
+<tr><td class=list align=right>Remote Path</td><td class=list><input type=text name="FTP_RPATH" value="|FTP_RPATH|"></td></tr>
+
+
+<tr><td class=listtitle colspan=2 align=right><input type=submit value="Save"></td></tr>
+</form>
+
+<tr>
+	<td class=list>
+		<div style="overflow: auto; height: 160px; width: 100%;">|BACKUP_DIRECTORIES|
+		<form action="/CMD_SYSTEM_BACKUP" method="POST"></div>
+			<input type=hidden name=action value="adddirectory">
+			<input type=text name=directory> <input type=submit value="Add Directory">
+		
+	</td></form><td class=list>
+		<div style="overflow: auto; height: 160px; width: 100%;">|BACKUP_FILES|
+		<form action="/CMD_SYSTEM_BACKUP" method="POST"></div>
+			<input type=hidden name=action value="addfile">
+			<input type=text name=file> <input type=submit value="Add File">
+	</td></form>
+</tr>
+<tr>
+	<td class=listtitle colspan=2 align=right>&nbsp;</td></tr>
+
+</form>
+</table>
+<br><br><br>
+
+|HTM_ADMIN_BOTTOM|
+

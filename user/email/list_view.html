@@ -1,0 +1,97 @@
+|?BASLIK=E-Posta Listesi Yönet|
+|?BASLIKALT=Seçtiğiniz E-Posta Listesini Yönetin|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/epostalisteleri.png|
+|?BASLIKYARDIM=Bu sayafadan Seçtiğiniz E-Posta Listesini Yönetebilirsiniz|
+|?BASLIKYARDIMURL=email/list_view.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<a href="/CMD_EMAIL_LIST?action=modify&name=|name|&DOMAIN=|DOMAIN|" class="btn btn-secondary">Listenin Ayarlarını Düzenle</a><br>
+<br><br>
+
+<form action="/CMD_EMAIL_LIST" method="POST">
+<input type=hidden name=domain value="|DOMAIN|">
+<input type=hidden name=name value="|name|">
+<input type=hidden name=action value="add">
+
+
+<h4>Listeye Yeni E-Posta Ekle</h4>
+
+<div class="form-group">
+	<div class="custom-control custom-radio custom-control-inline">
+	  <input type="radio" id="customRadioInline1" name="type" value="list" class="custom-control-input">
+	  <label class="custom-control-label" for="customRadioInline1">|name| Listesine Ekle</label>
+	</div>
+	<div class="custom-control custom-radio custom-control-inline">
+	  <input type="radio" id="customRadioInline2"name=type value="digest" class="custom-control-input">
+	  <label class="custom-control-label" for="customRadioInline2">|name| Listesine Ekle (Digest)</label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="sawqeasda">E-Posta</label>
+	<input type="text" class="form-control" id="sawqeasda" name="email" placeholder="Eklenecek E-Posta">
+</div>
+
+<input type="submit" value="Ekle" class="btn btn-primary">
+
+</form>
+<br><br>
+
+<h4>Üyeler</h4>
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|SUBSCRIBERS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+<br><br>
+
+<h4>Üyeler(Digest)</h4>
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|SUBSCRIBERS_DIGEST|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

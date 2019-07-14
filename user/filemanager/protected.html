@@ -1,0 +1,45 @@
+|?BASLIK=Sifre Koruma|
+|?BASLIKALT=Klasörlere Sifre Koruma|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/klasorsifrekoruma.png|
+|?BASLIKYARDIM=Bu sayafadan Klasörlerinize Sifre Koyabilirsiniz|
+|?BASLIKYARDIMURL=filemanager/protected.html|
+
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+
+
+<a href="/CMD_FILE_MANAGER/domains/|domain|/public_html" class="btn btn-primary">Şifre Korulmalı Klasör Oluştur</a><br>
+<br>
+
+<br>
+<h4>Şire Korumalı Klasörler</h4>
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|DIRECTORIES|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

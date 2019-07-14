@@ -1,0 +1,50 @@
+|?TREE=&raquo; <a class=tree href="/CMD_PHP_SAFE_MODE">Php Safe Mode Setup</a>|
+|?HELP_SECTION=`ADMIN_HELPER`|
+|HTM_ADMIN_TOP|
+
+<style>
+.safe_mode_on { COLOR: green; FONT-WEIGHT: bold; }
+.safe_mode_off{ COLOR: red; }
+</style>
+
+<b>Php Safe Mode Settings</b>
+
+<br>
+
+<form action="/CMD_PHP_SAFE_MODE" method=POST>
+<input type=hidden name=action value=enabled>
+Default Safe Mode for new domains:
+		<input type=radio name=enabled value="ON" |ONCHECKED|>ON
+		<input type=radio name=enabled value="OFF" |OFFCHECKED|>OFF
+<br>
+Default Open BaseDir for new domains:
+		<input type=radio name=obdenabled value="ON" |OBDONCHECKED|>ON
+		<input type=radio name=obdenabled value="OFF" |OBDOFFCHECKED|>OFF
+<br>
+
+		<input type=submit value="Save">
+</form>
+
+<br>
+<table class=list cellpadding=3 cellspacing=1>
+<form action="" method="GET">
+<tr><td class=listtitle>
+Show Domains that
+<select class=selectclass name=comparison1>
+<option value="none">--</option >
+<option value="equals">equal</option >
+<option value="contains">contain</option >
+<option selected value="startswith">start with</option >
+</select>
+<input type=text size=12 class=inputclass name=value1>
+<input type=hidden name=sort1 value="1">
+<input type=hidden name=sort1dir value="1">
+<input type=hidden name=ipp value="50">
+<input type=submit value="Search"></td></tr>
+</form>
+</table>
+
+|DOMAINS|
+
+|HTM_ADMIN_BOTTOM|
+

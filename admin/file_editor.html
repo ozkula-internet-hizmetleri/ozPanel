@@ -1,0 +1,44 @@
+|?TREE=&raquo; <a class=tree href="/CMD_ADMIN_FILE_EDITOR">File Editor</a>|
+|?HELP_SECTION=`ADMIN_HELPER`|
+|HTM_ADMIN_TOP|
+
+|*if SAVED="yes"|
+<br>
+<center><b>|file| Saved</b></center>
+<br>
+|*endif|
+
+<table class=list cellpadding=3 cellspacing=1>
+<tr><td class=listtitle colspan=2>File Editor</td></tr>
+<form action="/CMD_ADMIN_FILE_EDITOR" method="GET">
+<tr><td class=list align=right>Select a file to edit </td><td class=list>|FILES| <input type=submit value="Show File"></td></tr>
+</form>
+<form action="/CMD_ADMIN_FILE_EDITOR" method="POST">
+<input type=hidden name=file value="|file|">
+<input type=hidden name=action value="save">
+<tr><td class=list colspan=2 align=center>
+<textarea class="code_edit" cols=180 rows=35 name=text wrap=off |SAVE_ENABLE| |READONLY|>
+|FILEDATA|</textarea>
+</td></tr>
+<tr><td class=listtitle colspan=2 align=right>
+
+|*if REQUIRE_ROOT_AUTH="yes"|
+<input type=hidden name="authenticate" value="yes">
+This file is tagged as secure.  Root password required to edit: <input type=password name="rootpass"> <input type=submit value="Authenticate"><br>
+|*endif|
+
+|*if file|
+|file|
+|*endif|
+
+|*if REQUIRE_ROOT_AUTH!="yes"|
+<input type=submit value="Save" |SAVE_ENABLE|>
+|*endif|
+
+</td></tr>
+</form>
+</table>
+
+
+|HTM_ADMIN_BOTTOM|
+

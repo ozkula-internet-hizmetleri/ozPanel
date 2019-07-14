@@ -1,0 +1,21 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/CMD_FTP?DOMAIN=`DOMAIN`">Ftp Setup</a> &raquo; <a class=tree href="/CMD_FTP_SETTINGS?DOMAIN=`DOMAIN`">Anonymouse Ftp Settings</a>|
+|?HELP_SECTION=`USER_HELPER`/ftp.html#anonftp|
+|HTM_USER_TOP|
+
+<table class=list cellpadding=3 cellspacing=1>
+	<form name=info action="CMD_FTP_SETTINGS" method="post">
+		<input type=hidden name=action value="modify">
+		<input type=hidden name=domain value="|DOMAIN|">
+
+		<tr><td class=listtitle colspan=2>Setup Anonymous FTP</td></tr>
+
+		<tr><td class=list>Allow Anonymous Access:</td><td class=list width=60%><input type=checkbox name=anon value="yes" |ANONCHECKED|></td></tr>
+		<tr><td class=list>Allow Anonymous Upload</td><td class=list><input type=checkbox name=anonup value="yes" |ANONUPCHECKED|></td></tr>
+		<tr><td class=list>Welcome Message:</td><td class=list align=center><textarea rows=10 cols=50 name=message>|MESSAGETEXT|</textarea></td></tr>
+		<tr><td class=listtitle colspan=2 align=right>
+			<input type=submit name=create value="Save"> <input type=reset value="Reset">
+		</td></tr>
+	</form>
+</table>
+
+|HTM_USER_BOTTOM|

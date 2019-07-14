@@ -1,0 +1,5 @@
+1=Sisteminizde spamd çalışmıyor.
+2=Buraya Tıklayarak
+3=nasıl etkinleştireceğinizi öğrenin
+4=Spam süzgeci ayarlanırken sorun çıktı
+5=Betik Çıktısı

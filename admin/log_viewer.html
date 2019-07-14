@@ -1,0 +1,22 @@
+|?TREE=&raquo; <a class=tree href="/CMD_LOG_VIEWER">Log Viewer</a>|
+|?HELP_SECTION=`ADMIN_HELPER`|
+|HTM_ADMIN_TOP|
+
+<table class=list cellpadding=3 cellspacing=1>
+<tr><td class=listtitle colspan=2>Select Log File to view</td></tr>
+<form action="/CMD_LOG_VIEWER" method="GET">
+<tr><td class=list align=right>Log File</td><td class=list>|FILES|</td></tr>
+<tr><td class=list2 align=right>Number of lines from the end</td><td class=list2><input type=text name=lines value="|LINES|" size=4> (0 for entire file)</td></tr>
+<tr><td class=list align=right>Output type</td><td class=list><input type=radio name=type value=textarea checked>TextArea Below<br>
+                                                  <input type=radio name=type value=raw>Raw file (faster and more efficient)</td></tr>
+<tr><td class=list2 align=right>Grep</td><td class=list2><input type=text size=32 value="|GREPVAL|" name=grep> <input type=checkbox name=invert_grep value="yes" |INVERTCHECKED|>Invert &nbsp;<input type=checkbox name=ignore_case value="yes" |CASECHECKED|>Ignore Case &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use | for multiple <a target=_blank href="http://www.directadmin.com/features.php?id=1389">(?)</a></td>
+<tr><td class=listtitle colspan=2 align=right><input type=submit value="Show Log"</td></tr>
+</form>
+</table>
+<br>
+<center>
+<textarea cols=120 rows=25 wrap=off>|LOGDATA|</textarea>
+</center>
+
+|HTM_ADMIN_BOTTOM|
+

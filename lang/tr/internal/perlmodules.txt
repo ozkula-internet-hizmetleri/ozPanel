@@ -1,0 +1,2 @@
+1=Perl Yürütülürken Sorun Çıktı
+2=Kurulmuş Perl Modülleri

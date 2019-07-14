@@ -1,0 +1,92 @@
+|?TREE=&raquo; <a class=tree href="/CMD_ADDITIONAL_DOMAINS?domain=`domain`">Modify `domain`</a>|
+|?HELP_SECTION=`USER_HELPER`/misc.html#domains|
+|HTM_USER_TOP|
+
+<script language="Javascript">
+<!--
+function setText( textfld, checkbx)
+{
+        if (checkbx.checked)
+                textfld.disabled = true;
+        if (!checkbx.checked)
+                textfld.disabled = false;
+}
+//-->
+</script>
+
+<table class=list cellpadding=3 cellspacing=1>
+	<form name=info action="/CMD_DOMAIN" method="post">
+		<input type=hidden name=action value="modify">
+		<input type=hidden name=domain value="|domain|">
+
+		<tr ><td class=listtitle colspan=2>Modify |domain|</td></tr>
+		<tr><td class=list>Bandwidth</td><td class=list><input type=text name=bandwidth value="|BANDWIDTH|" |BANDWIDTHDISABLED|><input type="checkbox" name="ubandwidth" value="unlimited" onClick='setText( document.info.bandwidth,this)' |BANDWIDTHCHECKED|>Same as Main Account</td ></tr>
+		<tr><td class=list>Disk Usage</td><td class=list><input type=text name=quota value="|QUOTA|" |QUOTADISABLED|><input type="checkbox" name="uquota" value="unlimited" onClick='setText( document.info.quota,this)' |QUOTACHECKED|>Same as Main Account</td ></tr>
+		<tr><td class=list>Secure SSL</td><td class=list><input type="checkbox" name=ssl value="ON" |SSLCHECKED|> (Ignored if not allowed)</td></tr>
+		<tr><td class=list>CGI Access</td><td class=list><input type="checkbox" name=cgi value="ON" |CGICHECKED|> (Ignored if not allowed)</td></tr>
+		<tr><td class=list>PHP Access</td><td class=list><input type="checkbox" name=php value="ON" |PHPCHECKED|> (Ignored if not allowed)</td></tr>
+		<tr><td class=listtitle colspan=3 align=right>
+			<input type=submit name=modify value="Save">
+		</td></tr>
+	</form>
+</table>
+<br>
+<script language=javascript>
+<!--
+function confirmit()
+{
+	with (document.https)
+	{
+		var checkedval='';
+		for (var i=0; i < elements.length; i++)
+		if (elements[i].type == 'radio')
+		{
+			if ( elements[i].name == "val" && elements[i].checked )
+			{
+				checkedval=elements[i].value;
+			}
+		}
+
+
+		if (checkedval=='symlink')
+		{
+			if (confirm('Using a symbolic link will delete the private_html directory and all files in it.  Do you wish to continue?'))
+			{
+				submit();
+			}
+		}
+		else
+		{
+			submit();
+		}
+	}
+}
+
+
+//-->
+</script>
+<table class=list cellpadding=3 cellspacing=1>
+	<form name=https action="/CMD_DOMAIN" method="post">
+		<input type=hidden name=action value="private_html">
+		<input type=hidden name=domain value="|domain|">
+
+		<tr ><td class=listtitle colspan=2>private_html setup for |domain| - (SSL must be enabled above) </td></tr>
+|*if SSLCHECKED!="checked"|
+|?SSLDISABLED=disabled|
+|*else|
+|?SSLDISABLED=|
+|*endif|
+		<tr><td class=list><input type=radio name=val value="directory" |SSLDISABLED| |DIRECTORY_CHECKED|></td><td class=list>Use a directory named private_html</td></tr>
+		<tr><td class=list><input type=radio name=val value="symlink" |SSLDISABLED| |SYMLINK_CHECKED|></td><td class=list>Use a symbolic link from private_html to public_html - allows for same data in http and https</td></tr>
+		<tr><td class=listtitle colspan=3 align=right>
+			<input type=button value='Save' |SSLDISABLED| onClick="confirmit();">
+		</td></tr>
+	</form>
+</table>
+
+|*if HAS_PHP_SELECTOR="yes"|
+<br>
+|PHP_SELECTOR_TABLE|
+|*endif|
+
+|HTM_USER_BOTTOM|

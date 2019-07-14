@@ -1,0 +1,525 @@
+|?BASLIK=Anasayfa|
+|HTM_USER_TOP|
+
+<div class="container-fluid">
+	<div class="row" >
+		<div class="col" id="ozkanasayfacard">
+	
+<input type="search" class="form-control ds-input" id="anaaramakutu" placeholder="Hızlı Bul ..." autocomplete="off">
+
+		
+		<br>
+
+<div class="card" >
+  <h5 class="card-header">
+  	<span>Dosyalar</span>
+	<a class="btnackapa" data-toggle="collapse" href="#dosyaackapaana" role="button" aria-expanded="false" aria-controls="dosyaackapaana">
+    	<img src="/assets/img/anasayfamenusu/togglesag.png" class="togglesag">
+    	<img src="/assets/img/anasayfamenusu/togglesol.png" class="togglesol">
+  	</a>
+  </h5>
+  <div class="collapse show" id="dosyaackapaana">
+  	<div class="card-body">
+		<a href="/CMD_FILE_MANAGER"><img src="/assets/img/anasayfamenusu/dosyayoneticisi.png"><span>Dosya Yöneticisi</span></a>
+
+		<a href="/CMD_PROTECTED_DIRECTORIES?domain=|DOMAIN|"><img src="/assets/img/anasayfamenusu/klasorsifrekoruma.png"><span>Klasör Şifreleme</span></a>
+		
+		<a href="/CMD_DU_BREAKDOWN"><img src="/assets/img/anasayfamenusu/diskkullanimi.png"><span>Disk Kullanımı</span></a>
+
+		<a href="/CMD_FTP?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/ftphesaplari.png"><span>FTP Hesapları</span></a>
+
+		<a href="/CMD_SITE_BACKUP?domain=|DOMAIN|"><img src="/assets/img/anasayfamenusu/yedekleme.png"><span>Yedekleme</span></a>
+		<div class="clearfix"></div>
+  	</div>
+  	<div class="clearfix"></div> 
+	</div>
+</div>
+
+
+<div class="card" >
+  <h5 class="card-header">
+  	<span>Veri Tabanı (Database)</span>
+	<a class="btnackapa" data-toggle="collapse" href="#veritabanianaackapa" role="button" aria-expanded="false" aria-controls="veritabanianaackapa">
+    	<img src="/assets/img/anasayfamenusu/togglesag.png" class="togglesag">
+    	<img src="/assets/img/anasayfamenusu/togglesol.png" class="togglesol">
+  	</a>
+  </h5>
+  <div class="collapse show" id="veritabanianaackapa">
+  	<div class="card-body">
+		<a href="|HTTP|://|HOSTNAME|/phpmyadmin" target="_blank"><img src="/assets/img/anasayfamenusu/phpmyadmin.png"><span>phpMyAdmin</span></a>
+
+		<a href="/CMD_DB?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/veritabanilistesi.png"><span>Veritabanı Yönetimi</span></a>
+
+		<a href="/CMD_DB_CREATE?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/yeniveritabani.png"><span>Yeni Veritabanı</span></a>
+
+		<div class="clearfix"></div>
+  	</div>
+  	<div class="clearfix"></div>
+	</div>
+</div>
+
+
+
+<div class="card" >
+  <h5 class="card-header">
+  	<span>Alan Adı (Domain)</span>
+	<a class="btnackapa" data-toggle="collapse" href="#alanadiozanasayfaackapa" role="button" aria-expanded="false" aria-controls="alanadiozanasayfaackapa">
+    	<img src="/assets/img/anasayfamenusu/togglesag.png" class="togglesag">
+    	<img src="/assets/img/anasayfamenusu/togglesol.png" class="togglesol">
+  	</a>
+  </h5>
+  <div class="collapse show" id="alanadiozanasayfaackapa">
+  	<div class="card-body">
+  		|*if ALLOWED_CMD_DOMAIN!="no"|
+		<a href="/CMD_ADDITIONAL_DOMAINS?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/domain.png"><span>Domain Yönetimi<br>(Alan Adı)</span></a>
+		|*endif|
+		<a href="/CMD_SUBDOMAIN?domain=|DOMAIN|"><img src="/assets/img/anasayfamenusu/subdomain.png"><span>Sub Domain<br>(Alt Alan Adı)</span></a>
+
+		<a href="/CMD_DNS_CONTROL?domain=|DOMAIN|"><img src="/assets/img/anasayfamenusu/dns.png"><span>DNS Yönetimi</span></a>
+		
+		<a href="/CMD_REDIRECT?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/domainyonlendirme.png"><span>Yönlendirme</span></a>
+
+		<a href="/CMD_DOMAIN_POINTER?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/domainpointer.png"><span>Domain Pointer<br>(Park - Rumuz)</span></a>
+		<div class="clearfix"></div>
+  	</div>
+  	<div class="clearfix"></div>
+	</div>
+</div>
+
+
+
+
+
+<div class="card" >
+  <h5 class="card-header">
+  	<span>E-Posta</span>
+	<a class="btnackapa" data-toggle="collapse" href="#epostaanasayfaackapasi" role="button" aria-expanded="false" aria-controls="epostaanasayfaackapasi">
+    	<img src="/assets/img/anasayfamenusu/togglesag.png" class="togglesag">
+    	<img src="/assets/img/anasayfamenusu/togglesol.png" class="togglesol">
+  	</a>
+  </h5>
+  <div class="collapse show" id="epostaanasayfaackapasi">
+  	<div class="card-body">
+		<a href="/CMD_EMAIL_POP?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/epostahesaplari.png"><span>E-Posta Hesapları</span></a>
+		<a href="/CMD_EMAIL_FORWARDER?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/epostayonlendirme.png"><span>Forwarder<br>(İleticiler)</span></a>
+
+		<a href="/CMD_DNS_MX?domain=|DOMAIN|"><img src="/assets/img/anasayfamenusu/mxkayitlari.png"><span>MX Kayıtları<br>(Yönlendirme)</span></a>
+
+		<a href="/CMD_EMAIL_AUTORESPONDER?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/otocevap.png"><span>Otomatik<br>Cevaplama</span></a>
+		
+		|*if USERCATCHALL="ON"|
+		<a href="/CMD_EMAIL_CATCH_ALL?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/varsayilanadres.png"><span>Varsayılan<br>Adres</span></a>
+		|*endif|
+
+		<a href="/CMD_EMAIL_LIST?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/epostalisteleri.png"><span>E-Posta<br>Listeleri</span></a>
+		
+		|*if USERSPAM="ON"|
+		<a href="/CMD_SPAMASSASSIN?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/spamfiltresi.png"><span>Spam Filtresi</span></a>
+		|*endif|
+
+		|*if HAVE_WEBMAIL="yes"|
+		<a href="|WEBAPPS_SSL|://|HOSTNAME|/webmail"><img src="/assets/img/anasayfamenusu/webmail.png"><span>Webmail</span></a>
+		|*endif|
+
+		|*if HAVE_ROUNDCUBE="yes"|
+		<a href="|WEBAPPS_SSL|://|HOSTNAME|/roundcube"><img src="/assets/img/anasayfamenusu/webmail.png"><span>Webmail<br>(Roundcube)</span></a>
+		|*endif|
+
+		|*if HAVE_SQUIRRELMAIL="yes"|
+		<a href="|WEBAPPS_SSL|://|HOSTNAME|/squirrelmail"><img src="/assets/img/anasayfamenusu/webmail.png"><span>Webmail<br>(Squirrelmail)</span></a>
+		|*endif|
+
+		<a href="/CMD_EMAIL_FILTER?domain=|DOMAIN|"><img src="/assets/img/anasayfamenusu/epostafiltre.png"><span>E-Posta Filtresi</span></a>
+		<div class="clearfix"></div>
+  	</div>
+  	<div class="clearfix"></div>
+	</div>
+</div>
+
+
+
+<div class="card" >
+  <h5 class="card-header">
+  	<span>Güvenlik</span>
+	<a class="btnackapa" data-toggle="collapse" href="#guvenlikanasayfaackapa" role="button" aria-expanded="false" aria-controls="guvenlikanasayfaackapa">
+    	<img src="/assets/img/anasayfamenusu/togglesag.png" class="togglesag">
+    	<img src="/assets/img/anasayfamenusu/togglesol.png" class="togglesol">
+  	</a>
+  </h5>
+  <div class="collapse show" id="guvenlikanasayfaackapa">
+  	<div class="card-body">
+		<a href="/CMD_SSL?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/ssl.png"><span>SSL Sertifikası</span></a>
+
+		|*if USERSPAM="ON"|
+		<a href="/CMD_SPAMASSASSIN?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/spamfiltresi.png"><span>Spam Filtresi</span></a>
+		|*endif|
+		
+		<a href="/CMD_PROTECTED_DIRECTORIES?domain=|DOMAIN|"><img src="/assets/img/anasayfamenusu/klasorsifrekoruma.png"><span>Klasör Şifreleme</span></a>
+
+		<div class="clearfix"></div>
+  	</div>
+  	<div class="clearfix"></div>
+	</div>
+</div>
+
+
+<div class="card" >
+  <h5 class="card-header">
+  	<span>Gelişmiş</span>
+	<a class="btnackapa" data-toggle="collapse" href="#gelimisozanasayfaackapa" role="button" aria-expanded="false" aria-controls="gelimisozanasayfaackapa">
+    	<img src="/assets/img/anasayfamenusu/togglesag.png" class="togglesag">
+    	<img src="/assets/img/anasayfamenusu/togglesol.png" class="togglesol">
+  	</a>
+  </h5>
+  <div class="collapse show" id="gelimisozanasayfaackapa">
+  	<div class="card-body">
+  		|*if RESELLER|
+  		<a href="/CMD_LOGOUT"><img src="/assets/img/anasayfamenusu/reseller.png"><span>Reseller Yönetimi</span></a>
+  		|*endif|
+		<a href="/HTM_ERROR_PAGES?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/hatasayfasi.png"><span>Hata Sayfaları</span></a>
+		
+		<a href="/CMD_MIME_TYPES?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/mime.png"><span>Mime Tipleri</span></a>
+		<!--
+		<a href="/CMD_HANDLERS?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/apachehandler.png"><span>Apache Tanım</span></a>
+		-->
+
+		<a href="/CMD_CRON_JOBS"><img src="/assets/img/anasayfamenusu/cron.png"><span>Cron</span></a>
+	
+
+		<a href="/CMD_PLUGINS/new_lvemanager/details.html"><img src="/assets/img/anasayfamenusu/resource_usage.png"><span>CPU Tüketimi</span></a>
+	
+		<a href="/CMD_PLUGINS/phpselector/index.html"><img src="/assets/img/anasayfamenusu/php_selector.png"><span>PHP Versiyon Seçme</span></a>
+
+		<div class="clearfix"></div>
+  	</div>
+  	<div class="clearfix"></div>
+	</div>
+</div>
+
+
+<div class="card" >
+  <h5 class="card-header">
+  	<span>Hızlı Yazılım Kurulum Araçları</span>
+	<a class="btnackapa" data-toggle="collapse" href="#gelimisozanasayfaackapa" role="button" aria-expanded="false" aria-controls="gelimisozanasayfaackapa">
+    	<img src="/assets/img/anasayfamenusu/togglesag.png" class="togglesag">
+    	<img src="/assets/img/anasayfamenusu/togglesol.png" class="togglesol">
+  	</a>
+  </h5>
+  <div class="collapse show" id="gelimisozanasayfaackapa">
+  	<div class="card-body">
+  		<a href="/CMD_PLUGINS/softaculous/index.raw?act=software&soft=26&tab=overview" target="_blank"><img src="https://images.softaculous.com/top15/wp.png"><span>Wordpress</span></a>
+  		
+  		<a href="/CMD_PLUGINS/softaculous/index.raw?act=software&soft=499&tab=install" target="_blank">
+  			<img src="https://images.softaculous.com/softimages/499__logo.gif">
+  			<span>OpenCart</span>
+  		</a>
+
+  		<a href="/CMD_PLUGINS/softaculous/index.raw?act=software&soft=389&tab=overview" target="_blank"><img src="https://images.softaculous.com/top15/abante.png"><span>AbanteCart</span></a>
+
+  		<a href="/CMD_PLUGINS/softaculous/index.raw?act=software&soft=72&tab=overview" target="_blank"><img src="https://images.softaculous.com/top15/presta.png"><span>PrestaShop</span></a>
+
+  		<a href="/CMD_PLUGINS/softaculous/index.raw?act=software&soft=413&tab=overview" target="_blank"><img src="https://images.softaculous.com/top15/joomla30.png"><span>Joomla</span></a>
+
+  		<a href="/CMD_PLUGINS/softaculous/index.raw?act=software&soft=2&tab=overview" target="_blank">
+  			<img src="https://images.softaculous.com/top15/phpbb.png">
+  			<span>phpBB</span>
+  		</a>
+
+  		<a href="/CMD_PLUGINS/softaculous/index.raw?act=software&soft=79&tab=overview" target="_blank">
+  			<img src="https://images.softaculous.com/top15/smf.png">
+  			<span>SMF</span>
+  		</a>
+		
+		<a href="/CMD_PLUGINS/softaculous/index.raw?act=software&soft=36&tab=overview" target="_blank">
+  			<img src="https://images.softaculous.com/top15/mybb.png">
+  			<span>MyBB</span>
+  		</a>
+		<a href="http://37.247.108.23:2222/CMD_PLUGINS/softaculous/index.raw?" target="_blank">
+  			<img src="/assets/img/anasayfamenusu/softaculous.png">
+  			<span>Diğer Yazılımlar</span>
+  		</a>
+  		
+
+
+		<div class="clearfix"></div>
+  	</div>
+  	<div class="clearfix"></div>
+	</div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+
+var aradata=[];
+var i=0;
+$('#ozkanasayfacard div.card').each(function () {
+
+	var tbas=$(this).find("h5.card-header > span").html();
+	$(this).find("div.card-body a span").each(function () {
+		aradata[i]={
+			"id":i,
+			"ad":tbas  + " " + $(this).html(),
+			"obj":$(this).parent()
+		};	
+		i++;	
+	});
+});
+
+var options = {
+  keys: ['ad'],
+  shouldSort: true,
+  threshold: 0.3,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 32,
+  minMatchCharLength: 2,
+}
+
+var fuse = new Fuse(aradata, options)
+
+$("#anaaramakutu").keyup(function () {
+	var tx=$(this).val();
+	var ss=fuse.search(tx);
+	if (ss.length>0) {
+		$("#ozkanasayfacard > div.card div.card-body a" ).hide();
+		for(q in ss) {
+			$(ss[q].obj).show();
+		}
+	}else{
+		$("#ozkanasayfacard > div.card div.card-body a").show();
+	}
+});
+
+</script>
+
+		<div class="col-sm-3" id="anasozbilgikartlari">
+		
+<div class="card">
+	<h5 class="card-header">
+		Bilgiler
+	</h5>
+	<div class="card-body">
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">
+				<b>Kullanıcı Adı</b><br>
+				|USERNAME|
+			</li>
+			<li class="list-group-item">
+				<b>Geçerli Domain(Alan Adı)</b><br>
+				|DOMAIN|
+			</li>
+			<li class="list-group-item">
+				<b>Atanmış IP</b><br>
+				|DOMAIN_IP|
+			</li>
+			<li class="list-group-item">
+				<b>Son Giriş Yapan IP</b><br>
+				|LASTHOST|
+			</li>
+			<li class="list-group-item">
+				<a href="/CMD_SYSTEM_INFO">Sunucu Bilgileri</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<br><br>
+<div class="card">
+	<h5 class="card-header">
+		İstasistikler
+	</h5>
+	<div class="card-body">
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">
+				<b>Disk Kullanımı</b><br>
+				|USERQUOTA| / |USERQUOTAMAX|
+			</li>
+			<li class="list-group-item">
+				<b>Bant Genişliği</b><br>
+				|USERBANDWIDTH| / |USERBANDWIDTHGIG|
+			</li>
+			<li class="list-group-item">
+				<b>Alan Adı</b><br>
+				|NDOMAINS| / |NDOMAINSMAX|
+			</li>
+			<li class="list-group-item">
+				<b>Subdomain (Alt Alan Adı)</b><br>
+				|NUSERSUBDOMAINS| / |NUSERSUBDOMAINSMAX|
+			</li>
+			<li class="list-group-item">
+				<b>E-Posta Hesapları</b><br>
+				|USEREMAIL| / |USEREMAILMAX|
+			</li>
+			<li class="list-group-item">
+				<b>E-Posta Listeleri</b><br>
+				|USERLIST| / |USERLISTMAX|
+			</li>
+			<li class="list-group-item">
+				<b>Otomatik Cevaplayıcı</b><br>
+				|USERRESPONDER| / |USERRESPONDERMAX|
+			</li>
+			<li class="list-group-item">
+				<b>E-Posta Yönlendirmeleri</b><br>
+				|USERFORWARDER| / |USERFORWARDERMAX|
+			</li>
+			<li class="list-group-item">
+				<b>FTP Hesapları</b><br>
+				|USERFTP| / |USERFTPMAX|
+			</li>
+			<li class="list-group-item">
+				<b>Veritabanları</b><br>
+				|USERDATABASE| / |USERDATABASEMAX|
+			</li>
+			<li class="list-group-item">
+				<a class="btnackapa" data-toggle="collapse" href="#anasayfaeskimenuatas" role="button" aria-expanded="false" aria-controls="anasayfaeskimenuatas">
+					.
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+
+<!--
+<hr><b>|ZOOM|</b> - is set to 100, but can be changed using the get method. The value is stored in the user.conf file (depreciated)
+<hr><b>|BODY|</b> - default is set to "". It's used whenever a body value is needed to be entered in the <body> tag.
+<hr><b>|RESULT|</b> - default is set to "". It's used whenever a result text is required. Generally passed through GET so that a page can be reloaded using the Location header.
+<hr><b>|DEAMONNAME|</b> - Name of the Panel. Default: DirectAdmin
+<hr><b>|HOSTNAME|</b> - Current hostname being used in their web browser(eg. www.domain.com)
+<hr><b>|OS_NAME|</b> - Name of the operating system running on the server.
+<hr><b>|USERNAME|</b> - The name of the current user logged in. If an admin or reseller logs in as their user using pipe (|), their users name will be used.
+<hr><b>|USERQUOTAMAX|</b> - Maximum disk space allowed by the user
+<hr><b>|USERQUOTA|</b> - Current disk space used by the user.
+USERBANDWIDTHMAX- Maximum network traffic allowed by the user.
+<hr><b>|USERBANDWIDTH|</b> - Current network traffic used by the user.
+USERBANDWIDTHMAXGIG- Maximum network traffic allowed by the user, in gigabytes.
+<hr><b>|USERBANDWIDTHGIG|</b> - Current network traffic used by the user, in gigabytes.
+<hr><b>|USERDATABASE|</b> - Current number of databases
+<hr><b>|USERDATABASEMAX|</b> - Maximum number of databases allowed.
+<hr><b>|USERFTP|</b> - Current number of ftp accounts
+<hr><b>|USERFTPMAX|</b> - Maximum number of ftp accounts
+<hr><b>|USEREMAIL|</b> - Current number of email accounts
+<hr><b>|USEREMAILMAX|</b> - Maximum number of email accounts
+<hr><b>|USERFORWARDER|</b> - Current number of email forwarders
+<hr><b>|USERFORWARDERMAX|</b> - Maximum number of email forwarders
+<hr><b>|USERRESPONDER|</b> - Current number of autoresponders
+<hr><b>|USERRESPONDERMAX|</b> - Maximum number of autoresponders
+<hr><b>|USERLIST|</b> - Current number of mailing lists
+<hr><b>|USERLISTMAX|</b> - Maximum number of mailing lists
+<hr><b>|USERPOINTERS|</b> - Current number of domain pointers
+<hr><b>|USERPOINTERSMAX|</b> - Maximum number of domain pointers
+<hr><b>|NDOMAINSMAX|</b> - Max number of domains allowed by the user.
+<hr><b>|NDOMAINS|</b> - Current number of domains used by the user.
+<hr><b>|NUSERSUBDOMAINSMAX|</b> - Max number of subdomains allowed over all of their domains.
+<hr><b>|NUSERSUBDOMAINS|</b> - Current number of domains used over all of their domains.
+<hr><b>|USERSPAM|</b> - ON or OFF for spamasasssin.
+<hr><b>|USERDNSCONTROL|</b> - ON or OFF for the user level dns control.
+<hr><b>|USERSSL|</b> - ON or OFF if the user is allowed to setup ssl certificates.
+<hr><b>|VERSION|</b> - Current version of the panel. Will be a floatingpoint number, accurate to 2 digits past the decimal. The actual version number goes to 6 digits.
+<hr><b>|SESSION_ID|</b> - Session ID of the current session. Used when passing to /CMD_API_GET_SESSION SKIN - name of the current skin being used.
+<hr><b>|TIME|</b> - Current server time as generated by ctime();
+<hr><b>|NEWMESSAGES|</b> - shows the number of new messages to be read by the user
+<hr><b>|NEWTICKETS|</b> - shows the number of new tickets for the reseller/admin. If only a user, "" will be used.
+<hr><b>|DOMAIN_IP|</b> - the ip assigned to this user. SESSION_ID - the session ID hash stored in your cookie.
+-->
+
+
+		</div>
+	</div>
+</div>
+
+<hr>
+
+<div class="collapse" id="anasayfaeskimenuatas">
+	<TABLE height=1 cellSpacing=5 cellPadding=2 width=750 border=0>
+		<TR>
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='HTM_EMAIL?DOMAIN=|DOMAIN|'">
+				<a class=button href="HTM_EMAIL?DOMAIN=|DOMAIN|">
+					<img border="0" src="IMG_EMAIL" width="86" height="65"><br>
+					E-mail Menu
+				</a>
+			</TD>
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_FTP?DOMAIN=|DOMAIN|'">
+				<a class=button href="CMD_FTP?DOMAIN=|DOMAIN|">
+					<img border="0" src="IMG_FTP" width="72" height="65"><br>
+					FTP Menu
+				</a>
+			</TD>
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_DNS_CONTROL?domain=|DOMAIN|'">
+				<a class=button href="CMD_DNS_CONTROL?domain=|DOMAIN|">
+					<img border="0" src="IMG_DNS" width="61" height="65"><br>
+					DNS Menu
+				</a>
+			</TD>
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_USER_STATS?domain=|DOMAIN|'">
+				<a class=button href="CMD_USER_STATS?domain=|DOMAIN|">
+					<img border="0" src="IMG_STATS" width="64" height="65"><br>
+					Statistics / Logs
+				</a>
+			</TD>
+		</TR>
+		<TR>
+|*if FRONTPAGE_ON="yes"|
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_FRONTPAGE?DOMAIN=|DOMAIN|'">
+				<a class=button href="CMD_FRONTPAGE?DOMAIN=|DOMAIN|">
+					<img border="0" src="IMG_FRONTPAGE" width="65" height="65"><br>
+					FrontPage Extensions
+				</a>
+			</TD>
+|*else|
+			<TD vAlign=middle height=100 align="center">
+				&nbsp;
+			</TD>
+|*endif|
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_SUBDOMAIN?domain=|DOMAIN|'">
+				<a class=button href="CMD_SUBDOMAIN?domain=|DOMAIN|">
+					<img border="0" src="IMG_SUBDOMAINS" width="71" height="65"><br>
+					Subdomains
+				</a>
+			</TD>
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_FILE_MANAGER'">
+				<a class=button href="CMD_FILE_MANAGER">
+					<img border="0" src="IMG_FILEMANAGER" width="65" height="65"><br>
+					File Manager
+				</a>
+			</TD>
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_DB?DOMAIN=|DOMAIN|'">
+				<a class=button href="CMD_DB?DOMAIN=|DOMAIN|">
+					<img border="0" src="IMG_DATABASE" width="69" height="65"><br>
+					MySQL Databases
+				</a>
+			</TD>
+		</TR>
+		<TR>
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='/CMD_SITE_BACKUP?domain=|DOMAIN|'">
+				<a class=button href="/CMD_SITE_BACKUP?domain=|DOMAIN|">
+					<img border="0" src="IMG_BACKUP" width="75" height="65"><br>
+					Site Backup
+				</a>
+			</TD>
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='HTM_ERROR_PAGES?DOMAIN=|DOMAIN|'">
+				<a class=button href="HTM_ERROR_PAGES?DOMAIN=|DOMAIN|">
+					<img border="0" src="IMG_ERROR_PAGES" width="73" height="65"><br>
+					Error Pages
+				</a>
+			</TD>
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_PROTECTED_DIRECTORIES?domain=|DOMAIN|'">
+				<a class=button href="CMD_PROTECTED_DIRECTORIES?domain=|DOMAIN|">
+					<img border="0" src="IMG_DIR_PASSWORD" width="79" height="65"><br>
+					Directory Password<br>Protection
+				</a>
+			</TD>
+			<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='/HTM_ADVANCED?domain=|DOMAIN|'">
+				<a class=button href="/HTM_ADVANCED?domain=|DOMAIN|">
+					<img border="0" src="IMG_ADVANCED" width="79" height="65"><br>
+					Advanced Tools
+				</a>
+			</TD>
+		</TR>
+	</TABLE>
+</div>
+
+|HTM_USER_BOTTOM|

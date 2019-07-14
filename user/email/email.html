@@ -1,0 +1,143 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/HTM_EMAIL?DOMAIN=`DOMAIN`">Email</a>|
+|?HELP_SECTION=`USER_HELPER`/email.html|
+|HTM_USER_TOP|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<TABLE height=1 cellSpacing=5 cellPadding=2 width=750 border=0>
+				<TR>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_EMAIL_POP?DOMAIN=|DOMAIN|'">
+						<a class=button href="CMD_EMAIL_POP?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_POP" width="56" height="65"><br>
+							E-Mail Accounts
+						</a>
+					</TD>
+|*if USERCATCHALL="ON"|
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_EMAIL_CATCH_ALL?DOMAIN=|DOMAIN|'">
+						<a class=button href="CMD_EMAIL_CATCH_ALL?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_CATCH_ALL" width="101" height="65"><br>
+							Catch-All E-mail
+						</a>
+					</TD>
+|*else|
+					<TD vAlign=middle height=100 align="center">
+						&nbsp;
+					</TD>
+|*endif|
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_EMAIL_FORWARDER?DOMAIN=|DOMAIN|'">
+						<a class=button href="CMD_EMAIL_FORWARDER?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_FORWARDERS" width="61" height="65"><br>
+							Forwarders
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_EMAIL_AUTORESPONDER?DOMAIN=|DOMAIN|'">
+						<a class=button href="CMD_EMAIL_AUTORESPONDER?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_AUTORESPONDER" width="107" height="65"><br>
+							Autoresponders
+						</a>
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_EMAIL_VACATION?DOMAIN=|DOMAIN|'">
+						<a class=button href="CMD_EMAIL_VACATION?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_VACATION" width="57" height="65"><br>
+							Vacation Messages
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_EMAIL_LIST?DOMAIN=|DOMAIN|'">
+						<a class=button href="CMD_EMAIL_LIST?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_MAILING_LISTS" width="74" height="65"><br>
+							Mailing Lists
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_EMAIL_FILTER?DOMAIN=|DOMAIN|'">
+						<a class=button href="CMD_EMAIL_FILTER?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_FILTERS" width="87" height="65"><br>
+							Filters
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_DNS_MX?domain=|DOMAIN|'">
+						<a class=button href="CMD_DNS_MX?domain=|DOMAIN|">
+							<img border="0" src="IMG_MX" width="92" height="65"><br>
+							MX Records
+						</a>
+					</TD>
+				</TR>
+				<TR>
+|*if HIDE_WEBMAIL_LINKS="yes"|
+	|?HAVE_SQUIRRELMAIL=no|
+	|?HAVE_WEBMAIL=no|
+	|?HAVE_ROUNDCUBE=no|
+	|?HAVE_ATMAIL=no|
+|*endif|
+
+|*if HAVE_SQUIRRELMAIL="yes"|
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='|WEBAPPS_SSL|://|HOSTNAME|/squirrelmail'">
+						<a class=button href="|WEBAPPS_SSL|://|HOSTNAME|/squirrelmail">
+							<img border="0" src="IMG_SQUIRREL" width="84" height="60"><br>
+							WebMail - SquirrelMail
+						</a>
+					</TD>
+|*else|
+					<TD vAlign=middle height=100 align="center">
+						&nbsp;
+					</TD>
+|*endif|
+
+|*if HAVE_WEBMAIL="yes"|
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='|WEBAPPS_SSL|://|HOSTNAME|/webmail'">
+						<a class=button href="|WEBAPPS_SSL|://|HOSTNAME|/webmail">
+							<img border="0" src="IMG_WEBMAIL" width="58" height="65"><br>
+							WebMail - UebiMiau
+						</a>
+					</TD>
+|*else|
+					<TD vAlign=middle height=100 align="center">
+						&nbsp;
+					</TD>
+|*endif|
+
+|*if HAVE_ROUNDCUBE="yes"|
+		<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='|WEBAPPS_SSL|://|HOSTNAME|/roundcube'">
+			<a class=button href="|WEBAPPS_SSL|://|HOSTNAME|/roundcube">
+				<img border="0" src="IMG_ROUNDCUBE" width="68" height="57"><br>
+				WebMail - Roundcube
+			</a>
+		</TD>
+|*endif|
+
+|*if USERSPAM="ON"|
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='/CMD_SPAMASSASSIN?domain=|DOMAIN|'">
+						<a class=button href="/CMD_SPAMASSASSIN?domain=|DOMAIN|">
+							<img border="0" src="IMG_SPAM" width="100" height="65"><br>
+							SpamAssassin
+						</a>
+					</TD>
+|*else|
+					<TD vAlign=middle height=100 align="center">
+						&nbsp;
+					</TD>
+|*endif|
+				</TR>
+			</TABLE>
+
+<br><br><br><br>
+<a href="/CMD_SHOW_DOMAIN?domain=|DOMAIN|">Back</a>
+
+|HTM_USER_BOTTOM|

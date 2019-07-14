@@ -1,0 +1,31 @@
+|?BASLIK=Yeni E-Posta Listesi|
+|?BASLIKALT=Yeni bir E-Posta Listesi Oluşturun|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/epostalisteleri.png|
+|?BASLIKYARDIM=Bu sayafadan Yeni Bir E-Posta Listesi Oluşturabilirsiniz|
+|?BASLIKYARDIMURL=email/list_create.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<form name=info action="CMD_EMAIL_LIST" method="post">
+<input type=hidden name=action value=create>
+<input type=hidden name=domain value="|DOMAIN|">
+
+<div class="form-group">
+	<label for="namsaesda">Liste Adı</label>
+	<div class="input-group">
+		<input type="text" name="name"  id="namsaesda" class="form-control" placeholder="Liste Adı" aria-label="Liste Adı" aria-describedby="usernamedesc">
+		  <div class="input-group-append">
+		    <span class="input-group-text" id="usernamedesc">@|DOMAIN|</span>
+	  </div>
+  	</div>
+</div>
+
+<input type="submit" name="create" value="Oluştur" class="btn btn-primary">
+</form>
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

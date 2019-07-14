@@ -1,0 +1,121 @@
+|?BASLIK=Veritabanı Yönetimi|
+|?BASLIKALT=Mysql Veritabanı Yönetimi|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/veritabanilistesi.png|
+|?BASLIKYARDIM=Bu sayafadan Mysql Veritabanı Sunucusunu Yönetebilirsiniz.|
+|?BASLIKYARDIMURL=db/db.html|
+
+|HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<a href="CMD_DB_CREATE?DOMAIN=|DOMAIN|" class="btn btn-primary"><i class="fas fa-plus"></i> Yeni Veritabanı Oluştur</a> &nbsp;&nbsp;
+<a target="_blank" href="|HTTP|://|HOSTNAME|/phpmyadmin" class="btn btn-secondary">phpMyAdmin</a><br>
+<br>
+
+
+<br>
+<h4>Mevcut Veritabanları</h4>
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|DATABASES|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+<br><br>
+
+
+<script language="javascript">
+function setuserpass(truefalse)
+{
+	if (document.backupform)
+		with (document.backupform)
+			for (var i=0; i < elements.length; i++)
+				if (elements[i].name == 'dbuser' || elements[i].name == 'dbpass')
+					elements[i].disabled=truefalse;
+}
+</script>
+
+
+
+<h4>Veritabanı Yedeği Yükle</h4>
+<p><b>Not: </b> Yedeğiniz .gz uzantılı olmalıdır</p>
+
+
+
+<form name=backupform action="/CMD_DB" enctype="multipart/form-data" method="POST">
+<input type=hidden name=action value="restore">
+<input type=hidden name=domain value="|DOMAIN|">
+
+<div class="form-group">
+	<label for="vetsecasd">Veritabanı Seç: &nbsp;&nbsp;</label>
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|DATABASESELECT|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+</div>
+
+<div class="form-inline form-group">
+	<label for="dsosdasda">Dosya: &nbsp;&nbsp;</label>
+	<input type=file name="file1" id="dsosdasda" class="form-control col-md-5" size=40>
+</div>
+
+<div class="form-group">
+	<label for="">Bağlantı Yöntemi: &nbsp;&nbsp;</label>
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" id="inlineRadio1" name=method value=default checked onClick="setuserpass(true);" >
+	  <label class="form-check-label" for="inlineRadio1">Bu Hesabın Bilgilerini Kullan</label>
+	</div>
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" id="inlineRadio2" name=method value=custom onClick="setuserpass(false);">
+	  <label class="form-check-label" for="inlineRadio2">Hesap Belirt</label>
+	</div>
+	<div class="form-check form-check-inline">
+		<input type="text" class="form-control" name="dbuser" placeholder="Veritabanı Kullanıcısı" disabled>&nbsp;&nbsp;
+		<input type="text" class="form-control" name="dbpass" placeholder="Kullanıcı Şifresi" disabled>
+	</div>
+
+</div>
+
+<input type="submit" value="Yükle" class="btn btn-primary">
+
+</form>
+
+
+|HTM_ALT_FOOTER|
+|HTM_USER_BOTTOM|

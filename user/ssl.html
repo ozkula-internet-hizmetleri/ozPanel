@@ -1,0 +1,104 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/CMD_SSL?DOMAIN=`DOMAIN`">SSL</a>|
+|?HELP_SECTION=`USER_HELPER`/ssl.html|
+|HTM_USER_TOP|
+
+<script language="javascript">
+function copyCertificate(text)
+{
+	text.focus();
+	text.select();
+	if (document.all)
+	{
+		therange = text.createTextRange();
+		therange.execCommand("Copy");
+		alert('Certificate Copied to the Clipboard');
+	}
+}
+
+function pasteCertificate(text)
+{
+	text.focus();
+	text.select();
+
+	if (document.all)
+	{
+		document.execCommand("Paste");
+
+		with (document.info)
+		for (var i=0; i < elements.length; i++)
+			if (elements[i].type == 'radio')
+				if ( (elements[i].name == "type") && (elements[i].value == "paste")  )
+				{
+					elements[i].checked = true;
+				}
+	}
+}
+
+function setRequest(onoff)
+{
+	if (document.info)
+	{
+		with (document.info)
+		{
+			for (var i=0; i < elements.length; i++)
+				if (elements[i].type == 'radio')
+					if ( elements[i].name == "request" )
+					{
+						if (onoff == 'on')
+							elements[i].disabled = false;
+						else
+							elements[i].disabled = true;
+					}
+		}
+	}
+}
+
+</script>
+<b>|RESULT|</b><br>
+
+|*if SSL_ON="yes"|
+SSL is currently <b>enabled</b> for this domain.  You can disable it
+|*else|
+SSL is currently <b>disabled</b> for this domain. You can enable it
+|*endif|
+<a href="/CMD_ADDITIONAL_DOMAINS?action=view&domain=|domain|"><b>here</b></a>.
+
+<table class=list cellpadding=3 cellspacing=1>
+	<tr><td class=listtitle colspan=3>SSL Certificates</td></tr>
+
+	<form name=info action="CMD_SSL" method="post">
+		<input type=hidden name=domain value="|DOMAIN|">
+		<input type=hidden name=action value="save">
+
+	<tr><td class=list align=center><input type=radio name=type value="server" |SERVERCHECKED| onClick="setRequest('off');"></td><td class=listtitle colspan=2>Use the server's certificate</td></tr>
+	<tr><td class=list>&nbsp;</td><td class=list colspan=2>Use the server's shared signed certificate.</td></tr>
+
+	<tr><td class=list align=center><input type=radio name=type value="create" onClick="setRequest('on');"></td><td class=listtitle colspan=2><input type=radio name=request value="no" checked disabled>Create your own self signed certificate &nbsp;&nbsp; <input type=radio name=request value="yes" disabled>Create A Certificate Request</td></tr>
+	<tr><td class=list>&nbsp;</td><td class=list>2 Letter Country Code</td><td class=list><input type=input name=country size=2 maxlength=2></td></tr>
+	<tr><td class=list>&nbsp;</td><td class=list>State/Province</td><td class=list><input type=input name=province></td></tr>
+	<tr><td class=list>&nbsp;</td><td class=list>City</td><td class=list><input type=input name=city></td></tr>
+	<tr><td class=list>&nbsp;</td><td class=list>Company</td><td class=list><input type=input name=company></td></tr>
+	<tr><td class=list>&nbsp;</td><td class=list>Company Division</td><td class=list><input type=input name=division></td></tr>
+	<tr><td class=list>&nbsp;</td><td class=list>Common Name</td><td class=list><input type=input name=name value="www.|DOMAIN|"></td></tr>
+	<tr><td class=list>&nbsp;</td><td class=list>Email</td><td class=list><input type=input name=email></td></tr>
+	<tr><td class=list>&nbsp;</td><td class=list>Key Size (bits)</td><td class=list><select class=selectclass name=keysize><option selected>2048</option><option>4096</option></select></td></tr>
+	<tr><td class=list>&nbsp;</td><td class=list>Certificate Type</td><td class=list><select class=selectclass name=encryption><option value="rsa">SHA1</option><option value="sha256" selected>SHA256</option></select></td></tr>
+	<tr><td class=list align=center><input type=radio name=type value="paste" |PASTECHECKED| onClick="setRequest('off');"></td><td class=listtitle colspan=2>Paste a pre-generated certificate and key</td></tr>
+	<tr><td class=list>&nbsp;</td>
+		<td class=list align=center colspan=2>
+			<textarea class="code_edit ssl_text" name=certificate rows=16>|KEY||CERTIFICATE|</textarea><br>
+			<input type=button value="Paste from Clipboard" onClick="pasteCertificate(document.info.certificate)">
+			<input type=button value="Copy to Clipboard" onClick="copyCertificate(document.info.certificate)"> (IE only)
+		</td>
+	</tr>
+	<tr><td class=listtitle colspan=3 align=right>
+		<input type=submit name=submit value="Save">
+	</td></tr>
+	</form>
+
+</table>
+<br>
+<a href="/CMD_SSL?DOMAIN=|DOMAIN|&view=cacert">Click Here</a> to paste a CA Root Certificate<br><br>
+
+When creating a certificate request, the key will be saved and shown in the field above.  The request will be shown on a new page.  When you get the certificate from the Certificate Authority using the request, simply paste the certificate in the field after the key on a new line and click "Save"
+|HTM_USER_BOTTOM|
