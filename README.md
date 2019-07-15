@@ -33,9 +33,8 @@ git clone https://github.com/ozkula-internet-hizmetleri/ozPanel.git
 ## ekran görüntüsü
 ![alt text](https://raw.githubusercontent.com/ozkula-internet-hizmetleri/ozPanel/master/assets/img/screenshot.png)
 
-## Bilinen Eksiklikler
-- [ ] Hata Sayfaları Sayfası
-- [ ] Mime Tipleri sayfası
-- [ ] Cron Sayfası
-- [ ] SSL Sertifikası Sayfası
-- [ ] SSL Sayfasına lets encyrpt eklenecek
+## Kullanılan Kütüphaneler
+- Bootstrap v4.3.1 (https://getbootstrap.com/)
+- jQuery JavaScript Library v3.4.1 (https://jquery.com/)
+- Fuse.js v3.4.5 - Lightweight fuzzy-search (http://fusejs.io)
+- Font Awesome Free 5.9.0 by @fontawesome - (https://fontawesome.com)
