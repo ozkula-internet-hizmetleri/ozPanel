@@ -12,7 +12,32 @@
 
 |REPLYBUTTON|
 
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
 |TICKETMESSAGES|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;",
+	'>Subject:'							=>	'><b>Konu:</b>',
+	'>Today at '						=>	'>Bugün '
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
 
 |*if type="message"|
 <form name=tableform2 action='/CMD_TICKET' method='POST'>
