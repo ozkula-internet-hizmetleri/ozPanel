@@ -1,17 +1,13 @@
 # ozPanel directadmin teması
 ## daha tanıdık bir görüntüde directAdmin teması (sadece user hesapları için)
 
-indirip /usr/local/directadmin/data/skins/ klasörüne kopyalayın. 
+Dil seçeneği var gibi görünsede çoğu yerde türkçe olarak sabit metinler var. pratikte ingilizce desteği yok
 
-admin kullanıcısı olarak girip skins kısmından set global ve apply to all users'ı seçerseniz kullanıcılara uygulanır. 
-reseller hesapları kullanıcılara özel olarak tema belirleyebilir. 
-
-dil seçeneği var gibi görünsede çoğu yerde türkçe olarak sabit metinler var. pratikte ingilizce desteği yok
-
-geliştirilmesi serbest ama kopyaların ücretli dağıtılması yasaktır
+Geliştirilmesi ve Kullanılması Serbesttir.
+FakatKopyaların ücretli dağıtılması yasaktır
 
 
-## örnek kurulum 
+## Kurulum 
 ```
 cd /usr/local/directadmin/data/skins/
 git clone https://github.com/ozkula-internet-hizmetleri/ozPanel.git
@@ -22,7 +18,7 @@ git clone https://github.com/ozkula-internet-hizmetleri/ozPanel.git
 - Listenin üstünde çıkan Apply to All Users'ı tuşuna basın. 
 - Böylece Tema tüm user seviyesi kullanıcılara uygulanır. 
 
-## tema dizin yapısı (özelleştirme)
+## Tema dizin yapısı (özelleştirme)
 - üst kısım logosu: assets/logo-beyaz.png
 - giriş sayfası logosu: assets/logo-siyah.png
 - alt kısım logosu: assets/ozpanel.png
@@ -30,7 +26,7 @@ git clone https://github.com/ozkula-internet-hizmetleri/ozPanel.git
 - favicon simgeleri: assets/fav
 - alt sayfalardaki yardım bağlantısının tanımlandığı dosya: header.html
 
-## ekran görüntüsü
+## Ekran görüntüsü
 ![alt text](https://raw.githubusercontent.com/ozkula-internet-hizmetleri/ozPanel/master/assets/img/screenshot.png)
 
 ## Kullanılan Kütüphaneler
