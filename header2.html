@@ -13,8 +13,16 @@
         
             
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i>&nbsp;|USERNAME|</a>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i>&nbsp;|USERNAME|
+
+                |*if NEWMESSAGES|
+                  <span class="badge badge-info">|NEWMESSAGES|</span>
+                |*endif|
+                </a>
                 <div class="dropdown-menu dropdown-menu-right">
+                  
+                  <a href="/CMD_TICKET" class="dropdown-item" ><i class="fas fa-info-circle"></i>&nbsp;Bildirimler|*if NEWMESSAGES|&nbsp;<span class="badge badge-info">|NEWMESSAGES|</span>|*endif|</a>  
+                  
                   <a href="/HTM_PASSWD" class="dropdown-item" ><i class="fas fa-unlock"></i>&nbsp;Şifre Değiştir</a>
                   <a href="|YARDIM_DOC_URL|"  class="dropdown-item" ><i class="fas fa-question-circle"></i>&nbsp;Yardım</a>
                 </div>

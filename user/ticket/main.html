@@ -1,21 +1,176 @@
-|?TREE=&raquo; <a class=tree href="/CMD_TICKET">Messaging System</a>|
-|?HELP_SECTION=`USER_HELPER`/gettingstarted.html#ticket|
+|?BASLIK=Bildirimler ve Destek Talepleri|
+|?BASLIKALT=Sizinle ilgili olan Tüm bildirimler ve Destek talepleri|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/ticket.png|
+|?BASLIKYARDIM=Bu sayafadan Size Gönderilen Bildirimleri ve Destek taleplerinizi Görebilirsiniz.|
+|?BASLIKYARDIMURL=ticket/view.html|
+
+
 |HTM_USER_TOP|
 
-<a href="CMD_TICKET_CREATE?TYPE=Ticket">Create a Ticket</a><br>
-<a href="CMD_TICKET?action=closed">View Closed Tickets|NEWCLOSED|</a><br>
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+<br>
+<a href="CMD_TICKET_CREATE?TYPE=Ticket" class="btn btn-primary">Yeni Destek Bildirimi</a>&nbsp;
+<a href="CMD_TICKET?action=closed" class="btn btn-secondary">Kapatılmış Destek Taleplerini Gör |NEWCLOSED|</a><br>
+<br>
 
-|TICKETS|
+<div class="row">
+
+	<div class="col">
+		<h5>Bildirimler</h5>
+|$/usr/local/bin/php
+<?php
+$data = <<<END
 |MESSAGES|
+END;
 
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;",
+	'>Advanced Search<'					=>	'>Detaylı Arama<',
+	'\'>Message #'						=>	'\'>Mesaj',
+	'>Subject<'							=>	'>Konu<',
+	'>Received<'						=>	'>Tarih<',
+	'>Replies<'							=>	'>Cevaplar<',
+	'>Last Message<'					=>	'>Son Mesaj Tarihi<',
+	'>Status<'							=>	'>Durum<',
+	'>Ticket #<'						=>	'>Destek Bildirimi No<',
+	'elect\');">Select<'				=>	'elect\');">Seç<',
+	'>Today at'							=>	'>Bugün',
+	'>Yesterday'						=>	'>Dün',
+	't>open<'							=>	't>Açık<',
+	't>closed<'							=>	't>Kapalı<',
+	' value=\'Mark as read\''			=>	' value=\'Okundu Olarak İşaretli\'',
+	' value=\'Delete Selected\''		=>	' value=\'Seçilileri Sil\'',
+	
+
+
+
+
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+	</div>
+	<div class="col">
+<h5>Destek Talepleri</h5>
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|TICKETS|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;",
+	'>Advanced Search<'					=>	'>Detaylı Arama<',
+	'\'>Message #'						=>	'\'>Mesaj',
+	'>Subject<'							=>	'>Konu<',
+	'>Received<'						=>	'>Tarih<',
+	'>Replies<'							=>	'>Cevaplar<',
+	'>Last Message<'					=>	'>Son Mesaj Tarihi<',
+	'>Status<'							=>	'>Durum<',
+	'>Ticket #<'						=>	'>Destek Bildirimi No<',
+	'elect\');">Select<'				=>	'elect\');">Seç<',
+	'>Today at'							=>	'>Bugün',
+	'>Yesterday'						=>	'>Dün',
+	't>open<'							=>	't>Açık<',
+	't>closed<'							=>	't>Kapalı<',
+
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+	</div>	
+</div>
+
+
+<hr>
+
+<br>
+<div class="row">
+	<div class="col">
+		
+<h4>Bildirim ve Destek Talebi Ayarları</h4>
 <form action="CMD_TICKET" method="post">
 	<input type=hidden name=action value="email">
-	<input type=checkbox name=ON value="yes" |EMAILCHECKED|> Email a copy of all messages to <input size=30 type=text name=email value="|EMAIL|"><br>
-	Automatically delete tickets older than <input type=text size=1 name=delete_tickets_days value="|DELETE_TICKETS_DAYS|"> days. (0 = never)<br>
-	Automatically delete messages older than <input type=text size=1 name=delete_messages_days value="|DELETE_MESSAGES_DAYS|"> days. (0 = never)<br>
-	<input type=submit name=save value="Save">
+	<div class="form-group form-inline">
+		  <div class="form-group form-check">
+		    <input type=checkbox  class="form-check-input"  name=ON value="yes" |EMAILCHECKED|> 
+		    <label class="form-check-label" for="exampleCheck1">Mesajların Kopyasını E-Posta Olarak Gönder Adres: &nbsp;</label>
+		  </div>
+
+		<input size=30 type=text id="ecosad" class="form-control" name=email value="|EMAIL|"><br>	
+	</div>
+	<div class="form-group form-inline">
+		<input type="text" name="delete_tickets_days" value="|DELETE_TICKETS_DAYS|" class="form-control" size="2">&nbsp;günden eski destek taleplerini otomatik olarak sil
+	</div>
+	<div class="form-group form-inline">
+		<input type="text" name="delete_messages_days" value="|DELETE_MESSAGES_DAYS|" class="form-control" size=2>&nbsp;günden eski Bildirimleri otomatik olarak sil
+	</div>
+	
+	<input type=submit name=save value="Ayarları Kaydet" class="btn btn-primary">
 </form>
 
+	</div>
+	<div class="col">
+		
+|$/usr/local/bin/php
+<?php
+$data = <<<END
 |CLEAR_MESSAGES_TABLE|
+END;
+
+$napak=array(
+	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
+	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
+	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
+	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
+	" cellpadding=3 cellspacing=1"		=>	"",
+	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;",
+	'>Clear Message System<'			=>	'>Mesajları Temizle<',
+	'>Subject Contains<'				=>	'>İçinde Geçen Metin<',
+	'>When<'							=>	'>Bulduğu Zaman<',
+	'>newer than<'						=>	'>Bulunandan Daha yeni tarihli olanlar<',
+	'>older than<'						=>	'>Bulunandan Daha eski tarihli olanlar<',
+	'> day(s)<'							=>	'> Gün<',
+	'value=\'Delete\' '					=>	'value=\'Sil\' class="btn btn-danger" '
+
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|
+
+	</div>
+</div>
+
+
+
+
 
 |HTM_USER_BOTTOM|
