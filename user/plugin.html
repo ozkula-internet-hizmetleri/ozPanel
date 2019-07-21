@@ -9,58 +9,6 @@
 |HTM_ALT_HEADER|
 |HTM_BASLIK|
 
-
-|$/usr/local/bin/php
-<?php
-$data = <<<END
 |OUTPUT|
-END;
-
-$napak=array(
-	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
-	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
-	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
-	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
-	" cellpadding=3 cellspacing=1"		=>	"",
-	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;",
-	'input type="button"'				=>	'input type="button" class="btn btn-secondary"',
-	'input type="submit"'				=>	'input type="submit" class="btn btn-secondary"',
-	'style="height:28px;'				=>	'style="height:88px;',
-	'select name="lveversion"'			=>	'select name="lveversion" class="form-control"',
-	'Show PHP Settings'					=>	'PHP Ayarlarını Göster',
-	'Set as current'					=>	'Varsayılan Olarak Ayarla',
-	'value="Save"'						=>	'value="Kaydet"',
-	'value="Use Defaults"'				=>	'value="Varsayılana Geri Dön"',
-	'Select PHP version'				=>	'PHP Versiyonu Seç',
-	'Current PHP version'				=>	'Mevcut PHP Versiyonu',
-	'Resource Usage Overview'			=>	'Kaynak Kullanımı Özeti',
-	'Your site had no issues in the past 24 hours'	=>	'Son 24 Saat içinde bir sorun görünmüyor'	,
-	'">[Details]<'						=>	'" class="btn btn-primary">Detaylar<',
-	'Resource Usage Details'			=>	'Kaynak Kullanım Detayları',
-	'Timeframe: '						=>	'Zaman Aralığı: ',
-	'Last 10 minutes'					=>	'Son 10 Dakika',
-	'Last 30 minutes'					=>	'Son 30 Dakika',
-	'Last hour'							=>	'Son 1 Saat',
-	'Last 4 hour'						=>	'Son 4 Saat',
-	'Last 24 hours'						=>	'Son 24 Saat',
-	'Today'								=>	'Bu Gün',
-	'Yesterday'							=>	'Dün',
-	'Last 7 days'						=>	'Son 7 Gün',
-	'Last 30 days'						=>	'Son 30 Gün',
-	'Minutes'							=>	'Dakikalar',
-	'Hours'								=>	'Saatler',
-	'Days'								=>	'Günler',
-	' value="Submit"'					=>	' value="Sorgula"',
-	'Usage'								=>	'Kullanım',
-	'Time Unit:'						=>	'Zaman Ölçütü:',
-);
-foreach ($napak as $bb=>$aa) {
-	$data = str_replace($bb,$aa,$data);
-}
-
-echo  $data;
-
-?>
-DONE| 
 
 |HTM_USER_BOTTOM|
