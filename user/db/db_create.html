@@ -49,30 +49,114 @@ function setGreyout(value)
 
 
 <div class="form-group">
-	<label for="dadadad">Veritabanı Ad</label>
-	<input type="text" name="name" placeholder="Veritabanı Adı" class="form-control col-md-4 col-sm-8" id="dadadad">
+	<label for="vtadadada">Veritabanı Adi</label>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text" id="basic-addon3">|USERNAME|_</span>
+		</div>
+		<input type="text" class="form-control  col-md-3 col-sm-6" id="vtadadada"  name="name" placeholder="Veritabanı Adı" aria-describedby="basic-addon3">
+	</div>
+
 </div>
 
 <div class="form-group">
-	<label for="kadkadkadkad">Kullanıcı Adı</label>
-	<div class="form-inline">
-		
-		<input type="text" name="user" placeholder="Kullanıcı Adı" class="form-control" id="kadkadkadkad">&nbsp;&nbsp;veya&nbsp;
-		|USERNAME|_</b><input type=text name=user size=12 class="form-control">
+	<label for="">Veritabanı Kullanıcısı Adı</label>
+	<div class="form-group">
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" name="ivannediyorrsen" id="opoposdosae" onclick="ykddddd(this)" value="option1"  checked="">
+	  <label class="form-check-label" for="opoposdosae" >Veritabanı Adı ile Aynı</label>
+	</div>
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" name="ivannediyorrsen" id="inlineRadio2" value="option2"  onclick="nkddddd(this)">
+	  <label class="form-check-label" for="inlineRadio2">Yeni Ad Belirle</label>
+	</div>
 	|*if DB_USER_LIST|
-			&nbsp;&nbsp;veya Mevcut Bir Kullanıcı Seçin&nbsp;&nbsp;
-			|DB_USER_LIST|
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" name="ivannediyorrsen" id="inlineRadio3"  onclick="mkddddd(this)" value="option3">
+	  <label class="form-check-label" for="inlineRadio3">Mevcut Kullanıcılardan Seç</label>
+	</div>
 	|*endif|
 	</div>
+</div>
+
+<script type="text/javascript">
+	
+function ykddddd(obj) {
+	var vta=$('#vtadadada').val();
+	$("#mkda").hide();
+	$("#ykda").show().removeClass("d-none")
+	$("#ykda input").attr('disabled','disabled').attr('readonly','readonly').val(vta);
+	document.getElementById("vtadadada").addEventListener('keyup',adesle);
+	document.getElementById("usrsapasd").disabled=false;
+	document.getElementById("pasdtekses").disabled=false;
+}
+
+function adesle() {
+	document.getElementById("kadkadkadkad").value=this.value;
+}
+
+function nkddddd(obj) {
+	$("#mkda").hide();
+	$("#ykda input").attr('disabled',false).attr('readonly',false).val('');
+	$("#ykda").show().removeClass("d-none");
+	document.getElementById("vtadadada").removeEventListener('keyup',adesle);
+	document.getElementById("usrsapasd").disabled=false;
+	document.getElementById("pasdtekses").disabled=false;
+}
+
+function mkddddd(obj) {
+	$("#ykda").hide();
+	$("#mkda").show().removeClass("d-none");
+	document.getElementById("vtadadada").removeEventListener('keyup',adesle);
+	document.getElementById("usrsapasd").disabled=true;
+	document.getElementById("pasdtekses").disabled=true;
+}
+
+$("#opoposdosae").click();
+</script>
+
+<div class="form-group" id="ykda">
+	<label for="kadkadkadkad">Kullanıcı Adı</label>
+	<div class="input-group mb-3" >
+		<div class="input-group-prepend">
+			<span class="input-group-text" id="basic-addon3">|USERNAME|_</span>
+		</div>
+		<input type="text" class="form-control  col-md-3 col-sm-6 " id="kadkadkadkad"  name="user" placeholder="Kullanıcı Adı"  readonly aria-describedby="basic-addon3">
+	</div>		
+
+</div>
+
+
+
+<div class="form-group d-none" id="mkda">
+	<label for="mkakakakak">Mevcut Kullanıcılar</label>
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|DB_USER_LIST|
+END;
+
+$napak=array(
+	"class=selectclass"	=>	"class='form-control col-md-3 col-sm-6' id='mkakakakak'",
+);
+foreach ($napak as $bb=>$aa) {
+	$data = str_replace($bb,$aa,$data);
+}
+
+echo  $data;
+
+?>
+DONE|	
 </div>
 
 <div class="form-group">
 	<label for="usrsapasd">Kullanıcı Şifresi</label>
 	<div class="input-group mb-3">
 	  
-	  <input type="text" class="form-control col-md-4 col-sm-8" id="usrsapasd" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" name="passwd">
-	  <div class="input-group-prepend">
-	    <button class="btn btn-outline-secondary" onclick="randomPass()" type="button" id="button-addon1">Rastgele Oluştur</button>
+	  <input type="text" class="form-control col-md-2 col-sm-8" id="usrsapasd" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" name="passwd">
+	  <div class="input-group-prepend ">
+	    <button class="btn btn-outline-secondary " onclick="randomPass()" type="button" id="button-addon1">Rastgele Oluştur</button>
 	  </div>
 	</div>
 </div>
