@@ -519,15 +519,17 @@ function dosyaSil() {
         i++;
     }
 
-
+    console.log("sil req:");
+    console.log(vr);
     $.ajax({
-        url:"CMD_FILE_MANAGER?json=yes",
+        url:"/CMD_FILE_MANAGER?json=yes",
         cache:false,
         dataType: "json",
         method:"POST",
         data:vr
     }).done(function (dt) {
-
+        console.log("sil snc:");
+        console.log(dt);
         FS.activeO.refresh();
     });
 
@@ -563,15 +565,17 @@ function ziple() {
         vr["clipboard"+i]=l[a].data.path;
         i++;
     }
-
+    console.log("zip req:");
+    console.log(vr);
     $.ajax({
-        url:"CMD_FILE_MANAGER?json=yes",
+        url:"/CMD_FILE_MANAGER?json=yes",
         cache:false,
         dataType: "json",
         method:"POST",
         data:vr
     }).done(function (dt) {
-
+        console.log("zip snc:");
+        console.log(dt);
         FS.activeO.refresh();
     });
     $("#zipmodal").modal("hide");
@@ -595,15 +599,17 @@ function unziple() {
             directory:FS.activeO.data.path,
             path:so.data.path,
         };
-
+        console.log("unzip req:");
+        console.log(vr);
         $.ajax({
-            url:"CMD_FILE_MANAGER?json=yes",
+            url:"/CMD_FILE_MANAGER?json=yes",
             cache:false,
             dataType: "json",
             method:"POST",
             data:vr
         }).done(function (dt) {
-
+            console.log("unzip snc:");
+            console.log(dt);
             FS.activeO.refresh();
         });
     }
@@ -628,16 +634,18 @@ function dosyaYukle() {
         fd.append("json","yes");
         fd.append("path",FS.activeO.data.path);
         fd.append('file0',files[0]);
-
+        console.log("upload req:");
+        console.log(fd);
        $.ajax({
-          url:"CMD_FILE_MANAGER?json=yes",
+          url:"/CMD_FILE_MANAGER?json=yes",
           type: 'post',
           data: fd,
           cache:false,
           contentType: false,
           processData: false,
        }).done(function (dt) {
-
+            console.log("upload resp:");
+            console.log(dt);
             tost.reset();
             $.toast({text:"<i class=\"fas fa-check-circle text-success\"></i> Dosya Yükleme Tamamlandı",hideAfter:3000});
             FS.activeO.refresh();
@@ -675,14 +683,18 @@ function dosyaAdiDegistir() {
        old:ad,
        filename:yad
     };
+    console.log("adlandır req:");
+    console.log(vr);
 
     $.ajax({
-       url:"CMD_FILE_MANAGER?json=yes",
+       url:"/CMD_FILE_MANAGER?json=yes",
        cache:false,
        dataType: "json",
        method:"POST",
        data:vr
     }).done(function (dt) {
+        console.log("adlandır snc:");
+        console.log(dt);
         FS.activeO.refresh();
     });
     $("#adlandirmodal").modal("hide");
@@ -709,18 +721,32 @@ function dosyaIzinDegistir() {
         i++;
     }
 
+    console.log("izin req:");
+        console.log(vr);
+
     $.ajax({
-       url:"CMD_FILE_MANAGER?json=yes",
+       url:"/CMD_FILE_MANAGER?json=yes",
        cache:false,
        dataType: "json",
        method:"POST",
        data:vr
     }).done(function (dt) {
-
+        console.log("izin snc:");
+        console.log(dt);
         FS.activeO.refresh();
     });
     $("#izinlermodal").modal("hide");
 }
+$("#anakumanda a.duzenle2").click(function(e) {
+    var l=FS.activeO.seciliListesi();
+    FS.activeO.secimTemizle();
+    var so;
+    for (var a in l) so=l[a];
+
+    if (so===undefined) return false; //secili nesneyi bulamazsan git bu diyardan yoksa seni bulur ve incitirim
+
+    this.href="/CMD_FILE_MANAGER/"+so.data.path+"?action=edit";
+    });
 
 $("#anakumanda a.duzenle").click(function(e) {
     var l=FS.activeO.seciliListesi();
@@ -737,12 +763,17 @@ $("#anakumanda a.duzenle").click(function(e) {
        json:"yes"
     };
 
+    //console.log("duzenle req:");
+    //console.log(vr);
+
     $.ajax({
-       url:"CMD_FILE_MANAGER",
+       url:"/CMD_FILE_MANAGER",
        dataType: "json",
        method:"GET",
        data:vr
     }).done(function (dt) {
+        //console.log("duzenle snc:");
+        //console.log(dt);
         document.getElementById("duzenlemodalveri").value=dt.TEXT;
         $("#duzenlemodal").modal("show");
     });
@@ -762,15 +793,18 @@ function dosyaDuzenKaydet() {
        path:pt,
        text:dt,
     };
+    //console.log("duzenlekayit req:");
+    //console.log(vr);
 
     $.ajax({
-       url:"CMD_FILE_MANAGER",
+       url:"/CMD_FILE_MANAGER",
        cache:false,
        dataType: "json",
        method:"POST",
        data:vr,
     }).done(function (dt) {
-
+        console.log("duzenlekayit snc:");
+        console.log(dt);
     });
     $("#duzenlemodal").modal("hide");
 }
@@ -798,7 +832,7 @@ $("#yapistirbtn").click(function(e) {
     clipboard.clear();
 
     $.ajax({
-       url:"CMD_FILE_MANAGER?json=yes",
+       url:"/CMD_FILE_MANAGER?json=yes",
        cache:false,
        dataType: "json",
        method:"POST",
@@ -823,13 +857,14 @@ $("#tasibtn").click(function(e) {
     }
     clipboard.clear();
     $.ajax({
-       url:"CMD_FILE_MANAGER?json=yes",
+       url:"/CMD_FILE_MANAGER?json=yes",
        cache:false,
        dataType: "json",
        method:"POST",
        data:vr
     }).done(function (dt) {
-
+        console.log("tasi cevap:");
+        console.log(dt);
         FS.activeO.refresh();
 
     });
@@ -851,13 +886,13 @@ function dosyaOlustur() {
     };
 
     $.ajax({
-       url:"CMD_FILE_MANAGER",
+       url:"/CMD_FILE_MANAGER",
        cache:false,
        dataType: "json",
        method:"POST",
        data:vr
     }).done(function (dt) {
-
+        console.log(dt);
         $('#yenidosya').modal('hide');
         FS.activeO.refresh();
     });
@@ -873,13 +908,13 @@ function klasorOlustur() {
     };
 
     $.ajax({
-       url:"CMD_FILE_MANAGER",
+       url:"/CMD_FILE_MANAGER",
        cache:false,
        dataType: "json",
        method:"POST",
        data:vr
     }).done(function (dt) {
-
+        console.log(dt);
         $('#yeniklasor').modal('hide');
         FS.activeO.refresh();
     });
@@ -921,7 +956,7 @@ class FSO {
         this.sub={};
         var me=this; //ajax icine girince kendini kaybetmesin deyu
         $.ajax({
-            url:"CMD_FILE_MANAGER"+this.data.path+"?action=json_all",
+            url:"/CMD_FILE_MANAGER"+this.data.path+"?action=json_all",
             dataType: "json",
             cache:false,
         }).done(function (dt){
@@ -1111,11 +1146,11 @@ class FSO {
     }
 
     aktifet(o) {
-        if (this.activeO!==undefined) { //onceki aktif nesnenin aktifligini kaldirmaliyiz yoksa gucte dengesizlik olur bu aleme 2 alfa fazla
+        if (this.activeO!==undefined) { //onceki aktif nesnenin aktifligini kaldirmaliyiz
             removeClass(this.activeO.agac,"aktif"); //agactan da aktifligini alalim
         }
         this.activeO=o; //artik parent@deyiz activeo nesnesine aktif nesnemizi attik long live new aktif
-        history.pushState({path:this.activeO.data.path},"ozPanel - Dosya Yöneticisi - " + this.activeO.data.path,"CMD_FILE_MANAGER?path=" + this.activeO.data.path);
+        history.pushState({path:this.activeO.data.path},"ozPanel - Dosya Yöneticisi - " + this.activeO.data.path,"/CMD_FILE_MANAGER?path=" + this.activeO.data.path);
         //url yi degistirmek istersen
         if (this.activeO.agac.className!==undefined) {
             addClass(this.activeO.agac,"aktif");
@@ -1244,7 +1279,7 @@ FSO.prototype.secimVarTrigger=function() {
 
 FSO.prototype.secimTekDosyaTrigger=function(o) {
    $("#anakumanda a.indir").removeClass("disb");
-   $("#anakumanda a.indir").attr("href","CMD_FILE_MANAGER?path=" + o.data.path);
+   $("#anakumanda a.indir").attr("href","/CMD_FILE_MANAGER?path=" + o.data.path);
    $("#anakumanda a.indir").attr("download",o.data.name);
    $("#anakumanda a.adlandir").removeClass("disb");
    //$("#anakumanda a.goruntule").removeClass("disb");
@@ -1289,7 +1324,7 @@ function removeClass(o,c){
         var s=ca.indexOf(c);//silinecek class zaten varmi
         if(s>-1) {
             delete ca[s]; //varmis silelim
-            
+            if(c=="aktif")  console.log(ca);
             o.className=ca.join(" "); //paketleyelim
         }
     }
@@ -1354,7 +1389,7 @@ var maindoms=[];
 var secilidom=-1;
 var FS;
 $.ajax({
-    url:"CMD_FILE_MANAGER/domains?action=json_all",
+    url:"/CMD_FILE_MANAGER/domains?action=json_all",
     dataType: "json",
     cache:false,
 }).done(function (dt){
@@ -1389,7 +1424,7 @@ function yedeklerac(){
     $("#domlist").val(-1);
     FS=new FSO({
         name:"Yedekler",
-        path:"/user_backups",
+        path:"/backups",
         mtime:0,
         gid:"root",
         perm:"000",
