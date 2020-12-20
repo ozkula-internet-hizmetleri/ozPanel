@@ -46,7 +46,7 @@
   </h5>
   <div class="collapse show" id="veritabanianaackapa">
   	<div class="card-body">
-		<a href="|HTTP|://|HOSTNAME|/phpmyadmin" target="_blank"><img src="/assets/img/anasayfamenusu/phpmyadmin.png"><span>phpMyAdmin</span></a>
+		<a href="/CMD_DB?DOMAIN=|DOMAIN|" target="_blank"><img src="/assets/img/anasayfamenusu/phpmyadmin.png"><span>phpMyAdmin</span></a>
 
 		<a href="/CMD_DB?DOMAIN=|DOMAIN|"><img src="/assets/img/anasayfamenusu/veritabanilistesi.png"><span>Veritabanı Yönetimi</span></a>
 
@@ -249,49 +249,6 @@
 
 </div>
 
-<script type="text/javascript">
-
-var aradata=[];
-var i=0;
-$('#ozkanasayfacard div.card').each(function () {
-
-	var tbas=$(this).find("h5.card-header > span").html();
-	$(this).find("div.card-body a span").each(function () {
-		aradata[i]={
-			"id":i,
-			"ad":tbas  + " " + $(this).html(),
-			"obj":$(this).parent()
-		};	
-		i++;	
-	});
-});
-
-var options = {
-  keys: ['ad'],
-  shouldSort: true,
-  threshold: 0.3,
-  location: 0,
-  distance: 100,
-  maxPatternLength: 32,
-  minMatchCharLength: 2,
-}
-
-var fuse = new Fuse(aradata, options)
-
-$("#anaaramakutu").keyup(function () {
-	var tx=$(this).val();
-	var ss=fuse.search(tx);
-	if (ss.length>0) {
-		$("#ozkanasayfacard > div.card div.card-body a" ).hide();
-		for(q in ss) {
-			$(ss[q].obj).show();
-		}
-	}else{
-		$("#ozkanasayfacard > div.card div.card-body a").show();
-	}
-});
-
-</script>
 
 		<div class="col-sm-3" id="anasozbilgikartlari">
 		
@@ -331,46 +288,79 @@ $("#anaaramakutu").keyup(function () {
 		İstasistikler
 	</h5>
 	<div class="card-body">
-		<ul class="list-group list-group-flush">
+		<ul class="list-group list-group-flush" id="doitagaindoitagaindoitagaindoitagain_listeofistasistiks">
 			<li class="list-group-item">
 				<b>Disk Kullanımı</b><br>
-				|USERQUOTA| / |USERQUOTAMAX|
+				|USERQUOTA| / |USERQUOTAMAX| MB <span class="yuzdelikdlimegiremeyenlerkulubuuyesi"></span>
+                
+                <div class="progress" title="|USERQUOTA|/|USERQUOTAMAX|" >
+                  <div class="progress-bar" role="progressbar" ></div>
+                </div>
+                
 			</li>
 			<li class="list-group-item">
 				<b>Bant Genişliği</b><br>
-				|USERBANDWIDTH| / |USERBANDWIDTHGIG|
+				|USERBANDWIDTH| / |USERBANDWIDTHGIG| GB <span class="yuzdelikdlimegiremeyenlerkulubuuyesi"></span>
+                 <div class="progress" title="|USERBANDWIDTH|/|USERBANDWIDTHGIG|" >
+                  <div class="progress-bar" role="progressbar" ></div>
+                </div>
 			</li>
 			<li class="list-group-item">
 				<b>Alan Adı</b><br>
-				|NDOMAINS| / |NDOMAINSMAX|
+				|NDOMAINS| / |NDOMAINSMAX| <span class="yuzdelikdlimegiremeyenlerkulubuuyesi"></span>
+                 <div class="progress" title="|NDOMAINS|/|NDOMAINSMAX|" >
+                  <div class="progress-bar" role="progressbar" ></div>
+                </div>
+                
 			</li>
 			<li class="list-group-item">
 				<b>Subdomain (Alt Alan Adı)</b><br>
-				|NUSERSUBDOMAINS| / |NUSERSUBDOMAINSMAX|
+				|NUSERSUBDOMAINS| / |NUSERSUBDOMAINSMAX| <span class="yuzdelikdlimegiremeyenlerkulubuuyesi"></span>
+                 <div class="progress" title="|NUSERSUBDOMAINS|/|NUSERSUBDOMAINSMAX|" >
+                  <div class="progress-bar" role="progressbar" ></div>
+                </div>
 			</li>
 			<li class="list-group-item">
 				<b>E-Posta Hesapları</b><br>
-				|USEREMAIL| / |USEREMAILMAX|
+				|USEREMAIL| / |USEREMAILMAX| <span class="yuzdelikdlimegiremeyenlerkulubuuyesi"></span>
+                 <div class="progress" title="|USEREMAIL|/|USEREMAILMAX|" >
+                  <div class="progress-bar" role="progressbar" ></div>
+                </div>
 			</li>
 			<li class="list-group-item">
 				<b>E-Posta Listeleri</b><br>
-				|USERLIST| / |USERLISTMAX|
+				|USERLIST| / |USERLISTMAX| <span class="yuzdelikdlimegiremeyenlerkulubuuyesi"></span>
+                 <div class="progress" title="|USERLIST|/|USERLISTMAX|" >
+                  <div class="progress-bar" role="progressbar" ></div>
+                </div>
 			</li>
 			<li class="list-group-item">
 				<b>Otomatik Cevaplayıcı</b><br>
-				|USERRESPONDER| / |USERRESPONDERMAX|
+				|USERRESPONDER| / |USERRESPONDERMAX| <span class="yuzdelikdlimegiremeyenlerkulubuuyesi"></span>
+                 <div class="progress" title="|USERRESPONDER|/|USERRESPONDERMAX|" >
+                  <div class="progress-bar" role="progressbar" ></div>
+                </div>
 			</li>
 			<li class="list-group-item">
 				<b>E-Posta Yönlendirmeleri</b><br>
-				|USERFORWARDER| / |USERFORWARDERMAX|
+				|USERFORWARDER| / |USERFORWARDERMAX| <span class="yuzdelikdlimegiremeyenlerkulubuuyesi"></span>
+                 <div class="progress" title="|USERFORWARDER|/|USERFORWARDERMAX|" >
+                  <div class="progress-bar" role="progressbar" ></div>
+                </div>
 			</li>
 			<li class="list-group-item">
 				<b>FTP Hesapları</b><br>
-				|USERFTP| / |USERFTPMAX|
+				|USERFTP| / |USERFTPMAX| <span class="yuzdelikdlimegiremeyenlerkulubuuyesi"></span>
+                 <div class="progress" title="|USERFTP|/|USERFTPMAX|" >
+                  <div class="progress-bar" role="progressbar" ></div>
+                </div>
 			</li>
 			<li class="list-group-item">
 				<b>Veritabanları</b><br>
-				|USERDATABASE| / |USERDATABASEMAX|
+				|USERDATABASE| / |USERDATABASEMAX| <span class="yuzdelikdlimegiremeyenlerkulubuuyesi"></span>
+                 <div class="progress" title="|USERDATABASE|/|USERDATABASEMAX|" >
+                  <div class="progress-bar" role="progressbar" ></div>
+                </div>
 			</li>
 			<li class="list-group-item">
 				<a class="btnackapa" data-toggle="collapse" href="#anasayfaeskimenuatas" role="button" aria-expanded="false" aria-controls="anasayfaeskimenuatas">
@@ -475,5 +465,88 @@ $("#anaaramakutu").keyup(function () {
 		</TR>
 	</TABLE>
 </div>
+
+
+
+<script type="text/javascript">
+
+var aradata=[];
+var i=0;
+$('#ozkanasayfacard div.card').each(function () {
+
+	var tbas=$(this).find("h5.card-header > span").html();
+	$(this).find("div.card-body a span").each(function () {
+		aradata[i]={
+			"id":i,
+			"ad":tbas  + " " + $(this).html(),
+			"obj":$(this).parent()
+		};	
+		i++;	
+	});
+});
+
+var options = {
+  keys: ['ad'],
+  shouldSort: true,
+  threshold: 0.3,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 32,
+  minMatchCharLength: 2,
+}
+
+var fuse = new Fuse(aradata, options)
+
+$("#anaaramakutu").keyup(function () {
+	var tx=$(this).val();
+	var ss=fuse.search(tx);
+	if (ss.length>0) {
+		$("#ozkanasayfacard > div.card div.card-body a" ).hide();
+		for(q in ss) {
+			$(ss[q].obj).show();
+		}
+	}else{
+		$("#ozkanasayfacard > div.card div.card-body a").show();
+	}
+});
+
+
+$("#doitagaindoitagaindoitagaindoitagain_listeofistasistiks > li").each(function () {
+    //yuzdelikdlimegiremeyenlerkulubuuyesi
+   var bubblegum=$(this).find('div.progress');
+   
+   if (bubblegum.length>0) {
+    bubblegum=bubblegum[0];
+    var bodybrain=$(bubblegum).attr('title');
+
+    if (bodybrain!=undefined) {
+        bodybrain=bodybrain.trim();
+        var itisaintgonnawork=bodybrain.split('/');
+        if (itisaintgonnawork.length>1) {
+            itisaintgonnawork[0]=parseFloat(itisaintgonnawork[0]);
+            itisaintgonnawork[1]=parseFloat(itisaintgonnawork[1]);
+            if (isNaN(itisaintgonnawork[0])) itisaintgonnawork[0]=0;
+            if (isNaN(itisaintgonnawork[1])) itisaintgonnawork[1]=0;
+            
+            var gotosleepbitch=(itisaintgonnawork[0]/itisaintgonnawork[1])*100;
+            if (isNaN(gotosleepbitch)) gotosleepbitch=0;
+            
+            gotosleepbitch=Math.round(gotosleepbitch*100)/100;
+            
+            var gotosleepbitch_str=" ("+gotosleepbitch.toString()+" %)";
+            $(this).find("span.yuzdelikdlimegiremeyenlerkulubuuyesi").html(gotosleepbitch_str);
+            
+            gotosleepbitch=Math.floor(gotosleepbitch);
+            
+            gotosleepbitch_str=gotosleepbitch.toString()+"%";
+            
+            $(bubblegum).find("div").css("width",gotosleepbitch_str);
+        }
+    } 
+   } 
+    
+});
+
+</script>
 
 |HTM_USER_BOTTOM|

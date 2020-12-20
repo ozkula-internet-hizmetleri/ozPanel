@@ -1,6 +1,13 @@
-|?TREE=&raquo; <a class=tree href="/CMD_ADDITIONAL_DOMAINS?domain=`domain`">Modify `domain`</a>|
-|?HELP_SECTION=`USER_HELPER`/misc.html#domains|
+|?BASLIK=Domain Yönetimi|
+|?BASLIKALT=Domainlerinizin Düzenle|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/domain.png|
+|?BASLIKYARDIM=Bu sayafan Mevcut Domain adreslerinizi Yönetebilirsiniz.|
+|?BASLIKYARDIMURL=domain/modify_domains.html|
+
 |HTM_USER_TOP|
+
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
 
 <script language="Javascript">
 <!--
@@ -14,19 +21,19 @@ function setText( textfld, checkbx)
 //-->
 </script>
 
-<table class=list cellpadding=3 cellspacing=1>
+<table class=table cellpadding=3 cellspacing=1>
 	<form name=info action="/CMD_DOMAIN" method="post">
 		<input type=hidden name=action value="modify">
 		<input type=hidden name=domain value="|domain|">
 
-		<tr ><td class=listtitle colspan=2>Modify |domain|</td></tr>
-		<tr><td class=list>Bandwidth</td><td class=list><input type=text name=bandwidth value="|BANDWIDTH|" |BANDWIDTHDISABLED|><input type="checkbox" name="ubandwidth" value="unlimited" onClick='setText( document.info.bandwidth,this)' |BANDWIDTHCHECKED|>Same as Main Account</td ></tr>
-		<tr><td class=list>Disk Usage</td><td class=list><input type=text name=quota value="|QUOTA|" |QUOTADISABLED|><input type="checkbox" name="uquota" value="unlimited" onClick='setText( document.info.quota,this)' |QUOTACHECKED|>Same as Main Account</td ></tr>
-		<tr><td class=list>Secure SSL</td><td class=list><input type="checkbox" name=ssl value="ON" |SSLCHECKED|> (Ignored if not allowed)</td></tr>
-		<tr><td class=list>CGI Access</td><td class=list><input type="checkbox" name=cgi value="ON" |CGICHECKED|> (Ignored if not allowed)</td></tr>
-		<tr><td class=list>PHP Access</td><td class=list><input type="checkbox" name=php value="ON" |PHPCHECKED|> (Ignored if not allowed)</td></tr>
+		<tr ><td class=listtitle colspan=2>|domain| Düzenle</td></tr>
+		<tr><td class=list>Bant Genişliği</td><td class=list><input type=text name=bandwidth value="|BANDWIDTH|" |BANDWIDTHDISABLED|><input type="checkbox" name="ubandwidth" value="unlimited" onClick='setText( document.info.bandwidth,this)' |BANDWIDTHCHECKED|>Ana Hesapla Aynı</td ></tr>
+		<tr><td class=list>Disk Kullanımı</td><td class=list><input type=text name=quota value="|QUOTA|" |QUOTADISABLED|><input type="checkbox" name="uquota" value="unlimited" onClick='setText( document.info.quota,this)' |QUOTACHECKED|>Ana Hesapla Aynı</td ></tr>
+		<tr><td class=list>SSL</td><td class=list><input type="checkbox" name=ssl value="ON" |SSLCHECKED|> </td></tr>
+		<tr><td class=list>CGI İzni</td><td class=list><input type="checkbox" name=cgi value="ON" |CGICHECKED|></td></tr>
+		<tr><td class=list>PHP İzni</td><td class=list><input type="checkbox" name=php value="ON" |PHPCHECKED|></td></tr>
 		<tr><td class=listtitle colspan=3 align=right>
-			<input type=submit name=modify value="Save">
+			<input type=submit name=modify class="btn btn-primary" value="Kaydet">
 		</td></tr>
 	</form>
 </table>
@@ -65,28 +72,33 @@ function confirmit()
 
 //-->
 </script>
-<table class=list cellpadding=3 cellspacing=1>
+<h4>SSL Ayarı</h4>
+
 	<form name=https action="/CMD_DOMAIN" method="post">
 		<input type=hidden name=action value="private_html">
 		<input type=hidden name=domain value="|domain|">
-
-		<tr ><td class=listtitle colspan=2>private_html setup for |domain| - (SSL must be enabled above) </td></tr>
 |*if SSLCHECKED!="checked"|
 |?SSLDISABLED=disabled|
 |*else|
 |?SSLDISABLED=|
 |*endif|
+<!--
 		<tr><td class=list><input type=radio name=val value="directory" |SSLDISABLED| |DIRECTORY_CHECKED|></td><td class=list>Use a directory named private_html</td></tr>
 		<tr><td class=list><input type=radio name=val value="symlink" |SSLDISABLED| |SYMLINK_CHECKED|></td><td class=list>Use a symbolic link from private_html to public_html - allows for same data in http and https</td></tr>
-		<tr><td class=listtitle colspan=3 align=right>
-			<input type=button value='Save' |SSLDISABLED| onClick="confirmit();">
-		</td></tr>
+        -->        
+        <label><input type="checkbox" name="force_ssl" value="yes" |SSLDISABLED| |FORCE_SSL_CHECKED|> Siteyi SSL'e Yönlendir</label><br />
+        <input type=button value='Kaydet' class="btn btn-primary" |SSLDISABLED| onClick="confirmit();">
 	</form>
-</table>
+
 
 |*if HAS_PHP_SELECTOR="yes"|
 <br>
 |PHP_SELECTOR_TABLE|
 |*endif|
 
+
+
+
+
+|HTM_ALT_FOOTER|
 |HTM_USER_BOTTOM|

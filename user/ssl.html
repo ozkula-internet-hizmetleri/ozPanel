@@ -350,5 +350,17 @@ DONE|
 </div>
 
 
+<table class=mb15 cellpadding=3 cellspacing=1>
+	<form name=https action="/CMD_DOMAIN" method="post">
+		<input type=hidden name=action value="private_html">
+		<input type=hidden name=domain value="|DOMAIN|">
+		<tr><td><input type="checkbox" name="force_ssl" value="yes" |FORCE_SSL_CHECKED|></td>
+			<td>Siteyi SSL'e Yönlendirme</td>
+			<td><input type=submit value='Kaydet'></td>
+		</tr>
+	</form>
+</table>
+
+
 |HTM_ALT_FOOTER|
 |HTM_USER_BOTTOM|

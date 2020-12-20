@@ -16,6 +16,8 @@
 
 <br>
 <h4>Mevcut Veritabanları</h4>
+
+<div id="dbll">
 |$/usr/local/bin/php
 <?php
 $data = <<<END
@@ -38,11 +40,25 @@ echo  $data;
 
 ?>
 DONE|
-
+</div>
 <br><br>
 
 
 <script language="javascript">
+	$(document).ready(function () {
+
+
+		|*if HAVE_ONE_CLICK_PMA_LOGIN="yes"|
+		var trl=$("div#dbll > table  tr");
+		for (var i=2;i<trl.length-1;i++) {
+			var tdl=$(trl[i]).find('td');
+			var vat=$(tdl[0]).text();
+			$(tdl[2]).append("&nbsp;<button class='btn btn-warning btn-sm btn-xs' onClick='phmyadminegonderici(\"" + vat + "\");return false'><img src='/assets/img/anasayfamenusu/phpmyadmin.png' style='height:32px;'> phpMyAdmin</button>");
+			console.log(vat);
+		}
+		|*endif|
+
+	});
 function setuserpass(truefalse)
 {
 	if (document.backupform)
@@ -51,6 +67,26 @@ function setuserpass(truefalse)
 				if (elements[i].name == 'dbuser' || elements[i].name == 'dbpass')
 					elements[i].disabled=truefalse;
 }
+
+
+function phmyadminegonderici(kad) {
+	var form = document.createElement("form");
+    var kkk = document.createElement("input"); 
+    var ddd = document.createElement("input");  
+    form.method = "POST";
+    form.action = "CMD_PMA_LOGIN";   
+    form.target="_blank";
+    kkk.value=kad;
+    kkk.name="name";
+    ddd.value="|DOMAIN|";
+    ddd.name="domain";
+    form.appendChild(ddd);
+    form.appendChild(kkk);  
+    document.body.appendChild(form);
+    form.submit();
+}
+
+
 </script>
 
 

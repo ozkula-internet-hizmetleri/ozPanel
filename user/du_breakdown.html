@@ -1,17 +1,28 @@
+|?BASLIK=Disk Kullanımı|
+|?BASLIKALT=Disk kullanımını buradan yönetebilirsiniz|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/diskkullanimi.png|
+
+
 |HTM_USER_TOP|
 
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
 <form action=? method=GET>
-<input type=checkbox name="hidezero" value="1" |*if hidezero="1"|checked|*endif|>Hide entires which use 0 bytes<br>
-<input type=checkbox name="hide_duplicate_count" value="1" |*if hide_duplicate_count="1"|checked|*endif|>Hide entires which are already included in the System Quotas <a href="javascript:alert('Many entires that DirectAdmin counts are not added to the totals because they are already included in some other counted item such as the System Quotas. Unhiding these entries will help you track account disk usage, but are not included in the totals.');">(?)</a><br>
+<input type=checkbox name="hidezero" value="1" |*if hidezero="1"|checked|*endif|> Yer Kaplamayan dosyaları gizle<br>
+<input type=checkbox name="hide_duplicate_count" value="1" |*if hide_duplicate_count="1"|checked|*endif|> Zaten Sistem kotasında sayılan dosyaları gizle<br>
 <input type=hidden name="sort1" value="|sort1|">
 <input type=hidden name="ipp" value="|ipp|">
-<input type=submit value="Update">
+<input type=submit value="Tabloyu Güncelle">
 |*if user|<input type=hidden name="user" value="|user|">|*endif|
 <center>
 |TABLE|
-<br>
-<a href="javascript:self.close();">Close Window</a>
+
 </center>
 
 
+
+
+<div class="clearb"></div>
+|HTM_ALT_FOOTER|
 |HTM_USER_BOTTOM|

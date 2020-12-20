@@ -1,16 +1,49 @@
-|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/HTM_ERROR_PAGES?DOMAIN=`DOMAIN`">Error Pages</a>|
-|?HELP_SECTION=`USER_HELPER`/misc.html#404|
+|?BASLIK=Hata Sayfaları|
+|?BASLIKALT=Hata Sayfaları Yönetimi|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/hatasayfasi.png|
+
+
 |HTM_USER_TOP|
 
-<table class=list cellpadding=3 cellspacing=1>
-<tr><td class=listtitle colspan=3>Create/Modify Apache Error Pages</td></tr>
-<tr><td class=list>401 Unauthorized</td><td class=list><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/401.shtml?action=edit">401.shtml</a></td><td class=list><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/401.shtml">View</a></td></tr>
-<tr><td class=list>403 Forbidden</td><td class=list><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/403.shtml?action=edit">403.shtml</a></td><td class=list><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/403.shtml">View</a></td></tr>
-<tr><td class=list>404 Not Found</td><td class=list><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/404.shtml?action=edit">404.shtml</a></td><td class=list><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/404.shtml">View</a></td></tr>
-<tr><td class=list>500 Internal Server Error</td><td class=list><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/500.shtml?action=edit">500.shtml</a></td><td class=list><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/500.shtml">View</a></td></tr>
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
 
+<p>Eğer hata sayfası oluşturmadıysanız ana menüden dosya yöneticisine girerek oluşturabilirsiniz.</p>
+<table class="table table-hover" cellpadding=3 cellspacing=1>
+<thead>
+	<tr>
+		<th>Hata</th>
+		<th>Dosya adresi</th>
+		<th></th>
+	</tr>
+</thead>
+
+<tbody>
+	<tr>
+		<td>401 Unauthorized - Yetkisiz Erişim</td>
+		<td>/domains/|DOMAIN|/public_html/401.shtml</td>
+		<td><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/401.shtml?action=edit"><i class="fas fa-edit"></i></a></td>
+	</tr>
+	<tr>
+		<td>403 Forbidden - İzin Verilmeyen Sayfa</td>
+		<td>/domains/|DOMAIN|/public_html/403.shtml</td>
+		<td><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/403.shtml?action=edit"><i class="fas fa-edit"></i></a></td>
+	</tr>
+	<tr>
+		<td>404 Not Found - Sayfa bulunamadı</td>
+		<td>/domains/|DOMAIN|/public_html/404.shtml</td>
+		<td><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/404.shtml?action=edit"><i class="fas fa-edit"></i></a></td>
+	</tr>
+	<tr>
+		<td>500 Internal Server Error - Server Hatası</td>
+		<td>/domains/|DOMAIN|/public_html/500.shtml</td>
+		<td><a href="/CMD_FILE_MANAGER/domains/|DOMAIN|/public_html/500.shtml?action=edit"><i class="fas fa-edit"></i></a></td>
+	</tr>
+</tbody>
 </table>
 
-*Note: Internet explorer requires the error pages to be greater than or equal to 512 bytes in size or it will use its own error pages.<br>
 
+
+<div class="clearb"></div>
+|HTM_ALT_FOOTER|
 |HTM_USER_BOTTOM|

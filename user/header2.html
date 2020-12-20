@@ -1,0 +1,79 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" id="navbar-anaust">
+    <a class="navbar-brand" href="|*if DOMAIN|/CMD_SHOW_DOMAIN?domain=|DOMAIN||*else|/|HOME_MEMORY||*endif|">
+        <img src="/assets/img/logo-beyaz.png" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ustanaozkanamenu" aria-controls="ustanaozkanamenu" aria-expanded="false" aria-label="Menü Aç">
+         <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="ustanaozkanamenu">
+        <div class="navbar-nav mr-auto">
+
+        </div>
+        <ul class="navbar-nav" id="topmininavvy">
+
+
+            <li class="nav-item dropdown">
+              |*if RESELLER|
+              <li class="nav-item"><a class="nav-link" href="/CMD_LOGOUT"><i class="fas fa-arrow-left"></i>&nbsp;RESELLER PANELİ</a></li>
+              |*endif|
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i>&nbsp;|USERNAME|
+
+                |*if NEWMESSAGES>0|
+                  <span class="badge badge-info">|NEWMESSAGES|</span>
+                |*endif|
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+
+                  <a href="/CMD_TICKET" class="dropdown-item" ><i class="fas fa-info-circle"></i>&nbsp;Bildirimler|*if NEWMESSAGES>0|&nbsp;<span class="badge badge-info">|NEWMESSAGES|</span>|*endif|</a>
+
+                  <a href="/HTM_PASSWD" class="dropdown-item" ><i class="fas fa-unlock"></i>&nbsp;Şifre Değiştir</a>
+                  <a href="|YARDIM_DOC_URL|"  class="dropdown-item" ><i class="fas fa-question-circle"></i>&nbsp;Yardım</a>
+                </div>
+          </li>
+
+          <li class="nav-item">
+               <a  class="nav-link" href="/CMD_LOGOUT"><i class="fas fa-sign-out-alt"></i>&nbsp;OTURUMU KAPAT</a>
+          </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="clearfix"></div>
+
+<div id="solbarsol">
+  <a href="|*if DOMAIN|/CMD_SHOW_DOMAIN?domain=|DOMAIN||*else|/|HOME_MEMORY||*endif|">
+    <i class="fas fa-home"></i>
+  </a>
+  <a href="|YARDIM_DOC_URL|" target="_blank">
+    <i class="far fa-question-circle"></i>
+  </a>
+  <div class="clearfix"></div>
+</div>
+
+<script type="text/javascript">
+    var USERDATA={};
+    $.ajax({
+      url:'/CMD_API_SHOW_USER_CONFIG',
+      method:'GET',
+      dataTyple:'html'
+    }).done(function (data) {
+
+      var aa=data.split('&');
+      for( var a in aa) {
+        var ll=aa[a].split('=');
+
+        if (ll.length>1) {
+          USERDATA[ll[0]]=ll[1];
+        }
+      }
+
+      if (USERDATA.usertype=="reseller") {
+        $("#topmininavvy").prepend('<li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-arrow-left"></i>&nbsp;RESELLER PANELİ</a></li>');
+      }
+
+    });
+    
+  </script>
+
+<div class="container-fluid">
+  <br /><br /><br>

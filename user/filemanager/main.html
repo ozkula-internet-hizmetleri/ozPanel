@@ -4,131 +4,1640 @@
 |?BASLIKYARDIM=Bu sayafadan Yüklenmiş dosyalarınızı yönetebilirsiniz|
 |?BASLIKYARDIMURL=filemanager/main.html|
 
- 
 |HTM_USER_TOP|
 
-|HTM_ALT_HEADER|
+|HTM_ALT_HEADER_FULL|
 |HTM_BASLIK|
+<link href="/assets/css/jquery.toast.min.css?q=3" rel="stylesheet" type="text/css" />
+<script src="/assets/js/jquery.toast.min.js?q=3&noredirect=yes"  type="text/javascript"></script>
 
-
-<br>
-
-<div class="clearfix"></div>
-<div class="row">
-	<div class="col-lg-3 col-sm-12">
-		<form name=folderform action="/CMD_FILE_MANAGER" method="POST">
-		<div class="form-group yeniklasorform">
-			<label for="yeniklaforsa">
-				<img src="/IMG_FOLDER"> Yeni Klasör Oluştur
-			</label>
-			<input type=hidden name=action value="folder">
-			<input type=hidden name="path" value="|path|">		
-			<input type=text class="form-control" id="yeniklaforsa" name="name" placeholder="klasör adı" size=15>
-			
-		</div>
-		<input type=submit class="btn btn-secondary" value="Oluştur">
-		</form>	
-		<br>	
-	</div>
-	<div class="col-lg-3 col-sm-12">
-		<form name=fileform action="/CMD_FILE_MANAGER" method="POST">
-		<div class="form-group yenidosyaform">
-			<input type=hidden name=action value="file">
-			<input type=hidden name="path" value="|path|">
-			<label for="yenidosyase">
-				<img src="/IMG_FILE"> Yeni Dosya Oluştur
-			</label>
-			<input type="text" name="name" id="yenidosyase" placeholder="Dosya Adı" class="form-control">
-		</div>
-		<div class="form-row">
-			<div class="col">
-				<input type=submit name=file class="btn btn-secondary" value="Oluştur">
-			</div>
-			<div class="col">
-				<div class="form-group form-check">
-					<input type=checkbox name=template id="dosyaolusturhtmlcheckdd" class="form-check-input" value="yes">	
-					<label for="dosyaolusturhtmlcheckdd" class="form-check-label">Html Tipinde</label>
-				</div>
-						
-			</div>	
-			
-		</div>
-		</form>
-		<br>
-	</div>
-
-	<div class="col-lg-3 col-sm-12">
-		Mevcut Klasöre Dosya Yükle <br><br>
-		<input type=button class="btn btn-secondary" value="Dosya Yükle" onClick="location.href='/HTM_FILE_UPLOAD?path=|path|'"><br><br>
-	</div>
-	<div class="col-lg-3 col-sm-12">
-		<form action="/CMD_FILE_MANAGER" method="POST">
-		<input type=hidden name=action value="compress">
-		<input type=hidden name=path value="|path|">
-
-		Panodaki Dosyaları sıkıştırıp yükle
-
-		<div class="input-group mb-3">
-		  <input type="text" name=file placeholder="Dosya Adı" class="form-control" placeholder="Dosya Adı" aria-label="Dosya Adı" aria-describedby="button-addon2">
-		 
-		  
-		  |*if HAVE_ZIP="yes"|
-		   <div class="input-group-append">
-
-		  <select name=type  class="custom-select" id="inputGroupSelect01">
-			<option selected value="zip">zip</option>
-			<option>tar.gz</option>
-			</select>
-			</div>
-			|*else|
-			.tar.gz
-			|*endif|
-		   
-		</div>
-
-
-		<input type=submit value="Oluştur" class="btn btn-secondary"><br>
-		</form>
-	</div>
-	
-	
-</div>
-
-<div class="clearfix"></div>
-<hr>
-<div class="filemanagerozk">
-
-|$/usr/local/bin/php
-<?php
-$data = <<<END
-|DIRECTORYLIST|
-END;
-
-$napak=array(
-	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
-	"input type='text' name='chmod'"	=>	"input type='text' name='chmod' class='form-control'",
-	"<input type=checkbox"				=>	"<input type=checkbox class='form-control' ",
-	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
-	"<input type='submit'"				=>	"<input type='submit' class='btn btn-secondary'",
-	"input type='button' valu"			=>	"input type='button' class='btn btn-secondary' valu",
-	"cellpadding=3"		=>	"",
-	"cellspacing=1"		=>	"",
-	"&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;"	=>	"&nbsp;&nbsp;&nbsp;yada&nbsp;&nbsp;&nbsp;"
-);
-foreach ($napak as $bb=>$aa) {
-	$data = str_replace($bb,$aa,$data);
+<style type="text/css">
+.full_modal-dialog {
+  width: 98% !important;
+  height: 92% !important;
+  min-width: 98% !important;
+  min-height: 92% !important;
+  max-width: 98% !important;
+  max-height: 92% !important;
+  padding: 0 !important;
 }
 
-echo  $data;
+#duzenlemodalveri {
+    white-space:pre-wrap;
+    font-family:monospace;
+    font-size:16px;
+    border:2px solid gray;
+    padding:10px;
+    height:400px;
+    overflow:auto;
+    width:100%;
+    box-sizing:border-box;
+}
 
-?>
-DONE|
+#agac_ct {
+    float: left;
+    list-style:none;
+    padding:0;
+    margin:0;
+    width:100%;
+    font-size:14px;
+    height:500px;
+    overflow:auto;
+}
+
+#agac_ct div.veri {
+    clear:both;
+    cursor:pointer;
+    user-select:none;
+    padding:5px;
+    padding-right:12px;
+}
+
+#agac_ct div.agac.aktif > div.veri {
+    background:#F9EAE6;
+    font-weight:bold;
+    border:2px solid white;
+    animation:kenaranim 3s infinite;
+}
+
+
+@keyframes kenaranim {
+    50% { border-color:rgb(255,128,0); }
+}
+
+#agac_ct div.agac > div.alt {
+    display:none;
+}
+
+#agac_ct div.agac.acik > div.alt {
+    display:block;
+}
+
+#agac_ct div.agac {
+    clear:both;
+    display:block;
+    box-sizing:border-box;
+    float: left;
+    padding:2px;
+    margin:0;
+    margin-left:10px;
+    padding-left:10px;
+}
+
+#agac_ct > div.agac {
+    display:block;
+}
+
+#agac_ct div.agac.acik  > div{
+    display:block;
+}
+
+#agac_ct div.agac > div.veri  > i {
+    padding-right:2px;
+    margin-right:3px;
+}
+
+#agac_ct div.agac > div.veri  > i.ackapa.acik {
+    display:none;
+}
+
+#agac_ct div.agac.acik > div.veri > i.ackapa.acik {
+    display:inline;
+}
+
+#agac_ct div.agac > div.veri  > i.ackapa {
+    display:inline;
+}
+
+#agac_ct div.agac.acik > div.veri  > i.ackapa{
+    display:none;
+}
+
+#agac_ct p {
+    display:inline;
+}
+
+#agac_ct div.veri > img {
+    margin-right:4px;
+}
+
+.iconsm {
+    height:18px;
+}
+
+.gizlicol {
+    display:none;
+}
+
+#anakumanda {
+    background:#F7F7F7;
+    width:100%;
+    float:left;
+    padding:5px;
+    clear:both;
+    margin-bottom:4px;
+}
+
+#anakumanda  a {
+    color:black;
+    font-size:15px;
+    padding:3px;
+    padding-bottom:7px;
+    margin-right:12px;
+    text-decoration:none;
+    display:inline-block;
+    float:left;
+}
+#anakumanda a.disb {
+    cursor: no-drop;
+    opacity:0.4;
+}
+
+#anakumanda a.hidn {
+    display:none;
+}
+
+td.icon img {height:32px}
+
+#dosyamenu {
+    border:1px solid #e2e2e2;
+    width:100%;
+    margin:0;
+    float:left;
+    padding:5px;
+    margin-bottom:5px;
+    box-sizing:border-box;
+    clear:both;
+}
+
+
+#dosyamenu > a {
+    color:#008BB9;
+    font-size:15px;
+    padding:3px;
+    padding-bottom:7px;
+    margin-right:12px;
+    text-decoration: none;
+    display:inline-block;
+    float:left;
+}
+
+#dosyamenu > a:hover {
+    color:#006688;
+}
+
+#dosyamenu a.disb {
+    color:black;
+    cursor: no-drop;
+    opacity:0.4;
+}
+
+#dosyaalan {
+    width:100%;
+    box-sizing:border-box;
+    padding-left:6px;
+}
+
+#dosyalistesi {
+    width:100%;
+    height:451px;
+    overflow:auto;
+    box-sizing:border-box;
+    padding:0;
+    margin:0;
+}
+
+#dosyalistesiveri img.icon {
+    height:28px;
+}
+
+#dosyalistesiveri tr {
+    cursor:pointer;
+    user-select:none;
+}
+
+#dosyalistesiveri td {
+    user-select:none;
+}
+
+#clipboard {
+    height:auto;
+    padding:5px;
+    padding-left:11px;
+    padding-right:11px;
+    background:#ffece2;
+    border:1px solid #C95432;
+    position:fixed;
+    right:20px;
+    top:70px;
+    display:none;
+    opacity:0.93;
+    color:#441D11;
+    border-radius:5px;
+    padding-bottom:14px;
+    z-index:5555;
+    box-shadow:2px 4px 7px rgba(0,0,0,0.24);
+}
+
+#clipboard.acik {
+    display:block;
+}
+
+#clipboard h2{
+    font-size:20px;
+    color:#3C170F;
+}
+
+#clipboard > div#clipboardItems {
+    border:1px solid white;
+    max-height:300px;
+    overflow:auto;
+    padding:5px;
+    box-sizing: border-box;
+    box-shadow: inset 1px 4px 7px 2px rgba(0,0,0,0.24);
+    background: rgba(0,0,0,0.08);
+    border-radius:2px;
+    padding-top:10px;
+    padding-left:7px;
+}
+
+#clipboard > div#clipboardItems div {
+    display:block;
+    width:100%;
+    clear:both;
+    padding: 2px;
+    margin-bottom:4px;
+    box-sizing:border-box;
+    color:black;
+    border-bottom:1px solid #c5a4a4;
+}
+
+#clipboard > div#clipboardItems > div > i {
+    float:right;
+    color:red;
+    cursor:pointer;
+    margin-left:15px;
+    line-height:24px;
+}
+
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.loader {
+  color: #ffffff;
+  font-size: 10px;
+  margin: 80px auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+
+
+</style>
+<div id="clipboard">
+<h2>Pano (Kopyala/Taşı)</h2>
+<div id="clipboardItems">
+
 </div>
-<hr>
+<p>Yukarıdaki Dosya veya klasörleri<br />mevcut klasörde taşı veya kopyala.</p>
+<div class="btn-group">
+<button class="btn btn-primary" id="yapistirbtn"><i class="fas fa-paste"></i> Kopyala</button>
+<button class="btn btn-secondary" id="tasibtn"><i class="fas fa-arrows-alt"></i> Taşı</button>
+<button class="btn btn-warning" id="panotemizlebtn"><i class="far fa-minus-square"></i> Temizle</button>
+</div>
+</div>
 
-<br>
+<div class="row">
+<div class="col ">
+
+<nav id="anakumanda">
+    <div class="row">
+    <div class="col-auto">
+        <div class="form-row">
+            <div class="col-auto">
+            <label>Domain:</label>
+            </div>
+            <div class="col-auto">
+            <select id="domlist" size="1" class="form-control"></select>
+            </div>
+        </div>
+    </div>
+    <div class="col-auto">
+        <button onclick="yedeklerac()" class="btn btn-danger float-left">Yedekler</button><div class="float-left">&nbsp;&nbsp;</div>
+        <a href="#" class="yenidosya"><i class="fas fa-plus"></i> Yeni Dosya</a>
+        <a href="#" class="yeniklasor"><i class="fas fa-plus"></i> Yeni Klasör</a>
+        <a href="#" class="kopyala disb"><i class="fas fa-copy"></i> Kopyala/Taşı</a>
+        <a href="#" class="yapistir hidn"><i class="fas fa-paste"></i> Yapıştır</a>
+        <a href="#" class="tasi hidn"><i class="fas fa-arrows-alt"></i> Taşı</a>
+        <a href="#" class="yukle"><i class="fas fa-upload"></i> Yükle</a>
+        <a href="#" class="indir disb" download><i class="fas fa-download"></i> İndir</a>
+        <a href="#" class="sil disb"><i class="fas fa-trash-alt"></i> Sil</a>
+        <a href="#" class="adlandir disb"><i class="fas fa-file-signature"></i> Yeniden Adlandır</a>
+        <a href="#" class="duzenle disb" target="_blank"><i class="fas fa-edit"></i> Düzenle</a>
+        <a href="#" class="izinler disb"><i class="fas fa-key"></i> İzinler</a>
+        <a href="#" class="goruntule hidn"><i class="fas fa-eye"></i> Görüntüle</a>
+        <a href="#" class="unzip disb"><i class="fas fa-file-archive"></i> Çıkar</a>
+        <a href="#" class="zip disb"><i class="far fa-file-archive"></i> Sıkıştır</a>
+    </div>
+    </div>
+</nav>
+
+</div>
+</div>
 
 
 
+
+<div class="row">
+<div class="col-md-3 mr-0 pr-0">
+    <div id="agac_ct"></div>
+    <div class="clearb"></div>
+</div>
+
+<div class="col-md-9 pl-0">
+    <div id="dosyaalan">
+        <nav id="dosyamenu">
+            <a href="#" class="yukari"><i class="fas fa-level-up-alt"></i> Yukarı</a>
+            <a href="#" class="yenidenyukle"><i class="fas fa-sync"></i> Yeniden Yükle</a>
+            <a href="#" class="tumunusec"><i class="far fa-check-square"></i> Tümünü Seç</a>
+            <a href="#" class="secimikaldir"><i class="far fa-square"></i> Tümünün Seçimini Kaldır</a>
+        </nav>
+        <div class="clearb"></div>
+        <div id="dosyalistesi">
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr class="bg-light">
+                        <th scope="col"></th>
+                        <th scope="col">Adı</th>
+                        <th scope="col">Boyut</th>
+                        <th scope="col">Düzenlenme Tarihi</th>
+                        <th scope="col">Tür</th>
+                        <th scope="col">İzin</th>
+                    </tr>
+                </thead>
+                <tbody id="dosyalistesiveri">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+class clipboardO {
+    constructor(hBoard,sub) {
+        this.hBoard=hBoard;
+        this.hBoardSub=sub;
+        this.items={};
+    }
+
+    clearElement(to) {
+        while (to.lastElementChild) {
+            to.removeChild(to.lastElementChild);
+        }
+        to.innerHTML="";
+    }
+
+    hItemBuild(obj) {
+        var d=document.createElement("div");
+        d.appendChild(document.createTextNode(obj.data.path));
+
+        var cl=document.createElement("i");
+        cl.className="fas fa-times-circle";
+        cl.ad=obj.data.path;
+        cl.hO=d;
+        cl.mO=this;
+        cl.onclick=function () { this.mO.removeItem(this.ad);   }
+
+        d.appendChild(cl);
+        obj.hO=d;
+        return d;
+    }
+
+    addItem(i) {
+        if (this.items[i.data.path]===undefined){
+            this.items[i.data.path]=i;
+            this.hBoardSub.appendChild(this.hItemBuild(this.items[i.data.path]));
+            this.boardDoluTrigger();
+        }
+    }
+
+    removeItem(a) {
+        this.items[a].hO.remove();
+        delete(this.items[a]);
+        if (Object.keys(this.items).length==0) {
+            this.boardbosTrigger();
+        }
+    }
+    clear() {
+        for(var a in this.items){
+            this.items[a].hO.remove();
+            delete(this.items[a]);
+        }
+        this.boardbosTrigger();
+    }
+}
+
+
+clipboardO.prototype.boardbosTrigger=function() {
+    this.hBoard.className="";
+}
+
+clipboardO.prototype.boardDoluTrigger=function() {
+    this.hBoard.className="acik";
+}
+
+clipboard=new clipboardO(document.getElementById("clipboard"),document.getElementById("clipboardItems"));
+
+$("#dosyamenu a.yukari").click(function(e) { FS.activeO.yukari(); e.preventDefault();return false;});
+$("#dosyamenu a.yenidenyukle").click(function(e) { FS.activeO.refresh(); e.preventDefault();return false;});
+
+$("#dosyamenu a.tumunusec").click(function(e) { FS.activeO.listTumunuSec(); e.preventDefault();return false;});
+$("#dosyamenu a.secimikaldir").click(function(e) { FS.activeO.listTumunuSecKaldir(); e.preventDefault();return false;});
+
+$("#anakumanda a.sil").click(function(e) {  $("#silmodal").modal("show"); e.preventDefault();return false;});
+
+function dosyaSil() {
+     var l=FS.activeO.seciliListesi();
+    FS.activeO.secimTemizle();
+
+    var vr={
+       action:"multiple",
+       trash:"no",
+       button:"delete",
+    };
+
+    var i=0;
+    for (var a in l) {
+        vr["select"+i]=l[a].data.path;
+        i++;
+    }
+
+
+    $.ajax({
+        url:"CMD_FILE_MANAGER?json=yes",
+        cache:false,
+        dataType: "json",
+        method:"POST",
+        data:vr
+    }).done(function (dt) {
+
+        FS.activeO.refresh();
+    });
+
+    $("#silmodal").modal("hide");
+}
+
+
+
+$("#anakumanda a.zip").click(function(e){
+    var l=FS.activeO.seciliListesi();
+    var i=0;
+    var h="";
+    for (var a in l) h+=l[a].data.path + "<br />";
+    $("#zipmodal .flist").html(h);
+    $("#zipmodal").modal("show");
+e.preventDefault();return false;});
+
+
+function ziple() {
+    var dad=$("#zipmodal .dad").val();
+    $("#zipmodal .dad").val("");
+    var vr={
+       action:"compress",
+       path:FS.activeO.data.path,
+       type:"zip",
+       file:dad,
+    };
+
+    var l=FS.activeO.seciliListesi();
+    FS.activeO.secimTemizle();
+    var i=0;
+    for (var a in l) {
+        vr["clipboard"+i]=l[a].data.path;
+        i++;
+    }
+
+    $.ajax({
+        url:"CMD_FILE_MANAGER?json=yes",
+        cache:false,
+        dataType: "json",
+        method:"POST",
+        data:vr
+    }).done(function (dt) {
+
+        FS.activeO.refresh();
+    });
+    $("#zipmodal").modal("hide");
+}
+
+
+$("#anakumanda a.unzip").click(function(e){
+    $("#unzipmodal").modal("show");
+e.preventDefault();return false;});
+
+function unziple() {
+    var l=FS.activeO.seciliListesi();
+    FS.activeO.secimTemizle();
+    var so;
+    for (var a in l) so=l[a];
+
+    if (so!==undefined) {
+        var vr={
+            action:"extract",
+            page:"2",
+            directory:FS.activeO.data.path,
+            path:so.data.path,
+        };
+
+        $.ajax({
+            url:"CMD_FILE_MANAGER?json=yes",
+            cache:false,
+            dataType: "json",
+            method:"POST",
+            data:vr
+        }).done(function (dt) {
+
+            FS.activeO.refresh();
+        });
+    }
+    $("#unzipmodal").modal("hide");
+}
+
+
+$("#anakumanda a.yukle").click(function(e){
+    $("#yuklemodal").modal("show");
+e.preventDefault();return false;});
+
+
+var dosyauptoast=[];
+function dosyaYukle() {
+    var tost=$.toast({text:"<div class=\"spinner-border spinner-border-sm\" role=\"status\"><span class=\"sr-only\">Loading...</span></div> Dosya Yükleniyor ...",hideAfter:false});
+    var fd = new FormData();
+    var files = $('#dosyaupupup')[0].files;
+
+    if(files.length > 0 ){
+        dosyauptoast.push($())
+        fd.append("action","upload");
+        fd.append("json","yes");
+        fd.append("path",FS.activeO.data.path);
+        fd.append('file0',files[0]);
+
+       $.ajax({
+          url:"CMD_FILE_MANAGER?json=yes",
+          type: 'post',
+          data: fd,
+          cache:false,
+          contentType: false,
+          processData: false,
+       }).done(function (dt) {
+
+            tost.reset();
+            $.toast({text:"<i class=\"fas fa-check-circle text-success\"></i> Dosya Yükleme Tamamlandı",hideAfter:3000});
+            FS.activeO.refresh();
+       });
+       $("#yuklemodal").modal("hide");
+    }else{
+       alert("Please select a file.");
+    }
+}
+
+
+$("#anakumanda a.adlandir").click(function(e) {
+    var l=FS.activeO.seciliListesi();
+    FS.activeO.secimTemizle();
+    var so;
+    for (var a in l) so=l[a];
+
+    if (so===undefined) return false; //secili nesneyi bulamazsan git bu diyardan yoksa seni bulur ve incitirim
+
+    $("#adlandirmodal .dosyaad").html(so.data.name);
+    $("#adlandirmodal .dosyapath").html(so.data.path);
+    $("#adlandirmodal").modal("show");
+e.preventDefault();return false;});
+
+
+
+function dosyaAdiDegistir() {
+    var ad=$("#adlandirmodal .dosyaad").html();
+    var pt=$("#adlandirmodal .dosyapath").html();
+    var yad=$("#adlandirmodal .dosyaadyeni").val();
+    pt=pt.substring(0,pt.length-ad.length);
+    var vr={
+       action:"rename",
+       path:pt,
+       old:ad,
+       filename:yad
+    };
+
+    $.ajax({
+       url:"CMD_FILE_MANAGER?json=yes",
+       cache:false,
+       dataType: "json",
+       method:"POST",
+       data:vr
+    }).done(function (dt) {
+        FS.activeO.refresh();
+    });
+    $("#adlandirmodal").modal("hide");
+}
+
+
+$("#anakumanda a.izinler").click(function(e) { $("#izinlermodal").modal("show"); e.preventDefault();return false;});
+
+function dosyaIzinDegistir() {
+    var l=FS.activeO.seciliListesi();
+    FS.activeO.secimTemizle();
+
+    var ch=$("#izinlermodal .yizin").val();
+    var vr={
+       action:"multiple",
+       permission:"yes",
+       chmod:ch,
+       recursive:"no",
+    };
+
+    var i=0;
+    for (var a in l) {
+        vr["select"+i]=l[a].data.path;
+        i++;
+    }
+
+    $.ajax({
+       url:"CMD_FILE_MANAGER?json=yes",
+       cache:false,
+       dataType: "json",
+       method:"POST",
+       data:vr
+    }).done(function (dt) {
+
+        FS.activeO.refresh();
+    });
+    $("#izinlermodal").modal("hide");
+}
+
+$("#anakumanda a.duzenle").click(function(e) {
+    var l=FS.activeO.seciliListesi();
+    FS.activeO.secimTemizle();
+    var so;
+    for (var a in l) so=l[a];
+
+    if (so===undefined) return false; //secili nesneyi bulamazsan git bu diyardan yoksa seni bulur ve incitirim
+    $("#duzenlemodal .dad").html(so.data.name);
+    var pt=$("#duzenlemodal .dosyapath").html(so.data.path);
+    var vr={
+       action:"edit",
+       path:so.data.path,
+       json:"yes"
+    };
+
+    $.ajax({
+       url:"CMD_FILE_MANAGER",
+       dataType: "json",
+       method:"GET",
+       data:vr
+    }).done(function (dt) {
+        document.getElementById("duzenlemodalveri").value=dt.TEXT;
+        $("#duzenlemodal").modal("show");
+    });
+
+e.preventDefault();return false;});
+
+
+function dosyaDuzenKaydet() {
+    var dt=document.getElementById("duzenlemodalveri").value;
+    var ad=$("#duzenlemodal .dad").html();
+    var pt=$("#duzenlemodal .dosyapath").html();
+    pt=pt.substring(0,pt.length-ad.length);
+    var vr={
+       action:"edit",
+       json:"yes",
+       filename:ad,
+       path:pt,
+       text:dt,
+    };
+
+    $.ajax({
+       url:"CMD_FILE_MANAGER",
+       cache:false,
+       dataType: "json",
+       method:"POST",
+       data:vr,
+    }).done(function (dt) {
+
+    });
+    $("#duzenlemodal").modal("hide");
+}
+
+
+$("#anakumanda a.kopyala").click(function(e) {
+    var l=FS.activeO.seciliListesi();
+    for (var a in l) clipboard.addItem(l[a]);
+    FS.activeO.secimTemizle();
+    e.preventDefault();return false;});
+
+$("#yapistirbtn").click(function(e) {
+     var vr={
+       action:"multiple",
+       path:FS.activeO.data.path,
+       overwrite:"yes",
+       json:"yes",
+       copy:"yes",
+    };
+    var i=0;
+    for (var a in clipboard.items) {
+        vr["clipboard"+i]=clipboard.items[a].data.path;
+        i++;
+    }
+    clipboard.clear();
+
+    $.ajax({
+       url:"CMD_FILE_MANAGER?json=yes",
+       cache:false,
+       dataType: "json",
+       method:"POST",
+       data:vr
+    }).done(function (dt) {
+        FS.activeO.refresh();
+    });
+e.preventDefault();return false;});
+
+$("#tasibtn").click(function(e) {
+     var vr={
+       action:"multiple",
+       path:FS.activeO.data.path,
+       overwrite:"yes",
+       json:"yes",
+       move:"yes",
+    };
+    var i=0;
+    for (var a in clipboard.items) {
+        vr["clipboard"+i]=clipboard.items[a].data.path;
+        i++;
+    }
+    clipboard.clear();
+    $.ajax({
+       url:"CMD_FILE_MANAGER?json=yes",
+       cache:false,
+       dataType: "json",
+       method:"POST",
+       data:vr
+    }).done(function (dt) {
+
+        FS.activeO.refresh();
+
+    });
+e.preventDefault();return false;});
+
+$("#panotemizlebtn").click(function(e) {clipboard.clear();e.preventDefault();return false;});
+
+$("#anakumanda a.yenidosya").click(function(e) {$('#yenidosya').modal('show');e.preventDefault();return false;});
+$("#anakumanda a.yeniklasor").click(function(e) {$('#yeniklasor').modal('show');e.preventDefault();return false;});
+
+function dosyaOlustur() {
+    var dad=$("#yenidosyaadi").val();
+    var vr={
+       action:"edit",
+       path:FS.activeO.data.path,
+       filename:dad,
+       json:"yes",
+       text:""
+    };
+
+    $.ajax({
+       url:"CMD_FILE_MANAGER",
+       cache:false,
+       dataType: "json",
+       method:"POST",
+       data:vr
+    }).done(function (dt) {
+
+        $('#yenidosya').modal('hide');
+        FS.activeO.refresh();
+    });
+}
+
+function klasorOlustur() {
+    var dad=$("#yeniklasoradi").val();
+    var vr={
+       action:"folder",
+       path:FS.activeO.data.path,
+       name:dad,
+       json:"yes",
+    };
+
+    $.ajax({
+       url:"CMD_FILE_MANAGER",
+       cache:false,
+       dataType: "json",
+       method:"POST",
+       data:vr
+    }).done(function (dt) {
+
+        $('#yeniklasor').modal('hide');
+        FS.activeO.refresh();
+    });
+}
+</script>
+
+
+<script type="text/javascript">
+
+class FSO {
+    constructor(dt,pr) {
+        this.data=dt
+        this.parent=pr;
+        this.tSecili=false;
+        this.aktif=false;//nesnenin aktif secili nesne oldugunu gosteren anahtar
+    }
+
+    addSub(dt) {
+        this.sub[dt.name]=new FSO(dt,this);
+        var a=this.sub[dt.name].agacGen();
+        if (a!==false) this.alt.appendChild(a);
+        return this.sub[dt.name];
+    }
+
+    setActiveObject(o){
+        if (this.parent!==undefined) { //en ustde degilsen bir uste yolla amac en uste yollamak
+            this.parent.setActiveObject(o);
+        }else{// en ustdeyiz burada activeO nesnesine aktif nesnemizi atiyoruz ve yarin dugunume gidiyoruz
+            this.aktifet(o);
+        }
+    }
+
+    loadSubs(fla,callback) {
+        if (fla===undefined) fla=false; //file list update
+        if (this.sub!==undefined) {
+            if (fla==true) this.fileListUp();
+            return false;
+        }
+        this.sub={};
+        var me=this; //ajax icine girince kendini kaybetmesin deyu
+        $.ajax({
+            url:"CMD_FILE_MANAGER"+this.data.path+"?action=json_all",
+            dataType: "json",
+            cache:false,
+        }).done(function (dt){
+            for(var a in dt) {
+                if (dt[a].name!==undefined) {
+                    me.addSub({
+                        name:dt[a].name,
+                        path:a,
+                        mtime:dt[a].mtime,
+                        gid:dt[a].gid,
+                        perm:dt[a].permission,
+                        type:dt[a].type,
+                        size:dt[a].size,
+                        acik:false,
+                    });
+                }
+            }
+            if (fla==true) me.fileListUp();
+            if(callback!==undefined) callback(me);
+        });
+    }
+
+    up() {
+        if (this.parent!==undefined) { //eger parent tanimlanmamissa en ust demektir yoksa herkesin babasi var
+            this.agac.className="agac";
+            this.parent.fileListUp();
+        }
+    }
+
+    yukari() {
+        //parent.open
+        this.up();
+    }
+
+    open(callback) {
+        this.loadSubs(true,callback);
+        this.agac.className="agac acik";
+    }
+
+    openSubByName(nm,callback) {
+        if (this.sub!==undefined) {
+            for(var a in this.sub) {
+                if (this.sub[a].data.name==nm) {
+                    this.sub[a].open(callback);
+                }
+            }
+        }
+    }
+
+    refresh() {
+        this.sub=undefined;
+        this.clearElement(this.alt)
+        this.loadSubs(true);
+    }
+
+    seciliListesi() {
+        var l={};
+        for (var a in this.sub) {
+            if (this.sub[a].tSecili===true) {
+                l[a]=this.sub[a];
+            }
+        }
+        return l;
+    }
+
+    tSecimKaldir() {
+      this.tSecili=false;
+      this.tTr.className="";
+
+    }
+
+    secimTemizle() {
+        for (var a in this.sub) {
+            this.sub[a].tSecimKaldir();
+        }
+    }
+
+    secimDurum() {
+        this.secimTemizlikTrigger();
+        var l=this.seciliListesi();
+        var ct=Object.keys(l).length; //sub item sayisi
+        if (ct>0) {
+            this.secimVarTrigger();
+            if (ct==1) { //secili tek ise
+                var it;
+                for (var a in l) it=l[a];
+                if(it.data.type=="directory") {
+                    this.secimTekKlasorTrigger();
+                }else{
+                    this.secimTekDosyaTrigger(it);
+                    var uz="";
+                    var n=it.data.name;
+                    if (n.indexOf(".")>-1) {
+                        var uz=n.split(".");
+                        uz=uz[uz.length-1];
+                    }
+                    if (uz=="zip" || uz=="gz")  this.secimTekZipTrigger();
+
+                    var duzfll=String("txt,php,html,ini,conf,asp,aspx,js,css,inc,.htaccess").split(",");
+                    if (duzfll.indexOf(uz)>-1 || it.data.name===".htaccess") this.secimTekDuzenleTrigger();
+
+                }
+            }
+
+        }else{
+            this.secimBosTrigger();;
+        }
+
+    }
+
+    clearElement(to) {
+        while (to.lastElementChild) {
+            to.removeChild(to.lastElementChild);
+        }
+        to.innerHTML="";
+    }
+
+
+
+    agacGen () {
+        if (this.data.type==="directory") {
+            //agac htmli uretme
+            var agac=document.createElement("div");
+            agac.className="agac";
+
+            var veri=document.createElement("div");
+            veri.className="veri";
+
+            var ackapa=document.createElement("i");
+            ackapa.className="ackapa fas fa-minus acik";
+            ackapa.ag=agac;
+            ackapa.mobj=this;
+            ackapa.onclick=this.agacKapaIcClick;
+            veri.appendChild(ackapa);
+
+            var ackapa2=document.createElement("i");
+            ackapa2.className="ackapa fas fa-plus";
+            ackapa2.ag=agac;
+            ackapa2.mobj=this;
+            ackapa2.onclick=this.agacAcIcClick;
+
+            veri.appendChild(ackapa2);
+            var icon=document.createElement("img");
+            icon.className="icon iconsm";
+            icon.src="/assets/img/filemanager/folder.png";
+            veri.appendChild(icon);
+
+            var p=document.createElement("p");
+            p.innerText=this.data.name;
+            p.ag=agac;
+            p.mobj=this;
+            p.onclick=this.agacClick;
+            veri.appendChild(p);
+
+            if (this.data.acik===true) {
+                addClass(agac,"acik");
+            }else{
+                removeClass(agac,"acik");
+            }
+
+            agac.appendChild(veri);
+
+            var alt=document.createElement("div");
+            alt.className="alt";
+            this.alt=alt;
+
+            agac.appendChild(this.alt);
+            this.agac=agac;
+            this.agac.pr=this;
+            return this.agac;
+        }
+        return false;
+    }
+
+    agacAcIcClick(e) {
+        if (this.mobj!==undefined) this.mobj.loadSubs();
+        addClass(this.ag,"acik");
+    }
+
+    agacKapaIcClick(e) {
+        removeClass(this.ag,"acik");
+    }
+
+    agacClick(e) {
+        if (this.mobj!==undefined) this.mobj.loadSubs(true);
+        addClass(this.ag,"acik");
+    }
+
+    aktifet(o) {
+        if (this.activeO!==undefined) { //onceki aktif nesnenin aktifligini kaldirmaliyiz yoksa gucte dengesizlik olur bu aleme 2 alfa fazla
+            removeClass(this.activeO.agac,"aktif"); //agactan da aktifligini alalim
+        }
+        this.activeO=o; //artik parent@deyiz activeo nesnesine aktif nesnemizi attik long live new aktif
+        history.pushState({path:this.activeO.data.path},"ozPanel - Dosya Yöneticisi - " + this.activeO.data.path,"CMD_FILE_MANAGER?path=" + this.activeO.data.path);
+        //url yi degistirmek istersen
+        if (this.activeO.agac.className!==undefined) {
+            addClass(this.activeO.agac,"aktif");
+        }
+    }
+
+    listTumunuSec() {
+        if (this.sub===undefined) return false;
+        for (var a in this.sub) {
+            if (this.sub[a].tTr!==undefined) {
+                this.sub[a].tSecili=true;
+                this.sub[a].tTr.className="table-info";
+            }
+        }
+        this.secimDurum();
+    }
+
+    listTumunuSecKaldir() {
+        if (this.sub===undefined) return false;
+        for (var a in this.sub) {
+            if (this.sub[a].tTr!==undefined) {
+                this.sub[a].tSecili=false;
+                this.sub[a].tTr.className="";
+            }
+        }
+        this.secimDurum();
+    }
+
+
+    fileListUp() {
+        var mc="";
+        this.setActiveObject(this);
+        var to=document.getElementById("dosyalistesiveri");
+        if (to.dataset.dir!==undefined) {
+            mc=to.dataset.dir;
+        }
+        if (this.data.path!=mc) {
+            this.clearElement(to);
+
+            var s=this.sub;
+            for (var a in s) {
+                var d=s[a].data;
+                var tr=document.createElement("tr");
+                var td1=document.createElement("td");
+                var td2=document.createElement("td");
+                var td3=document.createElement("td");
+                var td4=document.createElement("td");
+                var td5=document.createElement("td");
+                var td6=document.createElement("td");
+
+                var fll=["Klasör","folder"];
+                if (d.type=="file") fll=uzantiResolv(d.name);
+
+                var ic=document.createElement("img");
+                ic.src="/assets/img/filemanager/" + fll[1] +".png";
+                ic.className="icon";
+
+                td1.appendChild(ic);
+                td2.appendChild(document.createTextNode(d.name));
+                td3.appendChild(document.createTextNode(boyutFormatla(d.size)));
+                td4.appendChild(document.createTextNode(tarihFormatla(d.mtime)));
+                td5.appendChild(document.createTextNode(fll[0]));
+                td6.appendChild(document.createTextNode(d.perm));
+
+                tr.appendChild(td1); tr.appendChild(td2);
+                tr.appendChild(td3); tr.appendChild(td4);
+                tr.appendChild(td5); tr.appendChild(td6);
+                tr.o=s[a];
+                s[a].tTr=tr; //tr elementini objenin icine atiyoruz ki secim islerinde kullanak
+                tr.onclick=function() {
+                    if (this.o.tSecili===undefined) this.o.tSecili=false;
+
+                    if (this.o.tSecili==true) {
+                        this.o.tSecili=false;
+                        this.className="";
+                    }else{
+                        this.o.tSecili=true;
+                        this.className="table-info";
+                    }
+                    FS.activeO.secimDurum();
+                }
+
+                tr.ondblclick=function() {
+                    this.o.open();
+                }
+
+                to.appendChild(tr);
+            }
+
+            this.secimDurum();
+        }
+    }
+}
+
+FSO.prototype.secimTemizlikTrigger=function() {
+    $("#anakumanda a.kopyala").addClass("disb");
+    $("#anakumanda a.sil").addClass("disb");
+    $("#anakumanda a.zip").addClass("disb");
+    $("#anakumanda a.unzip").addClass("disb");
+    $("#anakumanda a.adlandir").addClass("disb");
+    $("#anakumanda a.izinler").addClass("disb");
+    $("#anakumanda a.indir").addClass("disb");
+    $("#anakumanda a.duzenle").addClass("disb");
+
+
+    //$("#anakumanda a.goruntule").addClass("disb");
+    $("#anakumanda a.indir").attr("href","#");
+    $("#dosyamenu a.secimikaldir").addClass("disb");
+}
+
+FSO.prototype.secimBosTrigger=function() {
+   $("#anakumanda a.kopyala").addClass("disb");
+   $("#anakumanda a.sil").addClass("disb");
+   $("#anakumanda a.zip").addClass("disb");
+}
+
+FSO.prototype.secimVarTrigger=function() {
+   $("#anakumanda a.kopyala").removeClass("disb");
+   $("#anakumanda a.sil").removeClass("disb");
+   $("#anakumanda a.zip").removeClass("disb");
+   $("#anakumanda a.izinler").removeClass("disb");
+   $("#anakumanda a.secimikaldir").removeClass("disb");
+
+}
+
+
+FSO.prototype.secimTekDosyaTrigger=function(o) {
+   $("#anakumanda a.indir").removeClass("disb");
+   $("#anakumanda a.indir").attr("href","CMD_FILE_MANAGER?path=" + o.data.path);
+   $("#anakumanda a.indir").attr("download",o.data.name);
+   $("#anakumanda a.adlandir").removeClass("disb");
+   //$("#anakumanda a.goruntule").removeClass("disb");
+}
+
+FSO.prototype.secimTekKlasorTrigger=function() {
+   $("#anakumanda a.adlandir").removeClass("disb");
+}
+
+FSO.prototype.secimTekDuzenleTrigger=function() {
+   $("#anakumanda a.duzenle").removeClass("disb");
+}
+
+
+FSO.prototype.secimTekZipTrigger=function() {
+     $("#anakumanda a.unzip").removeClass("disb");
+}
+
+function addClass(o,c) {
+    if (o.className!==undefined) {
+        var ca=[];//mevcut classlarin tutulacagi array
+        if (o.className.indexOf(" ")>-1) { //birden fazla class varmi kontrol
+            ca=o.className.split(' '); //parcala ki array olasin
+        }else{
+            ca.push(o.className);//array degilse de tek basina arrayiz
+        }
+        if(ca.indexOf(c)===-1) {//eklenecek class zaten varmi
+            ca.push(c); //yokmus
+            o.className=ca.join(" "); //paketleyelim
+        }
+    }
+}
+
+function removeClass(o,c){
+    if (o.className!==undefined) {
+        var ca=[]; //mevcut classlarin tutulacagi array
+        if (o.className.indexOf(" ")>-1) { //birden fazla class varmi kontrol
+            ca=o.className.split(" "); //parcala ki array olasin
+        }else{
+            ca.push(o.className);//array degilse de tek basina arrayiz
+        }
+        var s=ca.indexOf(c);//silinecek class zaten varmi
+        if(s>-1) {
+            delete ca[s]; //varmis silelim
+            
+            o.className=ca.join(" "); //paketleyelim
+        }
+    }
+}
+
+
+function boyutFormatla(bytes,decimals) {
+   if(bytes == 0) return '0 Bytes';
+   var k = 1024,
+       dm = decimals || 2,
+       sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+       i = Math.floor(Math.log(bytes) / Math.log(k));
+   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+
+function tarihFormatla(b) {
+    var month=new Array();
+    month[0]="Ocak"; month[1]="Şubat"; month[2]="Mart";
+    month[3]="Nisan"; month[4]="Mayıs"; month[5]="Haziran";
+    month[6]="Temmuz"; month[7]="Ağustos"; month[8]="Eylül";
+    month[9]="Ekim"; month[10]="Kasım"; month[11]="Aralık";
+    var dt=new Date(parseInt(b)*1000);
+    return dt.getDate()+" " + month[dt.getMonth()] + " " + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+}
+
+function uzantiResolv(n) {
+    var fileTypes=[
+        ["Resim","image","jpg,png,bmp,gif,webp,bmp".split(',')],
+        ["Metin","text","txt,rtf".split(',')],
+        ["Kod","code","php,html,ini,conf,asp,aspx,js,css,inc,.htaccess".split(',')],
+        ["Sıkıştırılmış","compressed","zip,rar,7z,tar,gz".split(',')],
+        ["Ses","audio","mp3,wav".split(',')],
+        ["Video","video","mkv,mov,flv,avi,mp4,3gp,m4a,f4v,m4v,avi,ogg".split(',')],
+        ["PDF","pdf",["pdf"]],
+        ["Word d","doc","doc,docx".split(",")],
+        ["Excel d","xls","xls,xlsx".split(",")],
+        ["Powerp d","ppt","ppt,pptx".split(",")],
+    ];
+    var fla="Dosya";
+    var flr="file";
+
+    if (n.indexOf(".")>-1) {
+        var uz=n.split(".");
+        uz=uz[uz.length-1];
+
+        for (var i in fileTypes) {
+            if (fileTypes[i][2].indexOf(uz)>-1) {
+                fla=fileTypes[i][0];
+                flr=fileTypes[i][1];
+            }
+        }
+    }
+    return [fla,flr];
+}
+
+</script>
+
+
+
+<script type="text/javascript">
+var maindoms=[];
+var secilidom=-1;
+var FS;
+$.ajax({
+    url:"CMD_FILE_MANAGER/domains?action=json_all",
+    dataType: "json",
+    cache:false,
+}).done(function (dt){
+    var l=[];
+    var avoid=["default","sharedip","suspended"];
+    for(var a in dt) {
+        var n=dt[a].name;
+        if (n!==undefined) {
+            if (n.indexOf(".")>-1) l.push(dt[a]);
+        }
+    }
+    maindoms=l;
+
+    if (maindoms.length>0)  {
+        var ss="<option value=\"-1\">--Seç--</option>";
+        for (var a in maindoms) {
+            ss+="<option value=\"" + a + "\">"+maindoms[a].name+"</option>";
+        }
+
+        $("#domlist").html(ss);
+        $("#domlist").val(0);
+        domainSec(0);
+    }
+});
+
+$("#domlist").change(function () {
+   domainSec(this.value);
+});
+
+function yedeklerac(){
+    secilidom=-1;
+    $("#domlist").val(-1);
+    FS=new FSO({
+        name:"Yedekler",
+        path:"/user_backups",
+        mtime:0,
+        gid:"root",
+        perm:"000",
+        type:"directory",
+        size:"9999",
+        acik:false,
+    });
+            $("#agac_ct").html("");
+        document.getElementById("agac_ct").appendChild(FS.agacGen());
+        FS.open();
+}
+
+function domainSec(sr) {
+    if (sr!=secilidom && sr>-1) {
+        secilidom=sr;
+        FS=new FSO({
+            name:maindoms[sr].name,
+            path:maindoms[sr].truepath,
+            mtime:0,
+            gid:"root",
+            perm:"000",
+            type:"directory",
+            size:"9999",
+            acik:false,
+        });
+        $("#agac_ct").html("");
+        document.getElementById("agac_ct").appendChild(FS.agacGen());
+        FS.open();
+    }
+}
+
+
+/*
+var hedef="/domains/candan.com";
+
+FS.open(function(ob){
+    ob.openSubByName("domains");
+});
+*/
+
+</script>
+
+
+
+
+<div class="modal fade" id="izinlermodal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Seçililerin İznini Değiştir</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>Yeni izin Değeri (655,755 gibi girin)
+        <input type="text" class="form-control yizin" placeholder="Yeni izin" />
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+        <button type="button" class="btn btn-primary" onclick="dosyaIzinDegistir();return false;">İzni Değiştir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="adlandirmodal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Dosyanın Adını Değiştir</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <h2><span class="dosyaad"></span> Adlı dosyanın adını değiştir</h2>
+        <small class="dosyapath"></small>
+        <label>Dosya Adı (uzantısı ile birlikte yazın  "yazi.txt" gibi)
+        <input type="text" class="form-control dosyaadyeni" placeholder="Dosya Adı" />
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+        <button type="button" class="btn btn-primary" onclick="dosyaAdiDegistir();return false;">Adı Değiştir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="yenidosya" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yeni Dosya Oluştur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>Dosya Adı (uzantısı ile birlikte yazın  "yazi.txt" gibi)
+        <input type="text" id="yenidosyaadi" class="form-control" placeholder="Dosya Adı" />
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+        <button type="button" class="btn btn-primary" onclick="dosyaOlustur();return false;">Dosya oluştur</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="yeniklasor" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yeni Klasör Oluştur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>Klasörün Adı (uzantısı ile birlikte yazın  "yazi.txt" gibi)
+        <input type="text" id="yeniklasoradi" class="form-control" placeholder="Klasör Adı" />
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+        <button type="button" class="btn btn-primary" onclick="klasorOlustur();return false;">Klasör oluştur</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="silmodal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Seçili Dosyaları Silmek İstediğinizden Emin misiniz ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+        <button type="button" class="btn btn-primary" onclick="dosyaSil();return false;">Evet Sil</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="duzenlemodal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog full_modal-dialog">
+    <div class="modal-content full_modal-content-kod ">
+      <div class="modal-header">
+        <h5 class="modal-title">"<span class="dad"></span>" Adlı Dosyayı Düzenle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--<div id="duzenlemodalveri" contenteditable="true"></div>-->
+        <textarea id="duzenlemodalveri" ></textarea>
+        <br /><small class="dosyapath"></small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+        <button type="button" class="btn btn-primary" onclick="dosyaDuzenKaydet();return false;">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="zipmodal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Aşağıdaki dosyalar sıkıştırılacak </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>Dosya Adı
+            <input type="text" class="form-control dad" placeholder="Dosya Adı" />
+        </label>
+        <h4>Dosya Listesi</h4>
+        <div class="flist"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+        <button type="button" class="btn btn-primary" onclick="ziple();return false;">Sıkıştır</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="unzipmodal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Seçili Sıkıştırılmış Dosyayı açmak istediğine emin misin ? </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+        <button type="button" class="btn btn-primary" onclick="unziple();return false;">Dosyayı Aç</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="yuklemodal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Dosya Yükle </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <div class="modal-body">
+    <form method="post" action="" enctype="multipart/form-data" >
+    <input type="file" id="dosyaupupup" name="file" placeholder="Dosya Seç" />
+    </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+        <button type="button" class="btn btn-primary" onclick="dosyaYukle();return false;">Dosyayı Yükle</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="clearb"></div>
 |HTM_ALT_FOOTER|
 |HTM_USER_BOTTOM|

@@ -1,7 +1,12 @@
-|?TREE=&raquo; <a class=tree href="/CMD_CRON_JOBS">Cron Jobs</a>|
-|?HELP_SECTION=`USER_HELPER`/misc.html#cron|
+|?BASLIK=Cron|
+|?BASLIKALT=Zamanlı İşlemlerinizi Buradan yönetebilirsiniz|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/cron.png|
+
+
 |HTM_USER_TOP|
 
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
 <script language="Javascript">
 <!--
 function preventEmail()
@@ -19,47 +24,81 @@ function set_cron_display()
 	{
 		var set_display = 'none';
 	}
-
-	document.getElementById('minute_tr').style.display = set_display;
-	document.getElementById('hour_tr').style.display = set_display;
-	document.getElementById('day_of_month_tr').style.display = set_display;
-	document.getElementById('month_tr').style.display = set_display;
-	document.getElementById('day_of_week_tr').style.display = set_display;
+	document.getElementById('crontable').style.display = set_display;
 }
 // -->
 </script>
 
-Valid cron time values are the numbers indicated and *.<br>
-You can specifiy exact times using commas to separate them.<br>eg: 1,2,3 (minutes 1,2 and 3)<br>
-You can specify spans using a dash. eg: 5-7 (minutes 5 to 7)
-You can specify intervals using a star and a forward slash. eg: */2 (every 2nd minute)<br>
-You can combine them to create a more precise schedule. eg: 1,5,11-15,30-59/2 (minutes 1, 5, 11 to 15 and every 2nd minute between 30 and 59)<br>
-Note that there are no spaces<br><br>
-Current Time: |TIME|
-<table class=list  cellpadding=3 cellspacing=1>
+<h3>Kullanım Klavuzu</h3>
+<b>Not:</b> örnekler dakika için verilmektedir aynı değerleri diğer alanlara da uygulayabilirsiniz)<br /><br />
+
+Periyodik aralıkları sayılar ve * ile belirleyebilirsiniz <br />
+Belirli zamanları belirtmek için ilgili zamanın değerini virgülle ayırarak yazabilirsiniz. Örneğin: 1,2,3 (1, 2 ve 3. dakikaları ifade eder)<br />
+Aralık belirtmek isterseniz - işererini kullanın. Örneğin: 5-8 (5 ile 8 arasındaki tüm dakikaları ifade eder)<br />
+Belirli bir aralıkta tekrar isterseniz */sayı şeklinde belirtebilirsiniz. Örneğin */2 her 2 dakikayı ifade eder.<br />
+Tüm bunları birleştirip de kulanabilirsiniz. Örneğin: 1,5,11-15,30-59/2 (1 ve 5. dakikalar + 11 ile 15 arasındaki dakikalar + 30-59 arasındaki her 2 dakikada bir)<br />
+Birleşik kullanırken boşluk bırakmayın. virgüllerle ayırabilirsiniz. <br />
+
+Şuan ki zaman : |TIME|<br />
+<br /><hr>
+<br />
+<h2>Yeni Cron Oluştur</h2>
 <form name=info action='/CMD_CRON_JOBS' method='POST'>
 <input type=hidden name=action value="create">
-<tr><td class=listtitle colspan=3>Create a New Cron Job <span style='float: right'><input type=checkbox id='reboot' name='reboot' value='yes' onchange="set_cron_display();"> Run on @reboot</span></td></tr>
-<tr id='minute_tr'><td class=list>Minute</td><td class=list><input type=text size=8 name=minute value=*></td><td class=list>0-59</td></tr>
-<tr id='hour_tr'><td class=list>Hour</td><td class=list><input type=text size=8 name=hour value=*></td><td class=list>0-23</td></tr>
-<tr id='day_of_month_tr'><td class=list>Day of Month</td><td class=list><input type=text size=8 name=dayofmonth value=*></td><td class=list>1-31</td></tr>
-<tr id='month_tr'><td class=list>Month</td><td class=list><input type=text size=8 name=month value=*></td><td class=list>1-12</td></tr>
-<tr id='day_of_week_tr'><td class=list>Day of Week</td><td class=list><input type=text size=8 name=dayofweek value=*></td><td class=list>0-7 (0 or 7 = Sunday)</td></tr>
-<tr><td class=list>Command</td><td class=list><input type=text size=35 name=command value='/home/|USERNAME|/'></td><td class=list><input type=button name=prevent value="Prevent Email" onClick='preventEmail()'></td></tr>
-<tr><td colspan=3 class=listtitle align=right><input type=submit value="Add"></td></tr>
-</form>
-</table>
+	<div class="form-check">
+	  <input class="form-check-input" type="checkbox"  id='reboot' name='reboot' value='yes' onchange="set_cron_display();">
+	  <label class="form-check-label" for="reboot">
+	    Sadece Açılışta bir kere çalıştır
+	  </label>
+	</div>
+	<hr>
 
+<table class="table table-bordered table-hover table-striped" id="crontable">
+	<thead>
+		<tr>
+			<th>Dakika</th>
+			<th>Saat</th>
+			<th>Gün</th>
+			<th>Ay</th>
+			<th>Haftanın GGün</th
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input type=text name="minute" class='form-class' value="*"></td>
+			<td><input type=text name="hour" class='form-class' value="*"></td>
+			<td><input type=text name="dayofmonth" class='form-class' value="*"></td>
+			<td><input type=text name="month" class='form-class' value="*"></td>
+			<td><input type=text name="dayofweek" class='form-class' value="*"></td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<div class="form-row">
+	<div class="col-auto"><label>Uygulanacak Komut</label>
+	<input type="text" class="form-contro" name="command" value='/home/|USERNAME|/'></div> <br>
+	<input type=button name=prevent value="Durum E-Postası Gönderilmesin" class="btn btn-secondary" onClick='preventEmail()'>
+</div>
+<br>
+<input type="submit" value="Cron Oluştur" cclass="btn btn-primary">
+</form>
+<br />
+<hr>
+<br />
+<h2>Cron Listesi</h2>
 |CRONJOBS|
 
 <br>
+<hr>
 <table class=list  cellpadding=3 cellspacing=1>
 <form action='/CMD_CRON_JOBS' method='POST'>
 <input type=hidden name="action" value="saveemail">
-<tr><td class=listtitle colspan=2>Send all Cron output to E-Mail</td></tr>
-<tr><td class=list align=left>E-Mail</td><td class=list><input type=text name=email size=48 value="|MAILTO|"></td></tr>
-<tr><td class=listtitle colspan=2 align=right><input type=submit value="Save"></td></tr>
+<tr><td class=listtitle colspan=2><b>Cron komutlarından çıkan sonuçları E-Posta Olarak Gönderilen Adres</b></td></tr>
+<tr><td class=list align=left>E-Posta</td><td class=list><input type=text name=email size=48 value="|MAILTO|"></td></tr>
+<tr><td class=listtitle colspan=2 align=right><input type=submit value="Kaydet"></td></tr>
 </form>
 </table>
 
+<div class="clearb"></div>
+|HTM_ALT_FOOTER|
 |HTM_USER_BOTTOM|

@@ -1,25 +1,35 @@
-|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/CMD_MIME_TYPES?DOMAIN=`DOMAIN`">Mime Types</a>|
-|?HELP_SECTION=`USER_HELPER`/misc.html#mime|
+|?BASLIK=Mime|
+|?BASLIKALT=Mime Tiplerini buradan yönetebilirsiniz|
+|?BASLIKSIMGE=/assets/img/anasayfamenusu/mime.png|
+
+
 |HTM_USER_TOP|
 
-<table class=list style="width: 50%" cellpadding=3 cellspacing=1>
-<tr><td class=listtitle colspan=4>Add MimeType</td></tr>
+|HTM_ALT_HEADER|
+|HTM_BASLIK|
+
+<h3>Yeni  Mime tipi ekle</h3>
+<table class=list cellpadding=3 cellspacing=1>
+
 <tr>
 	<form action="/CMD_MIME_TYPES" method="POST">
 	<input type=hidden name=domain value="|DOMAIN|">
 	<input type=hidden name=action value="add">
-	<td class=list>MimeType:</td>
+	<td class=list>Tip:</td>
 	<td class=list><input type=text name=name></td>
-	<td class=list>Extension</td>
+	<td class=list>Uzantı</td>
 	<td class=list><input type=text name=extension size=5></td>
 </tr>
-<tr><td class=listtitle colspan=4 align=right><input type=submit value="Add"></td></form></tr>
+<tr><td class=listtitle colspan=4 align=right><input type=submit value="Ekle"></td></form></tr>
 </table>
-<br>
-<b>User Installed Mime Types</b><br>
+<br><hr />
+<h2>Tanımlanan Mime Tipleri</h2>
+
 |MIMETYPES|
 <br>
-<a href="/CMD_MIME_TYPES?action=system&domain=|DOMAIN|">Click here for a list of the current Mime Types installed on the system</a><br><br>
+<a href="/CMD_MIME_TYPES?action=system&domain=|DOMAIN|">Sisteme Kayıtlı Tüm Mime tipleri listesi</a><br><br>
 
 
+<div class="clearb"></div>
+|HTM_ALT_FOOTER|
 |HTM_USER_BOTTOM|

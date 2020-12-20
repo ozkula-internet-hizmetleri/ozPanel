@@ -18,27 +18,6 @@ $data = <<<END
 |DOMAINS|
 END;
 
-/*
-echo PHP_EOL. '------------' . PHP_EOL;
-
-$ndata=$data;
-
-$tbas=strpos($ndata,'<tr   ><td class=list>');
-$ndata=substr($ndata,$tbas);
-$tson=strpos($ndata,"<tr ><td class=listtitle align='right' colspan='6'>");
-$ndata=substr($ndata,0,$tson);
-echo $ndata;
-echo PHP_EOL. '------------' . PHP_EOL;
-
-$doc = new DOMDocument();
-$doc->loadHTML($ndata);
-var_dump($doc);
-
-
-exit;
-*/
-
-
 $napak=array(
 	"class='list table-highlight'"		=>	"class='table table-bordered table-striped'",
 	"class=selectclass"					=>	"class='selectclass ml5 mr5'",
